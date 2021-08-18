@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom'
 
 import './index.scss'
 import reportWebVitals from './reportWebVitals';
-import {  Home } from './Pages/Frontend/Interfaces';
+import { Home } from './Pages/Frontend/Interfaces';
 import { BrowserRouter, Switch } from 'react-router-dom'
 import { Router, Route } from "react-router";
 import { createHashHistory } from "history";
@@ -16,7 +16,7 @@ import * as Sentry from "@sentry/react/dist";
 import { Integrations } from "@sentry/tracing/dist";
 
 import { Provider } from "react-redux";
-import { Store } from "./Store/"; 
+import { Store } from "./Store/";
 const history = createHashHistory();
 
 Sentry.init({
@@ -27,20 +27,20 @@ Sentry.init({
   // for finer control
   tracesSampleRate: 1.0,
 });
-ReactDOM.render( 
+ReactDOM.render(
   <Provider store={Store}>
     <React.StrictMode>
       <BrowserRouter>
         <Router history={history}>
           <Switch>
-            <Route path="/" exact component={Home} /> 
+            <Route path="/" exact component={Home} />
           </Switch>
         </Router>
       </BrowserRouter>
     </React.StrictMode>
-  </Provider> 
-,
-document.getElementById('root')
+  </Provider>
+  ,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

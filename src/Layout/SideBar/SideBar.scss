@@ -1,4 +1,24 @@
 @import './../../Assets/Style/colors';
 .sideBar{
-   
+   color: #0f1419;
+  //  background-color: #707070;
   }
+
+#sidebar-link{
+
+    margin-top: 70px;
+ 
+  li{
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+#side-bar{
+  background-color: #F4F6F5;
+  height: 100vh;
+}
+
+#logo{
+  width: 70px;
+}

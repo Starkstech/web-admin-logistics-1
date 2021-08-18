@@ -1,2 +1,15 @@
 @import './../../Assets/Style/colors';
- 
+
+ #searchField{
+    margin-top: 20px;
+    width: 520px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #707070;
+ }
+
+ #hi{
+    font-weight: 200;
+    font-size: 18px;
+ }

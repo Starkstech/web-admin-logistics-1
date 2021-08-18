@@ -15,8 +15,8 @@ import { createHashHistory } from "history";
 import * as Sentry from "@sentry/react/dist";
 import { Integrations } from "@sentry/tracing/dist";
 
-import { Provider } from "react-redux";
-import { Store } from "./Store/";
+// import { Provider } from "react-redux";
+// import { Store } from "./Store/";
 const history = createHashHistory();
 
 Sentry.init({
@@ -28,7 +28,7 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 ReactDOM.render(
-  <Provider store={Store}>
+  // <Provider store={Store}>
     <React.StrictMode>
       <BrowserRouter>
         <Router history={history}>
@@ -38,9 +38,9 @@ ReactDOM.render(
         </Router>
       </BrowserRouter>
     </React.StrictMode>
-  </Provider>
-  ,
-  document.getElementById('root')
+    // </Provider>
+    ,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

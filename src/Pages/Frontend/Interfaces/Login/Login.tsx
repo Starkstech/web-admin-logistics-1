@@ -20,8 +20,7 @@ const Login: React.FC = () => {
       <>
       <div className="container-fluid login-container">
       <div className="card login-card">
-
-          <form onSubmit={handleSubmit(onSubmit)}>  
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label htmlFor="exampleInputEmail1" className="form-label login-label pb-2 ">Email address</label>
               <input type="email"
@@ -36,7 +35,7 @@ const Login: React.FC = () => {
                 </div>
               </span>
               </div>
-              <div> 
+              <div>
                <label htmlFor="exampleInputEmail1" className="form-label pt-4 login-label pb-2">Password</label>
               <input type="text"
               {...register("password", {
@@ -64,11 +63,8 @@ const Login: React.FC = () => {
 
           </form>
           </div>
-
           </div>
-    
           </>
-
   </React.Fragment>
 
   )

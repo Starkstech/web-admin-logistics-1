@@ -8,7 +8,7 @@ const SideBar = () => {
     <div id="side-bar">
       <img src={logo} className="mx-auto d-block" id="logo" />
       <ul id="sidebar-link">
-     
+
         <li>Dashboard</li>
         <li>Reports</li>
         <li>Track Item</li>

@@ -2,7 +2,8 @@ import React, { FC } from 'react'
 import { SideBar, Header } from '../../../../Layout';
 
 const Home:FC = () => {
-  return (<>
+  return (
+  <>
     <div className="container-fluid">
       <div className="row">
         <div className="col-2 p-0">

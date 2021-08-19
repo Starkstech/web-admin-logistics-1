@@ -22,7 +22,7 @@
     "rules": {
         "quotes":0,
         "react/react-in-jsx-scope":"off",
-        "react/jsx-filename-extension":[1, {"extensions":[".js",".jsx"]}],
+        "react/jsx-filename-extension":[1, {"extensions":[".js",".jsx",".txs",".ts"]}],
         "semi": 0,
         "no-use-before-define": "off",
         "no-trailing-spaces": "warn",

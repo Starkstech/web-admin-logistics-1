@@ -8,13 +8,12 @@ import ReactDOM from 'react-dom'
 
 import './index.scss'
 import reportWebVitals from './reportWebVitals';
-import { Home } from './Pages/Frontend/Interfaces';
+import { Home, Login } from './Pages/Frontend/Interfaces';
 import { BrowserRouter, Switch } from 'react-router-dom'
 import { Router, Route } from "react-router";
 import { createHashHistory } from "history";
 import * as Sentry from "@sentry/react/dist";
 import { Integrations } from "@sentry/tracing/dist";
-
 // import { Provider } from "react-redux";
 // import { Store } from "./Store/";
 const history = createHashHistory();
@@ -33,6 +32,8 @@ ReactDOM.render(
       <BrowserRouter>
         <Router history={history}>
           <Switch>
+          <Route path="/" exact component={Login} />
+
             <Route path="/" exact component={Home} />
           </Switch>
         </Router>

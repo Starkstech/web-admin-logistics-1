@@ -1,24 +1,44 @@
 @import './../../Assets/Style/colors';
-.sideBar{
+.side-bar{
+  background-color: #F4F6F5;
+  height: 100vh;
+   .sideBar{
    color: #0f1419;
   //  background-color: #707070;
   }
+   .sidebar-link, .sidebar-link-setting{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 6rem;
+    font-weight:500;
+    :hover{
+      color:#3361F8;
+    }
+    li{
+    padding: 1rem;
+    font-size: 1rem;
+     }
+     }
+     .sideBar-logo{
+      background-color: #3361F8;
+      border: 1px solid #707070;
+      height:13vh;
+      position: relative;
+      }
+  
+      .logo{
+       width: 50px;
+       margin: auto;
+       display: block;
+       position: absolute;
+       left:20px;
+       bottom:20px;
 
-#sidebar-link{
+      }
+      .sidebar-link-setting{
+        padding-top: 7rem!important;
+      }
 
-    margin-top: 70px;
- 
-  li{
-    padding: 10px;
-    font-size: 16px;
-  }
-}
-
-#side-bar{
-  background-color: #F4F6F5;
-  height: 100vh;
-}
-
-#logo{
-  width: 70px;
 }

@@ -1,21 +1,25 @@
-import React from 'react'
+/* eslint-disable react/jsx-filename-extension */
+import React, { FC } from 'react'
 import './Header.scss'
 
-const Header = () => {
+const Header:FC = () => {
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-4">
-        <div id="welcome-message">
-          <h3><span id="hi">Hi,</span> <br />
-          Kwik Logisitics
-          </h3>
-      </div>
+    <div className="container-fluid p-0">
+        <div className="heading p-4">
+           <div className="row align-items-center justify-content-between">
+          <div className="col-2">
+          <text className="headding-greetings">Hello,</text>
+          <h3 className="heading-Name pt-1">Kwik Logistics</h3>
+          </div>
+        <div className="col-7 ml-4">
+          <input className="searchField form-control" type="search" />
         </div>
-        <div className="col-md-8">
-          <input id="searchField" type="search" name="" />
+        <div className="col-2 heading-notification">
+          <text className="">mo</text>
         </div>
+     </div>
       </div>
+
     </div>
   )
 }

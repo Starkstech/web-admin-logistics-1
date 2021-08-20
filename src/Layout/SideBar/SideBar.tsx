@@ -1,26 +1,33 @@
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react'
+import React, { FC } from 'react'
 import './SideBar.scss'
 
 import logo from '../../Assets/Images/logo.png'
 
-const SideBar = () => {
+const SideBar:FC = () => {
   return (
-    <div id="side-bar">
-      <img src={logo} className="mx-auto d-block" id="logo" />
-      <ul id="sidebar-link">
+    <>
+        <div className="side-bar">
 
+    <div className="sideBar-logo">
+    <img src={logo} className="mx-auto d-block logo" />
+    </div>
+      <ul className="sidebar-link ">
         <li>Dashboard</li>
-        <li>Reports</li>
+        <li>Orders</li>
         <li>Track Item</li>
-        <li>Messages</li>
-        <li>Customers</li>
+        <li>Customer</li>
         <li>Staffs</li>
-        <li>Nofications</li>
+
+        </ul>
+        <ul className="sidebar-link-setting">
+        <li>Notifications</li>
         <li>Settings</li>
+        <li>Nofications</li>
         <li>Logout</li>
       </ul>
     </div>
+    </>
   )
 }
 

@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom'
 import './index.scss'
 import reportWebVitals from './reportWebVitals';
 import { Home, Login } from './Pages/Frontend/Interfaces';
+import { DashBoard } from "./Pages/Frontend/Components"
 import { BrowserRouter, Switch } from 'react-router-dom'
 import { Router, Route } from "react-router";
 import { createHashHistory } from "history";
@@ -28,13 +29,20 @@ Sentry.init({
 });
 ReactDOM.render(
   // <Provider store={Store}>
+    // eslint-disable-next-line react/jsx-filename-extension
     <React.StrictMode>
       <BrowserRouter>
         <Router history={history}>
           <Switch>
           <Route path="/" exact component={Login} />
-
-            <Route path="/" exact component={Home} />
+          <Route path="/DashBoard" exact render={() => {
+            return (
+              <Home>
+                <DashBoard/>
+              </Home>
+            )
+          }}
+            />
           </Switch>
         </Router>
       </BrowserRouter>

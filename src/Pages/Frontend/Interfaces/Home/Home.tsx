@@ -78,9 +78,6 @@ const DashBoard:FC = () => {
         </div>
         </div>
         </div>
-        {/* <div className="pt-5 pb-4 UsersBar">
-            <text>Lastest Trips</text>
-        </div> */}
         <DashboardTable/>
         </div>
     </div>

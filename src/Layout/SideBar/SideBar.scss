@@ -1,24 +1,30 @@
 @import './../../Assets/Style/colors';
 .side-bar{
-  background-color: #F4F6F5;
-  height: 100vh;
+  // background-color: #F4F6F5;
+  // height: 100vh;
    .sideBar{
    color: #0f1419;
   //  background-color: #707070;
   }
    .sidebar-link, .sidebar-link-setting{
+       background-color: #F4F6F5;
+
+     ul{
     display: flex;
     align-items: start;
-    justify-content: center;
+    // justify-content: center;
     flex-direction: column;
     padding-top: 6rem;
     font-weight:500;
-    :hover{
-      color:#3361F8;
-    }
+     }
+  
+    
     li{
     padding: 0.8rem;
     font-size: 1rem;
+    :hover{
+      color:#3361F8;
+    }
      }
      }
      .sideBar-logo{

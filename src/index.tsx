@@ -8,8 +8,8 @@ import ReactDOM from 'react-dom'
 
 import './index.scss'
 import reportWebVitals from './reportWebVitals';
-import { Home } from './Pages/Frontend/Interfaces';
-import { DashBoard, Login } from "./Pages/Frontend/Components"
+import Wrapper from './Pages/Skeleton/Wrapper/Wrapper'
+import { Home, Login } from "./Pages/Frontend/Interfaces"
 import { BrowserRouter, Switch } from 'react-router-dom'
 import { Router, Route } from "react-router";
 import { createHashHistory } from "history";
@@ -37,9 +37,9 @@ ReactDOM.render(
           <Route path="/" exact component={Login} />
           <Route path="/DashBoard" exact render={() => {
             return (
-              <Home>
-                <DashBoard/>
-              </Home>
+              <Wrapper>
+                <Home />
+              </Wrapper>
             )
           }}
             />

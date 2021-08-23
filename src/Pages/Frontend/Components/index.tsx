@@ -1,3 +1,2 @@
-export { default as HomeGride } from './Home/HomeGride/HomeGride'
-export { default as DashBoard } from "./DashBoard/DashBoard"
-export { default as Login } from "./Login/Login"
+export { default as DashboardTable } from "./Home/DashboardTable/DashboardTable"
+export { default as DashboardChart } from "./Home/DashboardChart"

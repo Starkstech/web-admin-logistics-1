@@ -4,7 +4,7 @@ import './Header.scss'
 
 const Header:FC = () => {
   return (
-    <div className="container-fluid p-0">
+    <div className="container-fluid p-0 d-none d-md-block">
         <div className="heading p-4">
            <div className="row align-items-center justify-content-between">
           <div className="col-2">

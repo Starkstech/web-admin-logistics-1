@@ -7,14 +7,14 @@ const Home:FC = ({ children }) => {
   <>
     <div className="container-fluid">
       <div className="row">
-        <div className=" col-2 p-0">
+        <div className=" col-md-2 p-0">
           <SideBar/>
         </div>
-        <div className="col-10 p-0">
-          <div className="">
-          <Header/>
-          {children}
+        <div className="col-sm-12 col-md-10 p-0">
+            <div className="">
+          <Header />
           </div>
+          {children}
         </div>
       </div>
     </div>

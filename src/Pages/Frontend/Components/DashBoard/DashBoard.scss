@@ -7,7 +7,7 @@
     }
     .dashboard-totalMonth, .dashboard-totalEarning {
         background: #FDEDD3;
-        width:11rem;
+        // width:11rem;
         height:11rem;
         border:1px solid #FDEDD3;
         border-radius: 5px;
@@ -62,10 +62,11 @@
         border-radius: 5px;
         border:1px solid #FFFFFF;
         // border-bottom:1px solid #F4F6F5;
+        
     };
     .dashboardInfor{
-                border-bottom:1px solid #F4F6F5;
-                padding:1rem 2rem .5rem .1rem;
+          border-bottom:1px solid #F4F6F5;
+         padding:1rem 2rem .5rem .1rem;
     }
     .contactName, .viewContact{
         font-size:0.8rem;
@@ -94,6 +95,10 @@
     font-size:1rem;
     margin-right:2rem;
     // width:50rem;
+    // width: 55rem;
     
+}
+.contact{
+    // width: 20rem;
 }
 

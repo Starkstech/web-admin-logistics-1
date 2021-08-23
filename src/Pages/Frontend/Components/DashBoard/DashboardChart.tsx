@@ -21,7 +21,7 @@ const DashboardChart: React.FC = () => {
   const config = {
     data,
     height: 200,
-    width: 700,
+    // width: 700,
     xField: 'Month',
     yField: 'value',
     point: {
@@ -31,7 +31,7 @@ const DashboardChart: React.FC = () => {
   };
   // eslint-disable-next-line react/jsx-filename-extension
   return (
-    <div className=" p-0">
+    <div className=" p-0 container-fluid">
   <Line className="DashboardChart" {...config} />
   </div>
   );

@@ -1,0 +1,99 @@
+.dashboard-content{
+    .dashBoard-overView{
+        font-size:1.5rem;
+        padding-top: 4rem;
+        color:#333333;
+        font-weight:500;
+    }
+    .dashboard-totalMonth, .dashboard-totalEarning {
+        background: #FDEDD3;
+        width:11rem;
+        height:11rem;
+        border:1px solid #FDEDD3;
+        border-radius: 5px;
+        box-shadow: 0px 3px  #00000029;
+        margin-right: 1.5rem;
+        .review-amount{
+            color:#333333;
+            font-size:2rem;
+            font-weight: bold;
+        }
+        .review-month{
+            color:#333333;
+            font-size: 1rem;
+            font-weight:500;
+        }
+        .review-trip{
+            color:#333333;
+            font-weight:0.8rem;
+        }
+    }
+    .dashboard-totalEarning {
+        background: #B5DFEB!important;
+      
+    }
+    .dashboard-contact{
+        // width:15rem;
+
+    }
+    .customerName{
+        padding-right: 3em;
+        color:#333333;
+        font-size:1.2rem;
+        font-weight: 500;
+    }
+    .UsersBar{
+        color:#333333;
+        font-size:1.2rem;
+        font-weight: 500;
+    }
+    .contact-user{
+        background-color: #707070;
+        border-radius:50%;
+        border:1px solid #707070;
+        padding:0.3rem 0.5rem;
+
+        margin-right:1rem;
+
+    }
+    .dashboard-contact{
+        background:#FFFFFF;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 5px;
+        border:1px solid #FFFFFF;
+        // border-bottom:1px solid #F4F6F5;
+    };
+    .dashboardInfor{
+                border-bottom:1px solid #F4F6F5;
+                padding:1rem 2rem .5rem .1rem;
+    }
+    .contactName, .viewContact{
+        font-size:0.8rem;
+        font-weight: bold;
+        color:#333333;
+    }
+    .viewContact{
+        border-bottom:1px solid #333333;
+        margin-left:1.3rem;
+        padding-top:1rem;
+        background-color: inherit;
+        border-top:0px;
+        border-right:0px;
+        border-left:0px;
+
+    }
+    .contactNum{
+        color:#707070;
+
+    }
+  
+}
+.DashboardChart{
+    box-shadow: 0px 3px 6px #00000029;
+    padding:30px;
+    font-size:1rem;
+    margin-right:2rem;
+    // width:50rem;
+    
+}
+

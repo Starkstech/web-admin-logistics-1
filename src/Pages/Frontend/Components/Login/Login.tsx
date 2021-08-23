@@ -37,7 +37,7 @@ const Login: React.FC = () => {
               </div>
               <div>
                <label htmlFor="exampleInputEmail1" className="form-label pt-4 login-label pb-2">Password</label>
-              <input type="text"
+              <input type="password"
               {...register("password", {
                 required: "Enter passoword",
               })}
@@ -52,7 +52,7 @@ const Login: React.FC = () => {
               <div className="d-flex justify-content-between align-items-center pt-4">
               <div className="form-check">
              <input className="form-check-input login-form-check" type="checkbox" value="" id="flexCheckDefault"/>
-              <label className="form-check-label login-label" htmlFor="flexCheckDefault">
+              <label className="form-check-label login-label pt-1" htmlFor="flexCheckDefault">
                Remember me
               </label>
                 </div>

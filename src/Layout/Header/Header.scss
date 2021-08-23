@@ -1,6 +1,6 @@
 @import './../../Assets/Style/colors';
 .heading{
-   height:13vh;
+   height:10vh;
    background: #FFFFFF;
    border: 1px solid #707070;
    .headding-greetings{
@@ -8,7 +8,7 @@
       font-size:1rem;
    }
    .heading-Name{
-      font-size:1.5rem;
+      font-size:1.2rem;
       color:#333333;
       font-weight: 500;
    }
@@ -19,9 +19,10 @@
       padding: 5px;
       border-radius: 5px;
       border: 1px solid #707070;
+      width:35rem;
    }
    .heading-notification{
-      padding-left:10rem;
+      padding-left:8rem;
    }
   
    .hi{

@@ -8,8 +8,8 @@ import ReactDOM from 'react-dom'
 
 import './index.scss'
 import reportWebVitals from './reportWebVitals';
-import { Home, Login } from './Pages/Frontend/Interfaces';
-import { DashBoard } from "./Pages/Frontend/Components"
+import { Home } from './Pages/Frontend/Interfaces';
+import { DashBoard, Login } from "./Pages/Frontend/Components"
 import { BrowserRouter, Switch } from 'react-router-dom'
 import { Router, Route } from "react-router";
 import { createHashHistory } from "history";

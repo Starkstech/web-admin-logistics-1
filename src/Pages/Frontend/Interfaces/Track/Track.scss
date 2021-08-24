@@ -2,11 +2,11 @@
 
 .track_wrapper {
     .track-table {
-        width: 45%;
+        width: 55%;
     }
 
     .track-info {
-        width: 45%;
+        width: 35%;
 
         .track_details {
             height: 65px;
@@ -34,6 +34,28 @@
                 color: $white-color;
                 border-radius: 5px;
                 height: 100%;
+            }
+
+        }
+
+        .track_delivery {
+            width: 300px;
+            margin-top: 4rem;
+
+            .track_delivery-top {
+                width: 100%;
+                background: $primary-color;
+                color: $white-color;
+            }
+            
+            .track_delivery-mode {
+                background: $dark-color;
+                color: $white-color;
+                border-radius: 5px;
+                width: 70px;
+                height: 30px;
+
+                
             }
         }
     }

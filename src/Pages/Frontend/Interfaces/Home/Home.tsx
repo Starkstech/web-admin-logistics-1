@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable react/jsx-filename-extension */
 import React, { FC } from "react"
 import { DashboardChart, DashboardTable } from "../../Components"
 import "./Home.scss"

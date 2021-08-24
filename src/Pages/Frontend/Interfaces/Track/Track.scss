@@ -1,0 +1,40 @@
+@import "../../../../Assets/Style/colors";
+
+.track_wrapper {
+    .track-table {
+        width: 45%;
+    }
+
+    .track-info {
+        width: 45%;
+
+        .track_details {
+            height: 65px;
+            width: 250px;
+            font-size: 0.8rem;
+            background: $primary-color;
+            border-radius: 5px;
+
+            .track_details-status {
+                background: $dark-color;
+                color: $white-color;
+                border-radius: 5px;
+                height: 100%;
+                text-align: center;
+
+                .fa-box {
+                    font-size: 1.5rem;
+                    display: inline;
+                    margin-right: 5px;
+                }
+            }
+
+            .track_details-time {
+                background: $primary-color;
+                color: $white-color;
+                border-radius: 5px;
+                height: 100%;
+            }
+        }
+    }
+}

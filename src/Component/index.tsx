@@ -1,3 +1,1 @@
-
-export { default as NetworkError } from './networkError/networkError'
-export { default as Preloader } from './preloader/preloader' 
+export { default as Search } from './Search/Search'

@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom'
 import './index.scss'
 import reportWebVitals from './reportWebVitals';
 import Wrapper from './Pages/Skeleton/Wrapper/Wrapper'
-import { Home, Login } from "./Pages/Frontend/Interfaces"
+import { Home, Login, Orders, Staffs, Customers, Track } from "./Pages/Frontend/Interfaces"
 import { BrowserRouter, Switch } from 'react-router-dom'
 import { Router, Route } from "react-router";
 import { createHashHistory } from "history";
@@ -43,6 +43,34 @@ ReactDOM.render(
             )
           }}
             />
+            <Route path="/Orders" render={() => {
+              return (
+                <Wrapper>
+                  <Orders />
+                </Wrapper>
+              )
+            }} />
+            <Route path="/Customers" exact render={() => {
+              return (
+                <Wrapper>
+                  <Customers />
+                </Wrapper>
+              )
+            }} />
+            <Route path="/Track" exact render={() => {
+              return (
+                <Wrapper>
+                  <Track />
+                </Wrapper>
+              )
+            }} />
+            <Route path="/Staffs" exact render={() => {
+              return (
+                <Wrapper>
+                  <Staffs />
+                </Wrapper>
+              )
+            }} />
           </Switch>
         </Router>
       </BrowserRouter>

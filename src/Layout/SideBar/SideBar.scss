@@ -1,17 +1,16 @@
 @import './../../Assets/Style/colors';
-.side-bar{
-  // background-color: #F4F6F5;
-  // height: 100vh;
-   .sideBar{
-   color: #0f1419;
-  //  background-color: #707070;
-  }
+.sidebar{
+  background-color: #F4F6F5;
+  width: 250px;
+   height: 100vh;
+   position: fixed;
+   
    .sidebar-link, .sidebar-link-setting{
        background-color: #F4F6F5;
 
      ul{
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     // justify-content: center;
     flex-direction: column;
     padding-top: 6rem;

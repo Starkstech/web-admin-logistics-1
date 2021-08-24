@@ -31,7 +31,7 @@ const DashboardChart: React.FC = () => {
   };
   // eslint-disable-next-line react/jsx-filename-extension
   return (
-    <div className=" p-0 container-fluid">
+    <div className=" p-0 container-fluid mt-3">
   <Line className="DashboardChart" {...config} />
   </div>
   );

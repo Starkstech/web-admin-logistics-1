@@ -8,6 +8,8 @@
   }
    .sidebar-link, .sidebar-link-setting{
        background-color: #F4F6F5;
+       height:90vh;
+       padding-top:4rem;
 
      ul{
     display: flex;
@@ -21,7 +23,7 @@
     
     li{
     padding: 0.8rem;
-    font-size: 1rem;
+    font-size: 0.8rem;
     :hover{
       color:#3361F8;
     }

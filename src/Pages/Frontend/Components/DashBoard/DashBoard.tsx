@@ -13,23 +13,23 @@ const DashBoard:FC = () => {
         <div className="dashBoard-overView ">
         <text>Overview</text>
         </div>
-            <div className="row pt-3">
-                <div className="d-flex flex-column dashboard-totalMonth col-md-2 col-sm-6 py-4 px-4">
+            <div className="row m-0 pt-3">
+                <div className="d-flex flex-column dashboard-totalMonth col-md-2 col-6 py-4 px-4">
                 <small className="pb-3 review-trip">Total trips</small>
                 <small className="review-amount">30</small>
                 <small className="pt-4 review-month">This month</small>
                 </div>
-                <div className="d-flex flex-column dashboard-totalEarning col-md-2 col-sm-6 py-4 px-4">
+                <div className="d-flex flex-column dashboard-totalEarning col-md-2 col-6 py-4 px-4">
                 <small className="pb-3 review-earning">Total Earnings</small>
                 <small className="review-amount"><sup> ₦</sup>20000</small>
                 <small className="pt-4 review-month">This month</small>
                 </div>
-                <div className="d-flex flex-column dashboard-totalEarning col-md-2 col-sm-6 py-4 px-4">
+                <div className="d-flex flex-column dashboard-totalEarning col-md-2 col-6 py-4 px-4">
                 <small className="pb-3 review-earning">Customers</small>
                 <small className="review-amount">40</small>
                 <small className="pt-4 review-month">This month</small>
                 </div>
-                <div className="d-flex flex-column dashboard-totalEarning col-md-2 col-sm-6 py-4 px-4">
+                <div className="d-flex flex-column dashboard-totalEarning col-md-2 col-6 py-4 px-4">
                 <small className="pb-3 review-earning">Staff</small>
                 <small className="review-amount">40</small>
                 <small className="pt-4 review-month">This month</small>
@@ -41,11 +41,11 @@ const DashBoard:FC = () => {
         <div className="row justify-content-between py-5">
             <div className="col-md-9 d-none d-md-block">
              <text className="UsersBar">Users</text>
-           <DashboardChart/>
+              <DashboardChart/>
               </div>
             <div className="contact col-md-3 ">
             <text className="customerName">New Customers</text>
-           <div className="card dashboard-contact pb-3 pt-2 px-3">
+           <div className="card dashboard-contact pb-3 pt-2 px-3 mt-3">
             <div className="d-flex align-items-center dashboardInfor">
                 <div className="contact-user">
             <i className="fas fa-user"></i>

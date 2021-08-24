@@ -5,8 +5,8 @@ import './Header.scss'
 const Header:FC = () => {
   return (
     <div className="container-fluid p-0 d-none d-md-block">
-        <div className="heading p-4">
-           <div className="row align-items-center justify-content-between">
+        <div className="heading px-4 py-3">
+           <div className="row justify-content-between">
           <div className="col-2">
           <text className="headding-greetings">Hello,</text>
           <h3 className="heading-Name pt-1">Kwik Logistics</h3>

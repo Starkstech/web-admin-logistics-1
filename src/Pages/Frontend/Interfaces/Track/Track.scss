@@ -58,5 +58,18 @@
                 
             }
         }
+
+        .track_delivery-rider {
+            color: $dark-color;
+
+            .fa-user-circle {
+                font-size: 3rem;
+                color: $grey-color-1;
+            }
+            .fa-phone-square-alt {
+                font-size: 2rem;
+                color: $primary-color;
+            }
+        }
     }
 }

@@ -46,3 +46,13 @@ input:focus, textarea:focus {
   font-size: 1.5rem;
   font-weight: 400;
 }
+
+.btn_main {
+  height: 35px;
+  border: none;
+  background-color: $primary-color;
+  color: $white-color;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  font-size: 0.7rem;
+}

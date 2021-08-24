@@ -70,38 +70,54 @@ const SideBar:FC = () => {
 
   <div className="collapse sidebar-link justify-content-center align-items-center  navbar-collapse" id="navbarNav">
     <ul className="navbar-nav  p-0 ">
+    <a className="m-0" href="">
     <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
         <i className="fas fa-user"></i>
         <li>Dashboard</li>
         </div>
+        </a>
+        <a className="m-0" href="">
         <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
         <i className="fas fa-user"></i>
         <li>Orders</li>
         </div>
+        </a>
+        <a className="m-0" href="">
         <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
         <i className="fas fa-user"></i>
         <li>Track Item</li>
         </div>
+        </a>
+        <a className="m-0" href="">
         <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
         <i className="fas fa-user"></i>
         <li>Customer</li>
         </div>
+        </a>
+        <a className="m-0" href="">
         <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
         <i className="fas fa-user"></i>
         <li>Staffs</li>
         </div>
+        </a>
+       <a className="m-0" href="/#/Notification">
         <div className="d-flex align-items-center" style={{ paddingLeft: "10px", paddingTop: "7rem" }}>
         <i className="fas fa-user"></i>
         <li>Notifications</li>
         </div>
+        </a>
+        <a className="m-0" href="">
         <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
         <i className="fas fa-user"></i>
         <li>Settings</li>
-      </div> 
+      </div>
+      </a>
+      <a className="m-0" href="">
         <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
         <i className="fas fa-user"></i>
         <li>Logout</li>
         </div>
+        </a>
     </ul>
 
   </div>

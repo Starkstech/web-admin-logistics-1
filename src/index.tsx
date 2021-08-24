@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom'
 import './index.scss'
 import reportWebVitals from './reportWebVitals';
 import { Home } from './Pages/Frontend/Interfaces';
-import { DashBoard, Login } from "./Pages/Frontend/Components"
+import { DashBoard, Login, Notification } from "./Pages/Frontend/Components"
 import { BrowserRouter, Switch } from 'react-router-dom'
 import { Router, Route } from "react-router";
 import { createHashHistory } from "history";
@@ -42,6 +42,14 @@ ReactDOM.render(
               </Home>
             )
           }}
+            />
+              <Route path="/Notification" exact render={() => {
+                return (
+              <Home>
+                <Notification/>
+              </Home>
+                )
+              }}
             />
           </Switch>
         </Router>

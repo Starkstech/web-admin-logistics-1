@@ -1,0 +1,66 @@
+.settings-container{
+    .settings-heading{
+        font-size: 1.5rem;
+        padding-top: 3rem;
+        color: #333333;
+        font-weight: 500;
+    }
+    .settings-list{
+        color:#333333;
+        font-size:0.8rem;
+        font-weight:500;
+        padding:0px 0.5rem;
+        border-right: 1px solid #707070;
+    }
+    .settings-btn {
+        border-bottom:2px solid #00000029;
+        padding-bottom:2rem;
+      .settings-btnSearch{
+      color:#fff;
+      font-size:0.7rem;
+      border:1px solid #3361F8;
+      padding:.3rem .9rem;
+      border-radius:5px;
+      margin-right:0.5rem;
+      background-color: #3361F8;
+       }
+
+        .settings-btnRemove{
+        color:#3361F8;
+        font-size:0.7rem;
+        border:1px solid #3361F8;
+        padding:.3rem .9rem;
+        border-radius:5px;
+        background-color: transparent;
+        }
+    }
+  
+    .setting-appLogo{
+             font-size:.0.8rem;
+            color:#333333;
+            font-weight:500;
+            margin-bottom: 2rem;
+    }
+    
+   
+
+}
+ @media only screen and (max-width :800px){
+    .settings-container{
+        padding: 0px 2rem;
+        ul{
+            justify-content: start!important;
+            display:flex;
+            padding:1.5rem 0px!important;
+        }
+        .setting-appLogo{
+            margin-bottom:1rem;
+ 
+        }
+        .settings-card{
+      box-shadow: none!important;
+      padding:0px!important;
+      margin:0px!important;
+       }
+      }
+ }

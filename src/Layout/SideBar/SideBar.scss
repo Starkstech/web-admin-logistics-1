@@ -1,7 +1,11 @@
 @import './../../Assets/Style/colors';
 .side-bar{
   // background-color: #F4F6F5;
-  // height: 100vh;
+  // height: 90vh;
+  // position: fixed;
+  // width:14%;
+  // width:100%;
+
    .sideBar{
    color: #0f1419;
   //  background-color: #707070;
@@ -9,11 +13,11 @@
    .sidebar-link, .sidebar-link-setting{
        background-color: #F4F6F5;
        height:90vh;
-       padding-top:4rem;
+      //  padding-top:4rem;
 
      ul{
     display: flex;
-    align-items: start;
+    // align-items: start;
     // justify-content: center;
     flex-direction: column;
     padding-top: 6rem;
@@ -24,6 +28,8 @@
     li{
     padding: 0.8rem;
     font-size: 0.8rem;
+    color:#333333;
+
     :hover{
       color:#3361F8;
     }

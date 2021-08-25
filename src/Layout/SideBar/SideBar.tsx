@@ -70,7 +70,7 @@ const SideBar:FC = () => {
 
   <div className="collapse sidebar-link justify-content-center align-items-center  navbar-collapse" id="navbarNav">
     <ul className="navbar-nav  p-0 ">
-    <a className="m-0" href="">
+    <a className="m-0" href="/#/DashBoard">
     <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
         <i className="fas fa-user"></i>
         <li>Dashboard</li>
@@ -106,7 +106,7 @@ const SideBar:FC = () => {
         <li>Notifications</li>
         </div>
         </a>
-        <a className="m-0" href="">
+        <a className="m-0" href="/#/Settings">
         <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
         <i className="fas fa-user"></i>
         <li>Settings</li>

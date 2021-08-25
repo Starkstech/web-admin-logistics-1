@@ -8,8 +8,9 @@ import ReactDOM from 'react-dom'
 
 import './index.scss'
 import reportWebVitals from './reportWebVitals';
-import { Home } from './Pages/Frontend/Interfaces';
-import { DashBoard, Login, Notification } from "./Pages/Frontend/Components"
+import { DashBoardContent, NotificationContent, SettingsContent, HomeLogin } from './Pages/Frontend/Interfaces';
+import { } from "./Pages/Frontend/Components";
+import Wrapper from './Pages/Skeleton/Skeleton/Wrapper/Wrapper';
 import { BrowserRouter, Switch } from 'react-router-dom'
 import { Router, Route } from "react-router";
 import { createHashHistory } from "history";
@@ -34,22 +35,30 @@ ReactDOM.render(
       <BrowserRouter>
         <Router history={history}>
           <Switch>
-          <Route path="/" exact component={Login} />
+          <Route path="/" exact component={HomeLogin} />
           <Route path="/DashBoard" exact render={() => {
             return (
-              <Home>
-                <DashBoard/>
-              </Home>
+              <Wrapper>
+                <DashBoardContent/>
+              </Wrapper>
             )
           }}
             />
               <Route path="/Notification" exact render={() => {
                 return (
-              <Home>
-                <Notification/>
-              </Home>
+              <Wrapper>
+                <NotificationContent/>
+              </Wrapper>
                 )
               }}
+            />
+             <Route path="/Settings" exact render={() => {
+               return (
+              <Wrapper>
+                <SettingsContent/>
+              </Wrapper>
+               )
+             }}
             />
           </Switch>
         </Router>

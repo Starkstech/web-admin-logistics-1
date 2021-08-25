@@ -2,7 +2,7 @@
 
 .search {
     margin: 1.5em 0;
-    width: 300px;
+    max-width: 300px;
     .search_input {
         border: 1px solid $grey-color-1;
         padding: 0.5em 1em;
@@ -13,6 +13,7 @@
 
     .search_btn {
         width: 20%;
+        min-width: 60px;
         height: 35px;
         border: none;
         background-color: $primary-color;

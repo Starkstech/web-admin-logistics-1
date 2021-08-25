@@ -65,7 +65,7 @@ const customStyles = {
 
 const Staffs: FC = () => {
   return (
-        <div className="staffs_wrapper p-5">
+        <div className="staffs_wrapper p-4">
             <h2 className="heading_2x">Staffs</h2>
             <div className="d-flex justify-content-between align-items-center">
                 <Search />

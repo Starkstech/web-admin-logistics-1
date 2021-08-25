@@ -65,7 +65,7 @@ const customStyles = {
 
 const Customers:FC = () => {
   return (
-      <div className="customers_wrapper p-5">
+      <div className="customers_wrapper p-4">
           <h2 className="heading_2x">Customers</h2>
           <div className="mt-4">
               <Search />

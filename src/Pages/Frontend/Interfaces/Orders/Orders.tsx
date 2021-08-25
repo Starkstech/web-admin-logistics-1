@@ -99,7 +99,7 @@ const ActionsBoard = () => (
 const customStyles = {
   headRow: {
     style: {
-      height: '40px',
+      height: '45px',
       minHeight: '40px',
     },
   },
@@ -112,7 +112,7 @@ const customStyles = {
 
 const Orders:FC = () => {
   return (
-    <div className="orders_wrapper p-5">
+    <div className="orders_wrapper p-4">
     <h2 className="heading_2x">Orders</h2>
     <div className="mt-4">
         <Search />

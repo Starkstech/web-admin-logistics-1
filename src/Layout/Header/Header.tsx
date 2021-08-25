@@ -4,23 +4,22 @@ import './Header.scss'
 
 const Header:FC = () => {
   return (
-    <div className="container-fluid p-0 d-none d-md-block">
-        <div className="heading p-4">
-           <div className="row align-items-center justify-content-between">
-          <div className="col-2">
-          <text className="headding-greetings">Hello,</text>
-          <h3 className="heading-Name pt-1">Kwik Logistics</h3>
-          </div>
-        <div className="col-7 ml-4">
-          <input className="searchField form-control" type="search" />
+    <header className="header shadow-sm d-flex justify-content-between align-items-center">
+        <div className="header_banner d-flex justify-content-start align-items-center">
+            <label htmlFor="toggle-sidebar"><i className="fas fa-bars"></i></label>
+            <div className="d-flex flex-column justify-content-center align-items-start">
+            <small>Hello</small>
+            <span>Kwik Logistics</span>
+            </div>
         </div>
-        <div className="col-2 heading-notification">
-          <text className="">mo</text>
+        <div className="header_search d-flex justify-content-start align-items-center">
+            <span><i className="fas fa-search"></i></span>
+            <input type="search" name="search" placeholder="Search Here" aria-label="Search here" />
         </div>
-     </div>
-      </div>
-
-    </div>
+        <div className="header_bell">
+          <span><i className="far fa-bell"></i></span>
+        </div>
+    </header>
   )
 }
 

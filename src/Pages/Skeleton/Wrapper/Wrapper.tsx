@@ -4,19 +4,17 @@ import './Wrapper.scss'
 
 const Wrapper:FC = ({ children }) => {
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-2 p-0">
-          <SideBar/>
-        </div>
-        <div className="col-10 p-0">
-          <Header/>
-          <main>
+    <div className="wrapper">
+      <div>
+        <SideBar/>
+        <div>
+        <Header/>
+        <main className="main">
           {children}
           </main>
         </div>
       </div>
-    </div>
+      </div>
   )
 }
 export default Wrapper

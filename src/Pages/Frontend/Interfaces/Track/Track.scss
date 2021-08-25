@@ -2,15 +2,18 @@
 
 .track_wrapper {
     .track-table {
-        width: 55%;
+        min-width: 55%;
+        margin-bottom: 2em;
     }
 
     .track-info {
         width: 35%;
+        min-width: 300px;
+
 
         .track_details {
             height: 65px;
-            width: 250px;
+            width: 230px;
             font-size: 0.8rem;
             background: $primary-color;
             border-radius: 5px;
@@ -73,3 +76,11 @@
         }
     }
 }
+
+@media screen and (max-width: 1200px) {
+    .track-wrapper {
+        .track-table {
+            min-width: 45%;
+        }
+    }
+ }

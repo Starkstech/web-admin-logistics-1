@@ -47,11 +47,11 @@ const customStyles = {
 
 const Track: FC = () => {
   return (
-        <div className="track_wrapper p-5">
+        <div className="track_wrapper p-4">
             <h2 className="heading_2x">Track Item</h2>
             <div>
                 <Search />
-                <div className="d-flex justify-content-between align-items-start mt-5">
+                <div className="d-flex flex-wrap justify-content-between align-items-start mt-5">
                     <div className="track-table shadow-sm">
                         <DataTable
                             columns={columns}

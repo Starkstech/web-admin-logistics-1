@@ -1,16 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import "./Assets/Style/colors";
 @import 'antd/dist/antd.css';
 
-// html{
-//   font-size:80%; // font-size=0.8rem=12.8px
-
-// }
-body {
-  height: 97vh;
-  background: $white-color;
-  font-family: "Poppins", sans-serif;
-  // font-size:1em;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+  font-family: "Roboto", sans-serif;
 }
  
 .btn:focus {
@@ -19,53 +17,14 @@ body {
   transition: transform ease-in 0.1s;
 }
 
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  height: fit-content;
-  width: fit-content;
-  margin: 10px;
+img {
+  width: 100%;
+  height: auto;
 }
 
 a:hover {
   opacity: 1;
   text-decoration: none;
-}
-
-.starks-btn {
-  background-color: $primary-color;
-  box-shadow: 0px 0px 22px #ffffff29;
-  border-radius: 4px;
-  opacity: 1;
-  color: $white-color-1;
-  font-size: $button-font-size;
-  transition: transform ease-in 0.1s;
-  cursor: pointer;
-}
-.starks-btn-light {
-  border-radius: 4px;
-  opacity: 1;
-  width: 300px;
-  height: 40px;
-  font-size: $button-font-size;
-  box-shadow: 0px 0px 22px #00000029;
-  transition: transform ease-in 0.1s;
-  cursor: pointer;
-}
-
-.starks-btn:hover,
-.starks-btn-light:hover {
-  transform: scale(1.05);
-}
-
-.gen--icon:focus {
-  border: 1px solid $white-color  !important;
-  box-shadow: 1px 1px 1px $white-color !important;
-  outline:none!important;
-  color: $scoreRed !important;
 }
 
 input, textarea {
@@ -75,4 +34,24 @@ input, textarea {
 input:focus, textarea:focus {
   outline: none;
   box-shadow: none !important;
+}
+
+.heading_2x {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.btn_main {
+  height: 35px;
+  min-width: 60px;
+  border: none;
+  background-color: $primary-color;
+  color: $white-color;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  font-size: 0.7rem;
+}
+
+.cvPDdw {
+  z-index: 100 !important;
 }

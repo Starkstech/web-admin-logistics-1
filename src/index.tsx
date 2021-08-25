@@ -8,9 +8,9 @@ import ReactDOM from 'react-dom'
 
 import './index.scss'
 import reportWebVitals from './reportWebVitals';
-import { DashBoardContent, NotificationContent, SettingsContent, HomeLogin } from './Pages/Frontend/Interfaces';
 import { } from "./Pages/Frontend/Components";
-import Wrapper from './Pages/Skeleton/Skeleton/Wrapper/Wrapper';
+import Wrapper from './Pages/Skeleton/Wrapper/Wrapper'
+import { Login, Orders, Staffs, Customers, Track, DashBoardContent, NotificationContent, SettingsContent } from "./Pages/Frontend/Interfaces"
 import { BrowserRouter, Switch } from 'react-router-dom'
 import { Router, Route } from "react-router";
 import { createHashHistory } from "history";
@@ -35,7 +35,7 @@ ReactDOM.render(
       <BrowserRouter>
         <Router history={history}>
           <Switch>
-          <Route path="/" exact component={HomeLogin} />
+          <Route path="/" exact component={Login} />
           <Route path="/DashBoard" exact render={() => {
             return (
               <Wrapper>
@@ -44,7 +44,7 @@ ReactDOM.render(
             )
           }}
             />
-              <Route path="/Notification" exact render={() => {
+              <Route path="/Notifications" exact render={() => {
                 return (
               <Wrapper>
                 <NotificationContent/>
@@ -60,6 +60,34 @@ ReactDOM.render(
                )
              }}
             />
+            <Route path="/Orders" render={() => {
+              return (
+                <Wrapper>
+                  <Orders />
+                </Wrapper>
+              )
+            }} />
+            <Route path="/Customers" exact render={() => {
+              return (
+                <Wrapper>
+                  <Customers />
+                </Wrapper>
+              )
+            }} />
+            <Route path="/Track" exact render={() => {
+              return (
+                <Wrapper>
+                  <Track />
+                </Wrapper>
+              )
+            }} />
+            <Route path="/Staffs" exact render={() => {
+              return (
+                <Wrapper>
+                  <Staffs />
+                </Wrapper>
+              )
+            }} />
           </Switch>
         </Router>
       </BrowserRouter>

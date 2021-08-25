@@ -7,8 +7,6 @@
     }
     .dashboard-totalMonth, .dashboard-totalEarning {
         background: #FDEDD3;
-        // width:11rem;
-        // height:11rem;
         border:1px solid #FDEDD3;
         border-radius: 5px;
         box-shadow: 0px 3px  #00000029;
@@ -31,10 +29,6 @@
     .dashboard-totalEarning {
         background: #B5DFEB!important;
       
-    }
-    .dashboard-contact{
-        // width:15rem;
-
     }
     .customerName{
         padding-right: 3em;
@@ -60,9 +54,7 @@
         background:#FFFFFF;
         box-shadow: 0px 3px 6px #00000029;
         border-radius: 5px;
-        border:1px solid #FFFFFF;
-        // border-bottom:1px solid #F4F6F5;
-        
+        border:1px solid #FFFFFF;        
     };
     .dashboardInfor{
           border-bottom:1px solid #F4F6F5;
@@ -94,16 +86,12 @@
     margin-right:2rem;
   
 }
-
 @media only screen and (max-width: 800px){
     .dashboard-content{
         .dashboard-totalMonth, .dashboard-totalEarning {
             margin:15px 15px 15px 0px;
             width:45%;
 
-        }
-        .dashboard-totalEarning{
-            // margin-right:0px!important;
         }
         
     }

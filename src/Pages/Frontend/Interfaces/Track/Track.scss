@@ -1,0 +1,86 @@
+@import "../../../../Assets/Style/colors";
+
+.track_wrapper {
+    .track-table {
+        min-width: 55%;
+        margin-bottom: 2em;
+    }
+
+    .track-info {
+        width: 35%;
+        min-width: 300px;
+
+
+        .track_details {
+            height: 65px;
+            width: 230px;
+            font-size: 0.8rem;
+            background: $primary-color;
+            border-radius: 5px;
+
+            .track_details-status {
+                background: $dark-color;
+                color: $white-color;
+                border-radius: 5px;
+                height: 100%;
+                text-align: center;
+
+                .fa-box {
+                    font-size: 1.5rem;
+                    display: inline;
+                    margin-right: 5px;
+                }
+            }
+
+            .track_details-time {
+                background: $primary-color;
+                color: $white-color;
+                border-radius: 5px;
+                height: 100%;
+            }
+
+        }
+
+        .track_delivery {
+            width: 300px;
+            margin-top: 4rem;
+
+            .track_delivery-top {
+                width: 100%;
+                background: $primary-color;
+                color: $white-color;
+            }
+            
+            .track_delivery-mode {
+                background: $dark-color;
+                color: $white-color;
+                border-radius: 5px;
+                width: 70px;
+                height: 30px;
+
+                
+            }
+        }
+
+        .track_delivery-rider {
+            color: $dark-color;
+
+            .fa-user-circle {
+                font-size: 3rem;
+                color: $grey-color-1;
+            }
+            .fa-phone-square-alt {
+                font-size: 2rem;
+                color: $primary-color;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .track-wrapper {
+        .track-table {
+            min-width: 45%;
+        }
+    }
+ }

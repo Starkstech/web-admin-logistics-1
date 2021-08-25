@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable react/jsx-filename-extension */
 import React, { FC } from "react"
-import DashboardChart from "./DashboardChart"
-import DashboardTable from "./DashboardTable"
+import DashboardChart from "../Home/DashboardChart"
+import DashboardTable from "../Home/DashboardTable/DashboardTable"
 import "./DashBoard.scss"
 
 const DashBoard:FC = () => {
@@ -35,9 +35,7 @@ const DashBoard:FC = () => {
                 <small className="pt-4 review-month">This month</small>
                 </div>
             </div>
-         {/* <div className="pt-5 pb-4 d-flex justify-content-between">
-
-        </div> */}
+            
         <div className="row justify-content-between py-5">
             <div className="col-md-9 d-none d-md-block">
              <text className="UsersBar">Users</text>
@@ -79,9 +77,6 @@ const DashBoard:FC = () => {
         </div>
         </div>
         </div>
-        {/* <div className="pt-5 pb-4 UsersBar">
-            <text>Lastest Trips</text>
-        </div> */}
         <DashboardTable/>
         </div>
     </div>

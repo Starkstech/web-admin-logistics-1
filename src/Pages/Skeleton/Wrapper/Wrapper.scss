@@ -1,0 +1,32 @@
+@import "./../../../Assets/Style/colors";
+
+.wrapper {
+    width: 100%;
+    max-height: 100vh;
+
+    .main {
+        margin-left: 200px;
+        margin-top: 80px;
+        width: calc(100%-200px);
+        max-height: calc(100%-80px);
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .wrapper {
+        .main {
+            margin-left: 80px;
+            width: calc(100% - 80px);
+          }
+    }
+ }
+
+ 
+@media screen and (max-width: 600px) {
+    .wrapper {
+        .main {
+            margin-left: 0;
+            width: 100%;
+          }
+    }
+ }

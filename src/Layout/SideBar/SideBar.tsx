@@ -1,131 +1,52 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { FC } from 'react'
+import { Link } from 'react-router-dom'
 import './SideBar.scss'
-
 import logo from '../../Assets/Images/logo.png'
 
-const SideBar:FC = () => {
+const SideBar: FC = () => {
   return (
-    <>
-        {/* <div className="side-bar">
+      <>
+      <input type="checkbox" id="toggle-sidebar" />
+        <div className="sidebar">
+            <div className="sidebar_brand">
+                <div>
+                   <img src={logo} alt="Logo" />
+                </div>
+            </div>
+            <nav className="sidebar_nav">
+            <ul className="mb-5">
+                        <li className="sidebar_link">
+                            <Link className="active" to="/dashboard"><span><i className="fas fa-columns"></i></span><span>Dashboard</span></Link>
+                        </li>
+                        <li className="sidebar_link">
+                            <Link to="/orders"><span><i className="fas fa-boxes"></i></span><span>Orders</span></Link>
+                        </li>
+                        <li className="sidebar_link">
+                            <Link to="/track"><span><i className="fas fa-compass"></i></span><span>Track Item</span></Link>
+                        </li>
+                        <li className="sidebar_link">
+                            <Link to="/customers"><span><i className="fas fa-users"></i></span><span>Customers</span></Link>
+                        </li>
+                        <li className="sidebar_link">
+                            <Link to="/staffs"><span><i className="fas fa-user-friends"></i></span><span>Staffs</span></Link>
+                        </li>
+                    </ul>
 
-    <div className="sideBar-logo">
-    <img src={logo} className="mx-auto d-block logo" />
-    </div>
-      <ul className="sidebar-link ">
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Dashboard</li>
+                    <ul className="mt-5">
+                        <li className="sidebar_link">
+                            <Link to="/notifications"><span><i className="fas fa-bell"></i></span><span>Notifications</span></Link>
+                        </li>
+                        <li className="sidebar_link">
+                            <Link to="/settings"><span><i className="fas fa-cog"></i></span><span>Settings</span></Link>
+                        </li>
+                        <li className="sidebar_link">
+                            <Link to="/logout"><span><i className="fas fa-power-off"></i></span><span>Logout</span></Link>
+                        </li>
+                    </ul>
+            </nav>
         </div>
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Dashboard</li>
-        </div>
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Orders</li>
-        </div>
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Track Item</li>
-        </div>
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Customer</li>
-        </div>
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Staffs</li>
-        </div>
-
-        </ul>
-        <ul className="sidebar-link-setting">
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Notifications</li>
-        </div>
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Settings</li>
-        </div>
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Nofications</li>
-        </div>
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Logout</li>
-        </div>
-      </ul>
-    </div> */}
- <div className="side-bar">
- <div className="sideBar-logo d-none d-md-block">
-    <img src={logo} className="mx-auto d-block logo" />
-    </div>
-<nav className="navbar navbar-expand-lg  d-flex  p-0">
-
-<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"><i className="fas fa-bars"></i></span>
-  </button>
-
-  <div className="collapse sidebar-link justify-content-center align-items-center  navbar-collapse" id="navbarNav">
-    <ul className="navbar-nav  p-0 ">
-    <a className="m-0" href="/#/DashBoard">
-    <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Dashboard</li>
-        </div>
-        </a>
-        <a className="m-0" href="">
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Orders</li>
-        </div>
-        </a>
-        <a className="m-0" href="">
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Track Item</li>
-        </div>
-        </a>
-        <a className="m-0" href="">
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Customer</li>
-        </div>
-        </a>
-        <a className="m-0" href="">
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Staffs</li>
-        </div>
-        </a>
-       <a className="m-0" href="/#/Notification">
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px", paddingTop: "7rem" }}>
-        <i className="fas fa-user"></i>
-        <li>Notifications</li>
-        </div>
-        </a>
-        <a className="m-0" href="/#/Settings">
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Settings</li>
-      </div>
-      </a>
-      <a className="m-0" href="">
-        <div className="d-flex align-items-center" style={{ paddingLeft: "10px" }}>
-        <i className="fas fa-user"></i>
-        <li>Logout</li>
-        </div>
-        </a>
-    </ul>
-
-  </div>
-</nav>
-</div>
-
-</>
-
+        </>
   )
 }
 

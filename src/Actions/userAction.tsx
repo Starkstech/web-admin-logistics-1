@@ -1,25 +1,23 @@
 import {
-  SAVE_REQUEST,
-  SAVE_SUCCESS
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS
 } from "../Constant/userConstant"
 
 const userAction = {
-
-  saveUser: (data: any) => {
-    const success = (data: any) => {
-      return { type: SAVE_SUCCESS, data }
+  setCurrentUser: (user:Object) => {
+    const success = (data:Object) => {
+      return { type: GET_USER_SUCCESS, payload: data }
     }
 
     const request = () => {
-      return { type: SAVE_REQUEST, status: true }
+      return { type: GET_USER_REQUEST, payload: 'loading' }
     }
 
-    return (
-      dispatch: (arg0: {type: any, data: any}) => any) => {
-      request()
-      return dispatch(success(data))
+    return (dispatch:Function) => {
+      dispatch(request)
+      dispatch(success(user))
     }
   }
-
 }
+
 export default userAction

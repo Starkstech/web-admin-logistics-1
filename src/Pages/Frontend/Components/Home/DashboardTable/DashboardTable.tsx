@@ -149,6 +149,7 @@ const DashboardTable: FC = () => {
     data={data}
      customStyles={customStyles}
      persistTableHead
+     responsive
   />
   </div>
   )

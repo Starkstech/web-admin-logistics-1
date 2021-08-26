@@ -35,7 +35,7 @@ const DashBoard:FC = () => {
                 <small className="pt-4 review-month">This month</small>
                 </div>
             </div>
-            
+
         <div className="row justify-content-between py-5">
             <div className="col-md-9 d-none d-md-block">
              <text className="UsersBar">Users</text>

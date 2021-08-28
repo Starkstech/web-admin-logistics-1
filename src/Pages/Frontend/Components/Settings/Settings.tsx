@@ -4,7 +4,7 @@ import "./Settings.scss"
 
 const Settings :FC = () => {
   return (
-        <div className="container settings-container">
+        <div className="container settings-container" style={{ marginLeft: "1rem" }}>
           <h2 className="settings-heading m-0">Settings</h2>
           <div className="col-md-11 col-12">
             <ul className="d-flex justify-content-end m-0">

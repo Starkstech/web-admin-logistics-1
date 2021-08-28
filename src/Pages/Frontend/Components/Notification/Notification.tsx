@@ -4,7 +4,7 @@ import "./Notification.scss"
 const Notification :FC = () => {
   return (
       <>
-      <div className="container-fluid Notification">
+      <div className="container-fluid Notification" style={{ marginLeft: "1rem" }}>
           <h2 className="Notification-heading">Notifications</h2>
           <div>
               <div className="card border-0 shadow-sm notification-card p-4 col-md-11" style = {{ marginTop: "5rem" }}>

@@ -13,7 +13,7 @@ const DashBoard:FC = () => {
         <div className="dashBoard-overView ">
         <text>Overview</text>
         </div>
-            <div className="row  pt-3" style={{ marginLeft: "0px" }}>
+            <div className="row  pt-4" style={{ marginLeft: "0px" }}>
                 <div className="d-flex flex-column dashboard-totalMonth col-md-2 col-6 py-4 px-4">
                 <small className="pb-3 review-trip">Total trips</small>
                 <small className="review-amount">30</small>
@@ -35,7 +35,6 @@ const DashBoard:FC = () => {
                 <small className="pt-4 review-month">This month</small>
                 </div>
             </div>
-            
         <div className="row justify-content-between py-5">
             <div className="col-md-9 d-none d-md-block">
              <text className="UsersBar">Users</text>

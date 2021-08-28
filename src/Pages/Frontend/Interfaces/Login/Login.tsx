@@ -25,13 +25,13 @@ const Login: React.FC = () => {
               <label htmlFor="exampleInputEmail1" className="form-label login-label pb-2 ">Email address</label>
               <input type="email"
               {...register("Email", {
-                required: "Enter Email",
+                required: true
               })}
               className="form-control login-input "
               />
                <span>
                 <div className="login-error-alert">
-                  {errors?.Email && errors.Email.message}
+                  {errors.Email && <p>Enter Email</p>}
                 </div>
               </span>
               </div>
@@ -45,7 +45,7 @@ const Login: React.FC = () => {
               />
                <span>
                 <div className="login-error-alert">
-                  {errors?.password && errors.password.message}
+                  {errors.password && <p>Enter password</p>}
                 </div>
               </span>
               </div>

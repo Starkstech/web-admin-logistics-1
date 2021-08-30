@@ -6,26 +6,26 @@ import './Orders.scss'
 const columns = [
   {
     name: 'Order No.',
-    selector: 'orderNo',
+    selector: (row:any) => row.orderNo,
     sortable: true,
     center: true
 
   },
   {
     name: 'Phone number',
-    selector: 'phoneNo',
+    selector: (row:any) => row.phoneNo,
     sortable: true,
   },
 
   {
     name: 'Amount',
-    selector: 'amount',
+    selector: (row:any) => row.amount,
     sortable: true,
     center: true
   },
   {
     name: 'Pick off',
-    selector: 'pickoff',
+    selector: (row:any) => row.pickoff,
     sortable: true,
     center: true,
     style: {
@@ -35,13 +35,13 @@ const columns = [
   },
   {
     name: 'Drop off',
-    selector: 'dropoff',
+    selector: (row:any) => row.dropoff,
     sortable: true,
     center: true
   },
   {
     name: 'Date',
-    selector: 'date',
+    selector: (row:any) => row.date,
     sortable: true,
     center: true,
     style: {
@@ -51,13 +51,13 @@ const columns = [
   },
   {
     name: 'Status',
-    selector: 'status',
+    selector: (row:any) => row.status,
     sortable: true,
     center: true
   },
   {
     name: 'Actions',
-    selector: 'action',
+    selector: (row:any) => row.action,
     allowOverflow: true,
     sortable: true,
     center: true,
@@ -78,7 +78,7 @@ const data = [
     status: 'In transit'
   },
   {
-    id: 1,
+    id: 2,
     orderNo: '0001',
     phoneNo: '+2348169199932',
     amount: '₦20000',

@@ -3,8 +3,9 @@
 import React, { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from "react-router"
-import { ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import { userAction } from '../../../../Actions'
+import { SERVER_URL } from '../../../../Constant/urlConstant';
 import axios from "axios"
 import './Login.scss'
 import { Redirect } from 'react-router-dom'
@@ -32,14 +33,13 @@ const Login: FC = () => {
 
   const onSubmit = async (e:any) => {
     e.preventDefault()
-    const SERVER_URL = 'https://logistics-app-starks.herokuapp.com/api/user/login'
 
     if (fields.phone === '' || fields.password === '') {
-      toast.warning('Please fill required fields')
+      toast.error('Please fill required fields')
       // eslint-disable-next-line no-undef
     } else {
       try {
-        const { data } = await axios.post(SERVER_URL, fields)
+        const { data } = await axios.post(`${SERVER_URL}/user/login`, fields)
         dispatch(userAction.setCurrentUser(data))
         updateFields(initialState)
         history.push('/dashboard')
@@ -108,7 +108,12 @@ const Login: FC = () => {
                     </div>
                 </form>
             </div>
-            <ToastContainer />
+            <Toaster toastOptions={{
+              style: {
+                height: '70px',
+                padding: '1em'
+              },
+            }} />
         </div>
     )
   }

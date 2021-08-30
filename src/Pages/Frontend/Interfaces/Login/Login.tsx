@@ -29,7 +29,7 @@ const Login: FC = () => {
     })
   }
 
-  const onSubmit = (e:any) => {
+  const onSubmit = async (e:any) => {
     e.preventDefault()
     const SERVER_URL = 'https://logistics-app-starks.herokuapp.com/api/user/login'
 
@@ -37,14 +37,13 @@ const Login: FC = () => {
       errors.push('Please fill required fields')
       // eslint-disable-next-line no-undef
     } else {
-      axios.post(SERVER_URL, fields)
-        .then((response) => {
-          dispatch(userAction.setCurrentUser(response.data.data))
-          history.push('/dashboard')
-        })
-        .catch((error:any) => {
-          console.log(error)
-        })
+      try {
+        const { data } = await axios.post(SERVER_URL, fields)
+        dispatch(userAction.setCurrentUser(data.data))
+        history.push('/dashboard')
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 

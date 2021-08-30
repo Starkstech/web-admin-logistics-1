@@ -4,8 +4,10 @@ import {
   GET_USER_FAILURE
 } from "../Constant/userConstant"
 
+const localUser:any = sessionStorage.getItem("localUser")
+
 const initialState = {
-  currentUser: null,
+  currentUser: JSON.parse(localUser) || {},
   isAuthenticated: false,
   error: null,
   loading: false
@@ -19,7 +21,7 @@ type Action = {
 export default function user (state = initialState, action:Action) {
   switch (action.type) {
     case GET_USER_SUCCESS :
-      // localStorage.setItem("user", JSON.stringify(action.payload))
+      sessionStorage.setItem("localUser", JSON.stringify(action.payload))
       return {
         ...state,
         isAuthenticated: true,

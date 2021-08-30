@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-redeclare */
 import React, { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from "react-router"
@@ -9,6 +11,7 @@ import { Redirect } from 'react-router-dom'
 const initialState = {
   phone: '',
   password: '',
+
 }
 
 const Login: FC = () => {
@@ -32,6 +35,7 @@ const Login: FC = () => {
 
     if (fields.phone === '' || fields.password === '') {
       errors.push('Please fill required fields')
+      // eslint-disable-next-line no-undef
     } else {
       try {
         const response = await axios.post(SERVER_URL, fields)

@@ -3,6 +3,7 @@
 import React, { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from "react-router"
+import { ToastContainer, toast } from 'react-toastify';
 import { userAction } from '../../../../Actions'
 import axios from "axios"
 import './Login.scss'
@@ -18,7 +19,7 @@ const Login: FC = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [fields, updateFields] = useState(initialState)
-  const errors:any = []
+  const [errors, setErrors] = useState<any>([])
   const { isAuthenticated } = useSelector((state:any) => state.user)
 
   const handleChange = (e: any) => {
@@ -34,16 +35,17 @@ const Login: FC = () => {
     const SERVER_URL = 'https://logistics-app-starks.herokuapp.com/api/user/login'
 
     if (fields.phone === '' || fields.password === '') {
-      errors.push('Please fill required fields')
+      toast.warning('Please fill required fields')
       // eslint-disable-next-line no-undef
     } else {
       try {
-        const response = await axios.post(SERVER_URL, fields)
-        console.log(response)
-        dispatch(userAction.setCurrentUser(response.data.data))
+        const { data } = await axios.post(SERVER_URL, fields)
+        dispatch(userAction.setCurrentUser(data))
+        updateFields(initialState)
         history.push('/dashboard')
       } catch (error) {
         console.log(error.message)
+        toast.error(error.message)
       }
     }
   }
@@ -87,7 +89,6 @@ const Login: FC = () => {
                             required
                         />
                     </div>
-                    <span className="text-danger">{errors && errors[0]}</span>
                     <div className="d-flex justify-content-between align-items-center pt-4">
                         <div className="form-check">
                             <input
@@ -103,10 +104,11 @@ const Login: FC = () => {
                                 Remember me
                             </label>
                         </div>
-                        <button className="login-btn">Loginn</button>
+                        <button className="login-btn">Login</button>
                     </div>
                 </form>
             </div>
+            <ToastContainer />
         </div>
     )
   }

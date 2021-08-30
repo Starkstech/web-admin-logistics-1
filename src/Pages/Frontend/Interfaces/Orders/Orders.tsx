@@ -90,7 +90,7 @@ const data = [
 ]
 
 const ActionsBoard = () => (
-  <ul className="actions_container_board p-3 shadow-sm bg-white">
+  <ul className="actions_container_board p-2 shadow-sm bg-white">
     <li>View</li>
     <li>Edit</li>
     <li>Delete</li>

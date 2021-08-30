@@ -23,7 +23,12 @@
         box-shadow: none;
         border: 1px solid #707070;
         border-radius:5px;
-        height:2.5rem;    
+        height:2.5rem;
+        background-color: #FFFFFF;  
+        
+        &:focus, &:active {
+            background-color: #FFFFFF;
+        }
 
     }
     .login-btn{

@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { FC } from "react";
 import DataTable from "react-data-table-component";
 import { Search } from "../../../../Component";
@@ -53,7 +54,8 @@ const columns = [
     name: 'Status',
     selector: (row:any) => row.status,
     sortable: true,
-    center: true
+    center: true,
+    cell: (row:any) => (<div className={`order_status ${sortStatus(row.status)}`}>{row.status}</div>)
   },
   {
     name: 'Actions',
@@ -61,10 +63,18 @@ const columns = [
     allowOverflow: true,
     sortable: true,
     center: true,
-    // eslint-disable-next-line react/display-name
     cell: () => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard /></div>)
   },
 ];
+
+const sortStatus = (status:any) => {
+  switch (status) {
+    case 'In transit' :
+      return 'in-transit'
+    default :
+      return ''
+  }
+}
 
 const data = [
   {

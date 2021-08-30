@@ -1,3 +1,5 @@
+@import "../../../../Assets/Style/colors";
+
 .orders_wrapper {
     .orders_table {
         //data table overflow
@@ -11,5 +13,15 @@
   li {
     margin: 0.4em 0;
     cursor: pointer;
+  }
+}
+
+.order_status {
+  background-color: #d7dcf5;
+  padding: 0.6em;
+  border-radius: 5px;
+
+  &.in-transit {
+    color: $primary-color
   }
 }

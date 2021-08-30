@@ -1,6 +1,8 @@
-import React, { FC } from "react";
-import DataTable from "react-data-table-component";
-import { Search } from "../../../../Component";
+import React, { FC, useEffect } from 'react'
+import DataTable from 'react-data-table-component'
+
+import axios from 'axios'
+import { Search } from '../../../../Component'
 import './Orders.scss'
 
 const columns = [
@@ -8,8 +10,7 @@ const columns = [
     name: 'Order No.',
     selector: 'orderNo',
     sortable: true,
-    center: true
-
+    center: true,
   },
   {
     name: 'Phone number',
@@ -21,7 +22,7 @@ const columns = [
     name: 'Amount',
     selector: 'amount',
     sortable: true,
-    center: true
+    center: true,
   },
   {
     name: 'Pick off',
@@ -30,14 +31,14 @@ const columns = [
     center: true,
     style: {
       overflow: 'visible !important',
-      textOverflow: 'none'
-    }
+      textOverflow: 'none',
+    },
   },
   {
     name: 'Drop off',
     selector: 'dropoff',
     sortable: true,
-    center: true
+    center: true,
   },
   {
     name: 'Date',
@@ -46,14 +47,14 @@ const columns = [
     center: true,
     style: {
       overflow: 'visible !important',
-      textOverflow: 'visible'
-    }
+      textOverflow: 'visible',
+    },
   },
   {
     name: 'Status',
     selector: 'status',
     sortable: true,
-    center: true
+    center: true,
   },
   {
     name: 'Actions',
@@ -62,9 +63,14 @@ const columns = [
     sortable: true,
     center: true,
     // eslint-disable-next-line react/display-name
-    cell: () => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard /></div>)
+    cell: () => (
+            <div className="actions_container">
+                <button className="actions_container_btn btn">...</button>
+                <ActionsBoard />
+            </div>
+    ),
   },
-];
+]
 
 const data = [
   {
@@ -75,7 +81,7 @@ const data = [
     pickoff: '+1b Akinyemi Ave.',
     dropoff: '+1b Akinyemi Ave.',
     date: '11:08am 20 Oct 2021',
-    status: 'In transit'
+    status: 'In transit',
   },
   {
     id: 1,
@@ -85,16 +91,16 @@ const data = [
     pickoff: '+1b Akinyemi Ave.',
     dropoff: '+1b Akinyemi Ave.',
     date: '11:08am 20 Oct 2021',
-    status: 'In transit'
+    status: 'In transit',
   },
 ]
 
 const ActionsBoard = () => (
-  <ul className="actions_container_board p-3 shadow-sm bg-white">
-    <li>View</li>
-    <li>Edit</li>
-    <li>Delete</li>
-  </ul>
+    <ul className="actions_container_board p-3 shadow-sm bg-white">
+        <li>View</li>
+        <li>Edit</li>
+        <li>Delete</li>
+    </ul>
 )
 const customStyles = {
   headRow: {
@@ -110,24 +116,38 @@ const customStyles = {
   },
 }
 
-const Orders:FC = () => {
+const Orders: FC = () => {
+  useEffect(() => {
+    fetchOrdersDetails()
+  }, [])
+
+  const fetchOrdersDetails = async () => {
+    try {
+      const { data } = await axios.get("https://logistics-app-starks.herokuapp.com/api/order")
+      console.log(data)
+      return data
+    } catch (error) {
+      console.log(`Error coming from the order page ${error}`)
+    }
+  }
+
   return (
-    <div className="orders_wrapper p-4">
-    <h2 className="heading_2x">Orders</h2>
-    <div className="mt-4">
-        <Search />
-    </div>
-    <div className="shadow-sm mt-4 orders_table">
-        <DataTable
-            columns={columns}
-            data={data}
-            customStyles={customStyles}
-            noHeader
-            responsive
-        />
-    </div>
-</div>
+        <div className="orders_wrapper p-4">
+            <h2 className="heading_2x">Orders</h2>
+            <div className="mt-4">
+                <Search />
+            </div>
+            <div className="shadow-sm mt-4 orders_table">
+                <DataTable
+                    columns={columns}
+                    data={data}
+                    customStyles={customStyles}
+                    noHeader
+                    responsive
+                />
+            </div>
+        </div>
   )
 }
 
-export default Orders;
+export default Orders

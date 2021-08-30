@@ -8,7 +8,7 @@ const localUser:any = sessionStorage.getItem("localUser")
 
 const initialState = {
   currentUser: JSON.parse(localUser) || {},
-  isAuthenticated: false,
+  isAuthenticated: !!sessionStorage.getItem("localUser"),
   error: null,
   loading: false
 }
@@ -30,11 +30,15 @@ export default function user (state = initialState, action:Action) {
     case GET_USER_FAILURE :
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
+        currentUser: {},
+        loading: false
       }
     case GET_USER_REQUEST :
       return {
         ...state,
+        error: null,
+        currentUser: {},
         loading: action.payload
       }
     default :

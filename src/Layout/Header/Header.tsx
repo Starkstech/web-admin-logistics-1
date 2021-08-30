@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { FC } from 'react'
+import { Link } from 'react-router-dom'
 import './Header.scss'
 
 const Header:FC = () => {
@@ -16,8 +17,8 @@ const Header:FC = () => {
             <span><i className="fas fa-search"></i></span>
             <input type="search" name="search" placeholder="Search Here" aria-label="Search here" />
         </div>
-        <div className="header_bell">
-          <span><i className="far fa-bell"></i></span>
+        <div className="header_bell active">
+          <Link to="/notifications"><i className="far fa-bell"></i></Link>
         </div>
     </header>
   )

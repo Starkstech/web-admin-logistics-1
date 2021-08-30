@@ -3,7 +3,9 @@
 import React, { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from "react-router"
+import toast, { Toaster } from 'react-hot-toast';
 import { userAction } from '../../../../Actions'
+import { SERVER_URL } from '../../../../Constant/urlConstant';
 import axios from "axios"
 import './Login.scss'
 import { Redirect } from 'react-router-dom'
@@ -18,7 +20,7 @@ const Login: FC = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [fields, updateFields] = useState(initialState)
-  const errors:any = []
+  const [errors, setErrors] = useState<any>([])
   const { isAuthenticated } = useSelector((state:any) => state.user)
 
   const handleChange = (e: any) => {
@@ -31,18 +33,19 @@ const Login: FC = () => {
 
   const onSubmit = async (e:any) => {
     e.preventDefault()
-    const SERVER_URL = 'https://logistics-app-starks.herokuapp.com/api/user/login'
 
     if (fields.phone === '' || fields.password === '') {
-      errors.push('Please fill required fields')
+      toast.error('Please fill required fields')
       // eslint-disable-next-line no-undef
     } else {
       try {
-        const { data } = await axios.post(SERVER_URL, fields)
-        dispatch(userAction.setCurrentUser(data.data))
+        const { data } = await axios.post(`${SERVER_URL}/user/login`, fields)
+        dispatch(userAction.setCurrentUser(data))
+        updateFields(initialState)
         history.push('/dashboard')
       } catch (error) {
-        console.log(error)
+        console.log(error.message)
+        toast.error(error.message)
       }
     }
   }
@@ -86,7 +89,6 @@ const Login: FC = () => {
                             required
                         />
                     </div>
-                    <span className="text-danger">{errors && errors[0]}</span>
                     <div className="d-flex justify-content-between align-items-center pt-4">
                         <div className="form-check">
                             <input
@@ -102,10 +104,16 @@ const Login: FC = () => {
                                 Remember me
                             </label>
                         </div>
-                        <button className="login-btn">Loginn</button>
+                        <button className="login-btn">Login</button>
                     </div>
                 </form>
             </div>
+            <Toaster toastOptions={{
+              style: {
+                height: '70px',
+                padding: '1em'
+              },
+            }} />
         </div>
     )
   }

@@ -45,7 +45,23 @@
    }
 
    .header_bell {
-      font-size: 1.3rem;
+      position: relative;
+
+      &.active::after {
+         content: "";
+         position: absolute;
+         top: 2px;
+         right: -1px;
+         width: 8px;
+         height: 8px;
+         background-color: $primary-color;
+         border-radius: 50%;
+      }
+
+      a {
+         font-size: 1.3rem;
+         color: $dark-color;
+      }
    }
 }
 

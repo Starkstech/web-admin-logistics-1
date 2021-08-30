@@ -1,4 +1,5 @@
-import React, { FC, useEffect } from 'react'
+/* eslint-disable no-unused-vars */
+import React, { FC, useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
 
 import axios from 'axios'
@@ -72,35 +73,12 @@ const columns = [
   },
 ]
 
-const data = [
-  {
-    id: 1,
-    orderNo: '0001',
-    phoneNo: '+2348169199932',
-    amount: '₦20000',
-    pickoff: '+1b Akinyemi Ave.',
-    dropoff: '+1b Akinyemi Ave.',
-    date: '11:08am 20 Oct 2021',
-    status: 'In transit',
-  },
-  {
-    id: 1,
-    orderNo: '0001',
-    phoneNo: '+2348169199932',
-    amount: '₦20000',
-    pickoff: '+1b Akinyemi Ave.',
-    dropoff: '+1b Akinyemi Ave.',
-    date: '11:08am 20 Oct 2021',
-    status: 'In transit',
-  },
-]
-
 const ActionsBoard = () => (
-    <ul className="actions_container_board p-3 shadow-sm bg-white">
-        <li>View</li>
-        <li>Edit</li>
-        <li>Delete</li>
-    </ul>
+  <ul className="actions_container_board p-2 shadow-sm bg-white">
+    <li>View</li>
+    <li>Edit</li>
+    <li>Delete</li>
+  </ul>
 )
 const customStyles = {
   headRow: {
@@ -117,6 +95,8 @@ const customStyles = {
 }
 
 const Orders: FC = () => {
+  const [orderDetails, setOrderDetails] = useState([])
+
   useEffect(() => {
     fetchOrdersDetails()
   }, [])
@@ -124,12 +104,28 @@ const Orders: FC = () => {
   const fetchOrdersDetails = async () => {
     try {
       const { data } = await axios.get("https://logistics-app-starks.herokuapp.com/api/order")
-      console.log(data)
-      return data
+      setOrderDetails(data);
     } catch (error) {
       console.log(`Error coming from the order page ${error}`)
     }
   }
+
+  if (orderDetails.length) {
+    console.log(orderDetails)
+  }
+
+  const data = [
+    {
+      id: 1,
+      orderNo: '0001',
+      phoneNo: '+2348169199932',
+      amount: '₦20000',
+      pickoff: '+1b Akinyemi Ave.',
+      dropoff: '+1b Akinyemi Ave.',
+      date: '11:08am 20 Oct 2021',
+      status: 'In transit',
+    }
+  ]
 
   return (
         <div className="orders_wrapper p-4">

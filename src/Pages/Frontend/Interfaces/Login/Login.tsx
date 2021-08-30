@@ -20,7 +20,7 @@ const Login: FC = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [fields, updateFields] = useState(initialState)
-  const [errors, setErrors] = useState<any>([])
+  const [loading, setLoading] = useState(false)
   const { isAuthenticated } = useSelector((state:any) => state.user)
 
   const handleChange = (e: any) => {
@@ -39,12 +39,15 @@ const Login: FC = () => {
       // eslint-disable-next-line no-undef
     } else {
       try {
+        setLoading(true)
         const { data } = await axios.post(`${SERVER_URL}/user/login`, fields)
         dispatch(userAction.setCurrentUser(data))
         updateFields(initialState)
+        setLoading(false)
         history.push('/dashboard')
       } catch (error) {
         console.log(error.message)
+        setLoading(false)
         toast.error(error.message)
       }
     }
@@ -104,7 +107,12 @@ const Login: FC = () => {
                                 Remember me
                             </label>
                         </div>
-                        <button className="login-btn">Login</button>
+                        <button className="btn_main">{loading
+                          ? (
+                        <div className="spinner-border spinner-border-sm" role="status">
+                        <span className="sr-only">Loading...</span>
+                      </div>)
+                          : 'Login'}</button>
                     </div>
                 </form>
             </div>

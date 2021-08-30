@@ -6,27 +6,27 @@ import './Staffs.scss'
 const columns = [
   {
     name: 'Name',
-    selector: 'name',
+    selector: (row:any) => row.name,
   },
   {
     name: 'Contact no.',
-    selector: 'contactNo',
+    selector: (row:any) => row.contactNo,
   },
   {
     name: 'Total earnings',
-    selector: 'totalEarnings',
+    selector: (row:any) => row.totalEarnings,
   },
   {
     name: 'No. of trips',
-    selector: 'tripsNo',
+    selector: (row:any) => row.tripsNo,
   },
   {
     name: 'Date created',
-    selector: 'dateCreated',
+    selector: (row:any) => row.dateCreated,
   },
   {
     name: 'Address',
-    selector: 'address',
+    selector: (row:any) => row.address,
   },
 ]
 

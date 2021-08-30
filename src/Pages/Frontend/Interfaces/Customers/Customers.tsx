@@ -6,27 +6,27 @@ import './Customers.scss'
 const columns = [
   {
     name: 'Name',
-    selector: 'name',
+    selector: (row:any) => row.name,
   },
   {
     name: 'Contact no.',
-    selector: 'contactNo',
+    selector: (row:any) => row.contactNo,
   },
   {
     name: 'Total Spendings',
-    selector: 'totalSpendings',
+    selector: (row:any) => row.totalSpendings,
   },
   {
     name: 'No. of trips',
-    selector: 'tripsNo',
+    selector: (row:any) => row.tripsNo,
   },
   {
     name: 'Date Joined',
-    selector: 'dateJoined',
+    selector: (row:any) => row.dateJoined,
   },
   {
     name: 'Address',
-    selector: 'address',
+    selector: (row:any) => row.address,
   },
 ]
 

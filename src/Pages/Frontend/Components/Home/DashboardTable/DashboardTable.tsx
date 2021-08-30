@@ -46,16 +46,7 @@ const DashboardTable: FC = () => {
       name: 'Phone number',
       selector: 'phoneNo',
       sortable: true,
-
-    //   cell: (row: { title: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; summary: string | number | boolean | {} | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactNodeArray | React.ReactPortal | null | undefined; }) =>
-    //    <>
-    //   <div>
-    //       <div style={{ fontWeight: 700 }}>{row.title}</div>
-    //       {row.summary}
-    //       </div>
-    //   </>,
     },
-
     {
       name: 'Amount',
       selector: 'amount',
@@ -67,10 +58,6 @@ const DashboardTable: FC = () => {
       selector: 'pickoff',
       sortable: true,
       center: true,
-      style: {
-        overflow: 'visible !important',
-        textOverflow: 'none'
-      }
     },
     {
       name: 'Drop off',
@@ -83,10 +70,6 @@ const DashboardTable: FC = () => {
       selector: 'date',
       sortable: true,
       center: true,
-      style: {
-        overflow: 'visible !important',
-        textOverflow: 'visible'
-      }
     },
     {
       name: 'Status',

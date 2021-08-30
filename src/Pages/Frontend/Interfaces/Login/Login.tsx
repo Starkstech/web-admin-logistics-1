@@ -34,11 +34,12 @@ const Login: FC = () => {
       errors.push('Please fill required fields')
     } else {
       try {
-        const { data } = await axios.post(SERVER_URL, fields)
-        dispatch(userAction.setCurrentUser(data.data))
+        const response = await axios.post(SERVER_URL, fields)
+        console.log(response)
+        dispatch(userAction.setCurrentUser(response.data.data))
         history.push('/dashboard')
       } catch (error) {
-        console.log(error)
+        console.log(error.message)
       }
     }
   }

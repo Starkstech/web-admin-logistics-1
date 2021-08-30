@@ -1,12 +1,14 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { FC } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './SideBar.scss'
 import logo from '../../Assets/Images/logo.png'
 
 const SideBar: FC = () => {
+  const { pathname } = useLocation()
   return (
       <>
+      {console.log(pathname, 'this is location')}
       <input type="checkbox" id="toggle-sidebar" />
         <div className="sidebar">
             <div className="sidebar_brand">
@@ -17,31 +19,31 @@ const SideBar: FC = () => {
             <nav className="sidebar_nav">
             <ul className="mb-5">
                         <li className="sidebar_link">
-                            <Link className="active" to="/dashboard"><span><i className="fas fa-columns"></i></span><span>Dashboard</span></Link>
+                            <Link className={pathname === '/dashboard' ? 'active' : ''} to="/dashboard"><span><i className="fas fa-columns"></i></span><span>Dashboard</span></Link>
                         </li>
                         <li className="sidebar_link">
-                            <Link to="/orders"><span><i className="fas fa-boxes"></i></span><span>Orders</span></Link>
+                            <Link className={pathname === '/orders' ? 'active' : ''} to="/orders"><span><i className="fas fa-boxes"></i></span><span>Orders</span></Link>
                         </li>
                         <li className="sidebar_link">
-                            <Link to="/track"><span><i className="fas fa-compass"></i></span><span>Track Item</span></Link>
+                            <Link className={pathname === '/track' ? 'active' : ''} to="/track"><span><i className="fas fa-compass"></i></span><span>Track Item</span></Link>
                         </li>
                         <li className="sidebar_link">
-                            <Link to="/customers"><span><i className="fas fa-users"></i></span><span>Customers</span></Link>
+                            <Link className={pathname === '/customers' ? 'active' : ''} to="/customers"><span><i className="fas fa-users"></i></span><span>Customers</span></Link>
                         </li>
                         <li className="sidebar_link">
-                            <Link to="/staffs"><span><i className="fas fa-user-friends"></i></span><span>Staffs</span></Link>
+                            <Link className={pathname === '/staffs' ? 'active' : ''} to="/staffs"><span><i className="fas fa-user-friends"></i></span><span>Staffs</span></Link>
                         </li>
                     </ul>
 
                     <ul className="mt-5">
                         <li className="sidebar_link">
-                            <Link to="/notifications"><span><i className="fas fa-bell"></i></span><span>Notifications</span></Link>
+                            <Link className={pathname === '/notifications' ? 'active' : ''} to="/notifications"><span><i className="fas fa-bell"></i></span><span>Notifications</span></Link>
                         </li>
                         <li className="sidebar_link">
-                            <Link to="/settings"><span><i className="fas fa-cog"></i></span><span>Settings</span></Link>
+                            <Link className={pathname === '/settings' ? 'active' : ''} to="/settings"><span><i className="fas fa-cog"></i></span><span>Settings</span></Link>
                         </li>
                         <li className="sidebar_link">
-                            <Link to="/logout"><span><i className="fas fa-power-off"></i></span><span>Logout</span></Link>
+                            <Link className={pathname === '/logout' ? 'active' : ''} to="/logout"><span><i className="fas fa-power-off"></i></span><span>Logout</span></Link>
                         </li>
                     </ul>
             </nav>

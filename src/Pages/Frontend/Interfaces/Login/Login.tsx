@@ -1,72 +1,114 @@
-import React from "react";
-import "./Login.scss"
-import { useForm, SubmitHandler } from "react-hook-form";
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-redeclare */
+import React, { FC, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from "react-router"
+import { userAction } from '../../../../Actions'
+import axios from "axios"
+import './Login.scss'
+import { Redirect } from 'react-router-dom'
 
-type Inputs = {
-    Email:string,
-    password:string,
+const initialState = {
+  phone: '',
+  password: '',
 
-};
-const Login: React.FC = () => {
-  const {
-    register, handleSubmit, // watch,
-    // eslint-disable-next-line no-unused-vars
-    formState: { errors }
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
-  return (
-  // eslint-disable-next-line react/jsx-filename-extension
-  <React.Fragment>
-      <>
-      <div className="container-fluid login-container">
-      <div className="card login-card">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <label htmlFor="exampleInputEmail1" className="form-label login-label pb-2 ">Email address</label>
-              <input type="email"
-              {...register("Email", {
-                required: true
-              })}
-              className="form-control login-input "
-              />
-               <span>
-                <div className="login-error-alert">
-                  {errors.Email && <p>Enter Email</p>}
-                </div>
-              </span>
-              </div>
-              <div>
-               <label htmlFor="exampleInputEmail1" className="form-label pt-4 login-label pb-2">Password</label>
-              <input type="password"
-              {...register("password", {
-                required: "Enter passoword",
-              })}
-              className="form-control login-input "
-              />
-               <span>
-                <div className="login-error-alert">
-                  {errors.password && <p>Enter password</p>}
-                </div>
-              </span>
-              </div>
-              <div className="d-flex justify-content-between align-items-center pt-4">
-              <div className="form-check">
-             <input className="form-check-input login-form-check" type="checkbox" value="" id="flexCheckDefault"/>
-              <label className="form-check-label login-label pt-1" htmlFor="flexCheckDefault">
-               Remember me
-              </label>
-                </div>
-                <div>
-              <button type="submit" className="login-btn ">Password</button>
-              </div>
-              </div>
+}
 
-          </form>
-          </div>
-          </div>
-          </>
-  </React.Fragment>
+const Login: FC = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const [fields, updateFields] = useState(initialState)
+  const errors:any = []
+  const { isAuthenticated } = useSelector((state:any) => state.user)
 
-  )
+  const handleChange = (e: any) => {
+    const { name, value } = e.target
+    updateFields({
+      ...fields,
+      [name]: value,
+    })
+  }
+
+  const onSubmit = (e:any) => {
+    e.preventDefault()
+    const SERVER_URL = 'https://logistics-app-starks.herokuapp.com/api/user/login'
+
+    if (fields.phone === '' || fields.password === '') {
+      errors.push('Please fill required fields')
+      // eslint-disable-next-line no-undef
+    } else {
+      axios.post(SERVER_URL, fields)
+        .then((response) => {
+          dispatch(userAction.setCurrentUser(response.data.data))
+          history.push('/dashboard')
+        })
+        .catch((error:any) => {
+          console.log(error)
+        })
+    }
+  }
+
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />
+  } else {
+    return (
+        <div className="container-fluid login-container">
+            <div className="card login-card">
+                <form onSubmit={onSubmit}>
+                    <div>
+                        <label
+                            htmlFor="exampleInputEmail1"
+                            className="form-label login-label pb-2"
+                        >
+                            Email address
+                        </label>
+                        <input
+                            type="text"
+                            name="phone"
+                            value={fields.phone}
+                            onChange={handleChange}
+                            className="form-control login-input"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label
+                            htmlFor="exampleInputEmail1"
+                            className="form-label pt-4 login-label pb-2"
+                        >
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            value={fields.password}
+                            onChange={handleChange}
+                            name="password"
+                            className="form-control login-input"
+                            required
+                        />
+                    </div>
+                    <span className="text-danger">{errors && errors[0]}</span>
+                    <div className="d-flex justify-content-between align-items-center pt-4">
+                        <div className="form-check">
+                            <input
+                                className="form-check-input login-form-check"
+                                type="checkbox"
+                                value=""
+                                id="flexCheckDefault"
+                            />
+                            <label
+                                className="form-check-label login-label pt-1"
+                                htmlFor="flexCheckDefault"
+                            >
+                                Remember me
+                            </label>
+                        </div>
+                        <button className="login-btn">Loginn</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
+  }
 }
 export default Login

@@ -3,7 +3,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { FC } from "react";
 import DataTable from "react-data-table-component"
-import './DashboardTable.scss'
 
 const DashboardTable: FC = () => {
 //   const FilterComponent = ({ filterText }) => (
@@ -21,18 +20,9 @@ const DashboardTable: FC = () => {
       pickoff: '+1b Akinyemi Ave.',
       dropoff: '+1b Akinyemi Ave.',
       date: '11:08am 20 Oct 2021',
-      status: 'In transit'
-    },
-    {
-      id: 1,
-      orderNo: '0001',
-      phoneNo: '+2348169199932',
-      amount: '₦20000',
-      pickoff: '+1b Akinyemi Ave.',
-      dropoff: '+1b Akinyemi Ave.',
-      date: '11:08am 20 Oct 2021',
-      status: 'In transit'
-    },
+      status: 'In transit',
+      action: '...',
+    }
   ]
   const columns = [
     {
@@ -66,11 +56,7 @@ const DashboardTable: FC = () => {
       name: 'Pick off',
       selector: 'pickoff',
       sortable: true,
-      center: true,
-      style: {
-        overflow: 'visible !important',
-        textOverflow: 'none'
-      }
+      center: true
     },
     {
       name: 'Drop off',
@@ -82,11 +68,7 @@ const DashboardTable: FC = () => {
       name: 'Date',
       selector: 'date',
       sortable: true,
-      center: true,
-      style: {
-        overflow: 'visible !important',
-        textOverflow: 'visible'
-      }
+      center: true
     },
     {
       name: 'Status',
@@ -97,37 +79,30 @@ const DashboardTable: FC = () => {
     {
       name: 'Actions',
       selector: 'action',
-      allowOverflow: true,
       sortable: true,
-      center: true,
-      cell: () => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard /></div>)
+      center: true
     },
   ];
 
-  const ActionsBoard = () => (
-    <ul className="actions_container_board p-3 shadow-sm bg-white">
-      <li>View</li>
-      <li>Edit</li>
-      <li>Delete</li>
-    </ul>
-  )
-
   const customStyles = {
-    rows: {
-      style: {
-        position: 'relative',
-        overflow: 'visible !important',
-        height: 'auto'
-      },
-    },
+    // rows: {
+    //   style: {
+    //     fontSize: '13px',
+    //     color: "red",
+    //     backgroundColor: "#333",
+    //     minHeight: '48px',
+    //     //   '&:not(:last-of-type)': {
+    //     //     borderBottomStyle: 'solid',
+    //     //     borderBottomWidth: '1px',
+    //     // borderBottomColor: theme.divider.default,
+    //   },
+    // },
 
     headCells: {
       style: {
-        // textAlign: 'center',
         backgroundColor: '#f5f6fa',
         fontWeight: 700,
         whiteSpace: "normal!important",
-        // boxShadow: 0px 3px 6px #00000029,
       },
     },
     cells: {
@@ -136,22 +111,29 @@ const DashboardTable: FC = () => {
         // paddingRight: "8px",
         color: "#000",
         flex: "wrap",
-        fontWeight: "500"
+        fontWeight: "500",
       },
     },
   }
 
   return (
-      <div className="table--wrapper mb-5">
-    <DataTable
+      <>
+    <DataTable className="rdt_TableBody rdt_TableCol"
    title="Lastest Trips"
  columns={columns}
     data={data}
+     selectableRows
      customStyles={customStyles}
+     subHeader
      persistTableHead
-     responsive
+    // selectableRowsComponent={ Checkbox }
+    selectableRowsComponentProps={{ inkDisabled: true }}
+    // onSelectedRowsChange={handleChange}
+    // expandableRows
+    // expandableRowsComponent={<ExpandableComponent />}
+    // pagination noHeader={true}
   />
-  </div>
+  </>
   )
 }
 export default DashboardTable

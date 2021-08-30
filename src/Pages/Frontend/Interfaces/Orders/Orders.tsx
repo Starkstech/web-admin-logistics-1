@@ -9,25 +9,25 @@ import './Orders.scss'
 const columns = [
   {
     name: 'Order No.',
-    selector: (row:any) => row.orderNo,
+    selector: 'orderNo',
     sortable: true,
     center: true,
   },
   {
     name: 'Phone number',
-    selector: (row:any) => row.phoneNo,
+    selector: 'phoneNo',
     sortable: true,
   },
 
   {
     name: 'Amount',
-    selector: (row:any) => row.amount,
+    selector: 'amount',
     sortable: true,
     center: true,
   },
   {
     name: 'Pick off',
-    selector: (row:any) => row.pickoff,
+    selector: 'pickoff',
     sortable: true,
     center: true,
     style: {
@@ -37,13 +37,13 @@ const columns = [
   },
   {
     name: 'Drop off',
-    selector: (row:any) => row.dropoff,
+    selector: 'dropoff',
     sortable: true,
     center: true,
   },
   {
     name: 'Date',
-    selector: (row:any) => row.date,
+    selector: 'date',
     sortable: true,
     center: true,
     style: {
@@ -53,50 +53,23 @@ const columns = [
   },
   {
     name: 'Status',
-    selector: (row:any) => row.status,
+    selector: 'status',
     sortable: true,
     center: true,
   },
   {
     name: 'Actions',
-    selector: (row:any) => row.action,
+    selector: 'action',
     allowOverflow: true,
     sortable: true,
     center: true,
     // eslint-disable-next-line react/display-name
-<<<<<<< HEAD
     cell: () => (
             <div className="actions_container">
                 <button className="actions_container_btn btn">...</button>
                 <ActionsBoard />
             </div>
     ),
-=======
-    cell: () => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard /></div>)
-  },
-];
-
-const data = [
-  {
-    id: 1,
-    orderNo: '0001',
-    phoneNo: '+2348169199932',
-    amount: '₦20000',
-    pickoff: '+1b Akinyemi Ave.',
-    dropoff: '+1b Akinyemi Ave.',
-    date: '11:08am 20 Oct 2021',
-    status: 'In transit'
-  },
-  {
-    id: 2,
-    orderNo: '0001',
-    phoneNo: '+2348169199932',
-    amount: '₦20000',
-    pickoff: '+1b Akinyemi Ave.',
-    dropoff: '+1b Akinyemi Ave.',
-    date: '11:08am 20 Oct 2021',
-    status: 'In transit'
->>>>>>> f2036b5746f09326fd692531739757eca9ae9838
   },
 ]
 
@@ -137,22 +110,45 @@ const Orders: FC = () => {
     }
   }
 
-  if (orderDetails.length) {
-    console.log(orderDetails)
+  const data: {}[] = [{}];
+
+  type OrderDetail = {
+    id: string,
+    orderDetail: string,
+    contact_details: {name: string, phone_number: string},
+    amount: string,
+    pickoff: string,
+    dropoff: string,
+    date: string,
+    status: string,
   }
 
-  const data = [
-    {
-      id: 1,
-      orderNo: '0001',
-      phoneNo: '+2348169199932',
-      amount: '₦20000',
-      pickoff: '+1b Akinyemi Ave.',
-      dropoff: '+1b Akinyemi Ave.',
-      date: '11:08am 20 Oct 2021',
-      status: 'In transit',
-    }
-  ]
+  if (orderDetails?.length) {
+    console.log(orderDetails)
+    orderDetails.map((orderDetail: OrderDetail) => ({
+      id: orderDetail.id,
+      orderNo: orderDetail.id,
+      phoneNo: orderDetail.contact_details.phone_number,
+      // amount: orderDetail.,
+      pickoff: orderDetail,
+      dropoff: orderDetail,
+      date: orderDetail,
+      status: orderDetail.status
+    }))
+  }
+
+  // const data = [
+  //   {
+  //     id: 1,
+  //     orderNo: '0001',
+  //     phoneNo: '+2348169199932',
+  //     amount: '₦20000',
+  //     pickoff: '+1b Akinyemi Ave.',
+  //     dropoff: '+1b Akinyemi Ave.',
+  //     date: '11:08am 20 Oct 2021',
+  //     status: 'In transit',
+  //   }
+  // ]
 
   return (
         <div className="orders_wrapper p-4">

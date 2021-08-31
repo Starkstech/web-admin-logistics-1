@@ -1,0 +1,26 @@
+@import "../../../../Assets/Style/colors";
+
+.settings {
+    padding: 2rem;
+    .settings_nav {
+        li {
+            padding: 0 0.7rem;
+
+            &.right {
+                border-right: 1px solid $dark-color;
+            }
+
+            &.active {
+                a {
+                    color: $primary-color;
+                    text-decoration: underline;
+                }
+            }
+
+            a {
+                color: $dark-color;
+                font-weight: 400;
+            }
+        }
+    }
+}

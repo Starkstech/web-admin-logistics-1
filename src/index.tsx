@@ -14,21 +14,18 @@ import {
   Track,
   DashBoardContent,
   NotificationContent,
-  SettingsContent,
+  Settings,
 } from './Pages/Frontend/Interfaces'
 import { BrowserRouter, Switch } from 'react-router-dom'
-import { Router, Route } from 'react-router'
+import { Route } from 'react-router'
 import AuthRoute from './Hoc/AuthRoute'
-import { createHashHistory } from 'history'
 import { Provider } from 'react-redux'
 import store from './store'
-const history = createHashHistory()
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
         <BrowserRouter>
-            <Router history={history}>
                 <Switch>
                     <Route path="/" exact component={Login} />
                     <AuthRoute
@@ -59,7 +56,7 @@ ReactDOM.render(
                         render={() => {
                           return (
                                 <Wrapper>
-                                    <SettingsContent />
+                                    <Settings />
                                 </Wrapper>
                           )
                         }}
@@ -108,7 +105,6 @@ ReactDOM.render(
                         }}
                     />
                 </Switch>
-            </Router>
         </BrowserRouter>
     </React.StrictMode>
     </Provider>,

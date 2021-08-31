@@ -1,0 +1,51 @@
+@import "../../../../../Assets/Style/colors";
+
+.settings-profile {
+    padding: 2.5rem 2rem;
+
+    .settings-profile_file {
+        display: none;
+    }
+   
+    .settings-profile_img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 1rem 1rem 1rem 0;
+        background-color: $white-color;
+    }
+
+    .settings-profile_group {
+        width: 40%;
+    }
+
+    .settings-profile_operations {
+
+        .settings-profile_day {
+            min-width: 35px;
+            width: 35px;
+            height: 35px;
+            background-color: $primary-color;
+            color: $white-color;
+            border-radius: 50%;
+            margin-right: 1rem;
+            font-size: 0.7rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .time-bar {
+            width: 20px;
+            display: flex;
+            justify-content: center;
+            margin: 0 1rem;
+        }
+
+        input {
+            width: 45px;
+            margin: 0.5rem 0 !important;
+            padding: 0.5rem;
+        }
+    }
+}

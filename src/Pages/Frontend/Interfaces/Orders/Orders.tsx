@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
 
-import axios from 'axios'
+import axios from '../../../../Services/axios'
 import { Search } from '../../../../Component'
 import './Orders.scss'
 
@@ -96,45 +96,32 @@ const customStyles = {
 
 const Orders: FC = () => {
   const [orderDetails, setOrderDetails] = useState([])
+  const [data, setData] = useState<{}[]>([])
 
+  // Fetching order details from the backend
   useEffect(() => {
     fetchOrdersDetails()
   }, [])
 
+  // Updating the data state needed for the react-data-table-component
+  useEffect(() => {
+    if (orderDetails.length) {
+      orderDetails.map((orderDetail: {id: string}) => {
+        const { id } = orderDetail
+        return (
+          setData(prevData => [...prevData, { id }])
+        )
+      })
+    }
+  }, [orderDetails])
+
   const fetchOrdersDetails = async () => {
     try {
-      const { data } = await axios.get("https://logistics-app-starks.herokuapp.com/api/order")
+      const { data } = await axios.get("/order")
       setOrderDetails(data);
     } catch (error) {
       console.log(`Error coming from the order page ${error}`)
     }
-  }
-
-  const data: {}[] = [{}];
-
-  type OrderDetail = {
-    id: string,
-    orderDetail: string,
-    contact_details: {name: string, phone_number: string},
-    amount: string,
-    pickoff: string,
-    dropoff: string,
-    date: string,
-    status: string,
-  }
-
-  if (orderDetails?.length) {
-    console.log(orderDetails)
-    orderDetails.map((orderDetail: OrderDetail) => ({
-      id: orderDetail.id,
-      orderNo: orderDetail.id,
-      phoneNo: orderDetail.contact_details.phone_number,
-      // amount: orderDetail.,
-      pickoff: orderDetail,
-      dropoff: orderDetail,
-      date: orderDetail,
-      status: orderDetail.status
-    }))
   }
 
   // const data = [
@@ -157,6 +144,7 @@ const Orders: FC = () => {
                 <Search />
             </div>
             <div className="shadow-sm mt-4 orders_table">
+              {JSON.stringify(data)}
                 <DataTable
                     columns={columns}
                     data={data}

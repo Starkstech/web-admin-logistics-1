@@ -56,6 +56,8 @@ const columns = [
     selector: 'status',
     sortable: true,
     center: true,
+    // eslint-disable-next-line react/display-name
+    cell: (row:any) => (<div className={`order_status ${sortStatus(row.status)}`}>{row.status}</div>)
   },
   {
     name: 'Actions',
@@ -64,12 +66,39 @@ const columns = [
     sortable: true,
     center: true,
     // eslint-disable-next-line react/display-name
-    cell: () => (
-            <div className="actions_container">
-                <button className="actions_container_btn btn">...</button>
-                <ActionsBoard />
-            </div>
-    ),
+    cell: () => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard /></div>)
+  },
+];
+
+const sortStatus = (status:any) => {
+  switch (status) {
+    case 'In transit' :
+      return 'in-transit'
+    default :
+      return ''
+  }
+}
+
+const data = [
+  {
+    id: 1,
+    orderNo: '0001',
+    phoneNo: '+2348169199932',
+    amount: '₦20000',
+    pickoff: '+1b Akinyemi Ave.',
+    dropoff: '+1b Akinyemi Ave.',
+    date: '11:08am 20 Oct 2021',
+    status: 'In transit'
+  },
+  {
+    id: 2,
+    orderNo: '0001',
+    phoneNo: '+2348169199932',
+    amount: '₦20000',
+    pickoff: '+1b Akinyemi Ave.',
+    dropoff: '+1b Akinyemi Ave.',
+    date: '11:08am 20 Oct 2021',
+    status: 'In transit'
   },
 ]
 

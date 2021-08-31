@@ -5,7 +5,7 @@ const Search:FC = () => {
   return (
         <div className="search d-flex justify-content-between align-items-center">
             <input className="search_input" type="text" name="search" id="search" placeholder="Search" aria-label="Search Here" />
-            <button className="btn_main">Search</button>
+            <button className="btn_main p-1">Search</button>
         </div>
   )
 }

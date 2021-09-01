@@ -42,10 +42,8 @@ const Login: FC = () => {
       try {
         setLoading(true)
         const { data } = await axios.post(`${SERVER_URL}/user/login`, fields)
-        console.log(data.acccess_token)
-        const token = data.acccess_token
-        const ciphertext = CryptoJS.AES.encrypt(token, '12345').toString();
-        dispatch(userAction.setCurrentUser({ ...data, acccess_token: ciphertext }))
+        const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '12345').toString();
+        dispatch(userAction.setCurrentUser(ciphertext))
         updateFields(initialState)
         setLoading(false)
         history.push('/dashboard')

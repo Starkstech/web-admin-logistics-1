@@ -1,0 +1,15 @@
+@import "../../Assets/Style/colors";
+
+.modal {
+    position: fixed;
+    left: 200px;
+    right: 0;
+    top: 80px;
+    width: calc(100% - 200px);
+    height: calc(100% - 80px);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

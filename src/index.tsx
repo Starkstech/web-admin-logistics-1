@@ -16,21 +16,20 @@ import {
   NotificationContent,
   Settings,
 } from './Pages/Frontend/Interfaces'
-import { BrowserRouter, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Route } from 'react-router'
 import AuthRoute from './Hoc/AuthRoute'
 import { Provider } from 'react-redux'
 import store from './store'
 
 ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
-        <BrowserRouter>
+    <Provider store={store}>
+        <React.StrictMode>
+            <Router>
                 <Switch>
                     <Route path="/" exact component={Login} />
                     <AuthRoute
                         path="/DashBoard"
-                        exact
                         render={() => {
                           return (
                                 <Wrapper>
@@ -41,7 +40,6 @@ ReactDOM.render(
                     />
                     <AuthRoute
                         path="/Notifications"
-                        exact
                         render={() => {
                           return (
                                 <Wrapper>
@@ -52,7 +50,6 @@ ReactDOM.render(
                     />
                     <AuthRoute
                         path="/Settings"
-                        exact
                         render={() => {
                           return (
                                 <Wrapper>
@@ -73,7 +70,6 @@ ReactDOM.render(
                     />
                     <AuthRoute
                         path="/Customers"
-                        exact
                         render={() => {
                           return (
                                 <Wrapper>
@@ -84,7 +80,6 @@ ReactDOM.render(
                     />
                     <AuthRoute
                         path="/Track"
-                        exact
                         render={() => {
                           return (
                                 <Wrapper>
@@ -95,7 +90,6 @@ ReactDOM.render(
                     />
                     <AuthRoute
                         path="/Staffs"
-                        exact
                         render={() => {
                           return (
                                 <Wrapper>
@@ -105,10 +99,10 @@ ReactDOM.render(
                         }}
                     />
                 </Switch>
-        </BrowserRouter>
-    </React.StrictMode>
+            </Router>
+        </React.StrictMode>
     </Provider>,
-  document.getElementById('root')
+    document.getElementById('root')
 )
 
 // If you want to start measuring performance in your app, pass a function

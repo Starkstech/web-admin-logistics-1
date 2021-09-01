@@ -1,80 +1,8 @@
 /* eslint-disable react/display-name */
-import React, { FC } from "react";
-import DataTable from "react-data-table-component";
+import React, { FC, useState } from "react";
 import { Search } from "../../../../Component";
+import { OrdersModal, OrdersTable } from "../../Components";
 import './Orders.scss'
-
-const columns = [
-  {
-    name: 'Order No.',
-    selector: (row:any) => row.orderNo,
-    sortable: true,
-    center: true
-
-  },
-  {
-    name: 'Phone number',
-    selector: (row:any) => row.phoneNo,
-    sortable: true,
-  },
-
-  {
-    name: 'Amount',
-    selector: (row:any) => row.amount,
-    sortable: true,
-    center: true
-  },
-  {
-    name: 'Pick off',
-    selector: (row:any) => row.pickoff,
-    sortable: true,
-    center: true,
-    style: {
-      overflow: 'visible !important',
-      textOverflow: 'none'
-    }
-  },
-  {
-    name: 'Drop off',
-    selector: (row:any) => row.dropoff,
-    sortable: true,
-    center: true
-  },
-  {
-    name: 'Date',
-    selector: (row:any) => row.date,
-    sortable: true,
-    center: true,
-    style: {
-      overflow: 'visible !important',
-      textOverflow: 'visible'
-    }
-  },
-  {
-    name: 'Status',
-    selector: (row:any) => row.status,
-    sortable: true,
-    center: true,
-    cell: (row:any) => (<div className={`order_status ${sortStatus(row.status)}`}>{row.status}</div>)
-  },
-  {
-    name: 'Actions',
-    selector: (row:any) => row.action,
-    allowOverflow: true,
-    sortable: true,
-    center: true,
-    cell: () => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard /></div>)
-  },
-];
-
-const sortStatus = (status:any) => {
-  switch (status) {
-    case 'In transit' :
-      return 'in-transit'
-    default :
-      return ''
-  }
-}
 
 const data = [
   {
@@ -99,28 +27,16 @@ const data = [
   },
 ]
 
-const ActionsBoard = () => (
-  <ul className="actions_container_board p-2 shadow-sm bg-white">
-    <li>View</li>
-    <li>Edit</li>
-    <li>Delete</li>
-  </ul>
-)
-const customStyles = {
-  headRow: {
-    style: {
-      height: '45px',
-      minHeight: '40px',
-    },
-  },
-  headCells: {
-    style: {
-      backgroundColor: '#F4F6F5',
-    },
-  },
-}
-
 const Orders:FC = () => {
+  const [showModal, setShowModal] = useState(false)
+  const [orderId, setOrderId] = useState(null)
+
+  const toggleModal = (id:any) => {
+    console.log(id)
+    setOrderId(id)
+    setShowModal((status) => !status)
+  }
+
   return (
     <div className="orders_wrapper p-4">
     <h2 className="heading_2x">Orders</h2>
@@ -128,14 +44,9 @@ const Orders:FC = () => {
         <Search />
     </div>
     <div className="shadow-sm mt-4 orders_table">
-        <DataTable
-            columns={columns}
-            data={data}
-            customStyles={customStyles}
-            noHeader
-            responsive
-        />
+        <OrdersTable toggleModal={toggleModal} data={data} />
     </div>
+    {showModal ? <OrdersModal orderId={orderId} toggleModal={toggleModal} /> : null}
 </div>
   )
 }

@@ -1,39 +1,41 @@
 /* eslint-disable react/display-name */
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
+import CryptoJS from "crypto-js";
+import { SERVER_URL } from "../../../../Constant/urlConstant";
+import { useSelector } from "react-redux";
 import { Search } from "../../../../Component";
 import { OrdersModal, OrdersTable } from "../../Components";
+import axios from "axios";
 import './Orders.scss'
 
-const data = [
-  {
-    id: 1,
-    orderNo: '0001',
-    phoneNo: '+2348169199932',
-    amount: '₦20000',
-    pickoff: '+1b Akinyemi Ave.',
-    dropoff: '+1b Akinyemi Ave.',
-    date: '11:08am 20 Oct 2021',
-    status: 'In transit'
-  },
-  {
-    id: 2,
-    orderNo: '0001',
-    phoneNo: '+2348169199932',
-    amount: '₦20000',
-    pickoff: '+1b Akinyemi Ave.',
-    dropoff: '+1b Akinyemi Ave.',
-    date: '11:08am 20 Oct 2021',
-    status: 'In transit'
-  },
-]
-
 const Orders:FC = () => {
+  const { currentUser } = useSelector((state:any) => state.user)
   const [showModal, setShowModal] = useState(false)
-  const [orderId, setOrderId] = useState(null)
+  const [selectedOrder, setSelectedOrder] = useState(null)
+  const [orderData, setOrderData] = useState([])
 
-  const toggleModal = (id:any) => {
-    console.log(id)
-    setOrderId(id)
+  const getOrders = async () => {
+    const data = CryptoJS.AES.decrypt(currentUser, '12345');
+    const decryptedData = JSON.parse(data.toString(CryptoJS.enc.Utf8));
+
+    const config = {
+      headers: { Authorization: `Bearer ${decryptedData.acccess_token}` }
+    };
+
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/order`, config)
+      setOrderData(data)
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  useEffect(() => {
+    getOrders()
+  }, [])
+
+  const toggleModal = (data:any) => {
+    setSelectedOrder(data)
     setShowModal((status) => !status)
   }
 
@@ -44,9 +46,9 @@ const Orders:FC = () => {
         <Search />
     </div>
     <div className="shadow-sm mt-4 orders_table">
-        <OrdersTable toggleModal={toggleModal} data={data} />
+        <OrdersTable toggleModal={toggleModal} data={orderData} />
     </div>
-    {showModal ? <OrdersModal orderId={orderId} toggleModal={toggleModal} /> : null}
+    {showModal ? <OrdersModal selectedOrder={selectedOrder} toggleModal={toggleModal} /> : null}
 </div>
   )
 }

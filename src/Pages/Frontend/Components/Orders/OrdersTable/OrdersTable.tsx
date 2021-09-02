@@ -26,7 +26,7 @@ const OrdersTable:FC<TableTypes> = ({ toggleModal, data }) => {
   const columns = [
     {
       name: 'Order No.',
-      selector: (row:any) => row.orderNo,
+      selector: (row:any) => row.tracking_id,
       sortable: true,
       center: true
 
@@ -39,13 +39,13 @@ const OrdersTable:FC<TableTypes> = ({ toggleModal, data }) => {
 
     {
       name: 'Amount',
-      selector: (row:any) => row.amount,
+      selector: (row:any) => row.order_cost,
       sortable: true,
       center: true
     },
     {
       name: 'Pick off',
-      selector: (row:any) => row.pickoff,
+      selector: (row:any) => row.pick_up_location,
       sortable: true,
       center: true,
       style: {
@@ -55,19 +55,15 @@ const OrdersTable:FC<TableTypes> = ({ toggleModal, data }) => {
     },
     {
       name: 'Drop off',
-      selector: (row:any) => row.dropoff,
+      selector: (row:any) => row.delivery_location,
       sortable: true,
       center: true
     },
     {
       name: 'Date',
-      selector: (row:any) => row.date,
+      selector: (row:any) => row.createdAt,
       sortable: true,
-      center: true,
-      style: {
-        overflow: 'visible !important',
-        textOverflow: 'visible'
-      }
+      center: true
     },
     {
       name: 'Status',
@@ -82,18 +78,18 @@ const OrdersTable:FC<TableTypes> = ({ toggleModal, data }) => {
       allowOverflow: true,
       sortable: true,
       center: true,
-      cell: (row:any) => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard orderId={row.id} /></div>)
+      cell: (row:any) => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard orderData={row} /></div>)
     },
   ];
 
   type BoardType = {
-      orderId: any
+      orderData: any
   }
 
-  const ActionsBoard:FC<BoardType> = ({ orderId }) => (
+  const ActionsBoard:FC<BoardType> = ({ orderData }) => (
     <ul className="actions_container_board p-2 shadow-sm bg-white">
       <button className="btn">View</button>
-      <button className="btn" onClick={() => toggleModal(orderId)}>Accept</button>
+      <button className="btn" onClick={() => toggleModal(orderData)}>Accept</button>
       <button className="btn">Reject</button>
     </ul>
   )

@@ -1,7 +1,8 @@
 import {
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
-  GET_USER_FAILURE
+  GET_USER_FAILURE,
+  LOG_USER_OUT
 } from "../Constant/userConstant"
 
 const localUser:any = sessionStorage.getItem("localUser")
@@ -10,7 +11,7 @@ const initialState = {
   currentUser: JSON.parse(localUser) || {},
   isAuthenticated: !!sessionStorage.getItem("localUser"),
   error: null,
-  loading: false
+  loading: false,
 }
 
 type Action = {
@@ -40,6 +41,13 @@ export default function user (state = initialState, action:Action) {
         error: null,
         currentUser: {},
         loading: action.payload
+      }
+    case LOG_USER_OUT :
+      sessionStorage.removeItem("localUser")
+      return {
+        ...state,
+        isAuthenticated: false,
+        currentUser: {}
       }
     default :
       return state

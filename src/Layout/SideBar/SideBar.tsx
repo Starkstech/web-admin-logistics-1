@@ -1,11 +1,22 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { FC } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
 import './SideBar.scss'
 import logo from '../../Assets/Images/logo.png'
+import { userAction } from '../../Actions'
 
 const SideBar: FC = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
   const { pathname } = useLocation()
+
+  const logoutHandler = async () => {
+    dispatch(userAction.clearCurrentUser())
+    history.push('/')
+  }
+
   return (
       <>
       {console.log(pathname, 'this is location')}
@@ -43,7 +54,7 @@ const SideBar: FC = () => {
                             <Link className={pathname === '/settings' ? 'active' : ''} to="/settings"><span><i className="fas fa-cog"></i></span><span>Settings</span></Link>
                         </li>
                         <li className="sidebar_link">
-                            <Link className={pathname === '/logout' ? 'active' : ''} to="/logout"><span><i className="fas fa-power-off"></i></span><span>Logout</span></Link>
+                            <Link onClick={logoutHandler} to='/' className={pathname === '/logout' ? 'active' : ''}><span><i className="fas fa-power-off"></i></span><span>Logout</span></Link>
                         </li>
                     </ul>
             </nav>

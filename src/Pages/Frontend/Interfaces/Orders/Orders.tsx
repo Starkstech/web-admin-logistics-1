@@ -9,7 +9,7 @@ import './Orders.scss'
 const columns = [
   {
     name: 'Order No.',
-    selector: 'orderNo',
+    selector: (row:any) => row.tracking_id,
     sortable: true,
     center: true,
   },
@@ -79,29 +79,6 @@ const sortStatus = (status:any) => {
   }
 }
 
-const data = [
-  {
-    id: 1,
-    orderNo: '0001',
-    phoneNo: '+2348169199932',
-    amount: '₦20000',
-    pickoff: '+1b Akinyemi Ave.',
-    dropoff: '+1b Akinyemi Ave.',
-    date: '11:08am 20 Oct 2021',
-    status: 'In transit'
-  },
-  {
-    id: 2,
-    orderNo: '0001',
-    phoneNo: '+2348169199932',
-    amount: '₦20000',
-    pickoff: '+1b Akinyemi Ave.',
-    dropoff: '+1b Akinyemi Ave.',
-    date: '11:08am 20 Oct 2021',
-    status: 'In transit'
-  },
-]
-
 const ActionsBoard = () => (
   <ul className="actions_container_board p-2 shadow-sm bg-white">
     <li>View</li>
@@ -135,10 +112,11 @@ const Orders: FC = () => {
   // Updating the data state needed for the react-data-table-component
   useEffect(() => {
     if (orderDetails.length) {
-      orderDetails.map((orderDetail: {id: string}) => {
-        const { id } = orderDetail
+      orderDetails.map((orderDetail: {tracking_id: string}) => {
+        console.log(orderDetails)
+        const { tracking_id } = orderDetail
         return (
-          setData(prevData => [...prevData, { id }])
+          setData([{ tracking_id }])
         )
       })
     }
@@ -152,19 +130,6 @@ const Orders: FC = () => {
       console.log(`Error coming from the order page ${error}`)
     }
   }
-
-  // const data = [
-  //   {
-  //     id: 1,
-  //     orderNo: '0001',
-  //     phoneNo: '+2348169199932',
-  //     amount: '₦20000',
-  //     pickoff: '+1b Akinyemi Ave.',
-  //     dropoff: '+1b Akinyemi Ave.',
-  //     date: '11:08am 20 Oct 2021',
-  //     status: 'In transit',
-  //   }
-  // ]
 
   return (
         <div className="orders_wrapper p-4">

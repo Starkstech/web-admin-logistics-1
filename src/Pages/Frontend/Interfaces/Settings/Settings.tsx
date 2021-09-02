@@ -19,7 +19,7 @@ const Settings :FC = () => {
                 <Link to={`${url}/pricing`}>Pricing</Link>
             </li>
             <li>
-            <Link to={`${url}/export`}>Export</Link>
+            <Link to={`${url}/export`}>Data Export</Link>
             </li>
           </ul>
         </nav>

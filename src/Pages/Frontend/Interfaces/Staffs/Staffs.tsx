@@ -38,15 +38,7 @@ const data = [
     tripsNo: '23',
     dateCreated: 'Aug 20, 2021. 10:00am',
     address: '',
-  },
-  {
-    name: 'Ajenefuja Micheal',
-    contactNo: '0234',
-    totalEarnings: '2000',
-    tripsNo: '23',
-    dateCreated: 'Aug 20, 2021. 10:00am',
-    address: '',
-  },
+  }
 ]
 
 const customStyles = {

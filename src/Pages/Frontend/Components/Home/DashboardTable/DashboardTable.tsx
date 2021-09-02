@@ -90,8 +90,8 @@ const DashboardTable: FC = () => {
   const ActionsBoard = () => (
     <ul className="actions_container_board p-3 shadow-sm bg-white">
       <li>View</li>
-      <li>Edit</li>
-      <li>Delete</li>
+      <li>Accept</li>
+      <li>Reject</li>
     </ul>
   )
 

@@ -1,10 +1,32 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import FormInput from "../../../../../Component/FormInput/FormInput";
 import './GeneralProfile.scss'
 
 const GeneralProfile:FC = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isFilePicked, setIsFilePicked] = useState(false);
+  const [displayFile, setDisplayFile] = useState('')
+
   const handleChange = (e:any) => {
     console.log(e.value)
+  }
+
+  const fileOnchange = (event:any) => {
+    setSelectedFile(event.target.files[0]);
+    setIsFilePicked(true)
+    const rawImg = URL.createObjectURL(event.target.files[0]);
+    setDisplayFile(rawImg)
+  }
+
+  const cancelSelected = () => {
+    console.log(123)
+    setSelectedFile(null)
+    setIsFilePicked(false)
+    setDisplayFile('')
+  }
+
+  const handleSubmit = () => {
+    console.log(selectedFile)
   }
 
   return (
@@ -12,11 +34,13 @@ const GeneralProfile:FC = () => {
             <div>
                 <label className="form-label heading_3x">App Logo</label>
                 <div className="d-flex flex-wrap justify-content-start align-items-center">
-                    <div className="shadow-sm settings-profile_img"></div>
+                    <div className="shadow-sm settings-profile_img">
+                      {isFilePicked ? <img src={displayFile} alt="A file" /> : null}
+                    </div>
                    <div className="mt-3">
-                   <input className="settings-profile_file" type="file" id="settings_img" />
+                   <input className="settings-profile_file" accept="image/*" type="file" id="settings_img" onChange={fileOnchange} />
                     <label htmlFor="settings_img" role="button" className="btn_main mx-3">Upload</label>
-                    <button className="btn_outline">Cancel</button>
+                    <button onClick={cancelSelected} className="btn_outline">Cancel</button>
                    </div>
                 </div>
                 <hr />
@@ -85,8 +109,8 @@ const GeneralProfile:FC = () => {
                       </div>
                   </div>
                   <div className="mt-4 d-flex justify-content-end align-items-center">
-                      <div role="button" className="btn_outline mx-2">Cancel</div>
-                      <button className="btn_main">Save</button>
+                      <div onClick={cancelSelected} role="button" className="btn_outline mx-2">Cancel</div>
+                      <button onClick={handleSubmit} className="btn_main">Save</button>
                   </div>
                 </form>
 

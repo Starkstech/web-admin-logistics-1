@@ -22,7 +22,7 @@ const GeneralProfile:FC = () => {
                 <hr />
                 <form>
                   <div>
-                      <label className="heading_3x">Display Name</label>
+                      <label className="heading_3x">Company Name</label>
                       <div className="settings-profile_group d-flex justify-content-between align-items-center">
                             <FormInput type="text" name="displayName" placeholder="Display name" id="displayName" handleChange={handleChange} required/>
                       </div>
@@ -42,45 +42,45 @@ const GeneralProfile:FC = () => {
                       <div className="mt-3 settings-profile_group d-flex flex-wrap justify-content-between align-items-center">
                           <div className="d-flex justify-content-start align-items-center settings-profile_operations">
                             <div className="settings-profile_day">Mon</div>
-                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} placeholder="hh:mm" required/>
                             <div className="time-bar"><span>--</span><span>&nbsp;--</span></div>
-                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} placeholder="hh:mm" required/>
                           </div>
                           <div className="d-flex justify-content-start align-items-center settings-profile_operations">
                             <div className="settings-profile_day">Tue</div>
-                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} placeholder="hh:mm" required/>
                             <div className="time-bar"><span>--</span><span>&nbsp;--</span></div>
-                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} placeholder="hh:mm" required/>
                           </div>
                           <div className="d-flex justify-content-start align-items-center settings-profile_operations">
                             <div className="settings-profile_day">Wed</div>
-                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} placeholder="hh:mm" required/>
                             <div className="time-bar"><span>--</span><span>&nbsp;--</span></div>
-                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} placeholder="hh:mm" required/>
                           </div>
                           <div className="d-flex justify-content-start align-items-center settings-profile_operations">
                             <div className="settings-profile_day">Thur</div>
-                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} placeholder="hh:mm" required/>
                             <div className="time-bar"><span>--</span><span>&nbsp;--</span></div>
-                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} placeholder="hh:mm" required/>
                           </div>
                           <div className="d-flex justify-content-start align-items-center settings-profile_operations">
                             <div className="settings-profile_day">Fri</div>
-                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} placeholder="hh:mm" required/>
                             <div className="time-bar"><span>--</span><span>&nbsp;--</span></div>
-                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} placeholder="hh:mm" required/>
                           </div>
                           <div className="d-flex justify-content-start align-items-center settings-profile_operations">
                             <div className="settings-profile_day">Sat</div>
-                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} placeholder="hh:mm" required/>
                             <div className="time-bar"><span>--</span><span>&nbsp;--</span></div>
-                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} placeholder="hh:mm" required/>
                           </div>
                           <div className="d-flex justify-content-start align-items-center settings-profile_operations">
                             <div className="settings-profile_day">Sun</div>
-                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monAm" id="monAm" handleChange={handleChange} placeholder="hh:mm" required/>
                             <div className="time-bar"><span>--</span><span>&nbsp;--</span></div>
-                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} required/>
+                            <FormInput type="text" name="monPm" id="monPm" handleChange={handleChange} placeholder="hh:mm" required/>
                           </div>
                       </div>
                   </div>

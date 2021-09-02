@@ -1,0 +1,57 @@
+@import "../../../../../Assets/Style/colors";
+
+.pricing {
+    padding: 2rem;
+    color: $dark-color-1;
+
+    .pricing_form {
+        width: 98%;
+        margin: 0 auto;
+        box-shadow: 0px 3px 6px #00000029;
+
+        .table {
+            max-width: 800px;
+
+            tr {
+                height: 80px;
+            }     
+        }
+
+        .pricing_input {
+            border: 1px solid $grey-color-1;
+            border-radius: 5px;
+            padding: 0.5rem;
+            height: 35px;
+            background-color: $white-color;
+            width: 100px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            span {
+              font-weight: 500;
+              font-size: 1rem;
+            }
+
+            input {
+                font-size: 0.8rem;
+                border: none;
+                outline: none;
+                background-color: $white-color;
+                width: 100%;
+                padding: 0 0.5rem;
+                height: 30px;
+            }
+        }
+
+        .pricing_textarea {
+            border: 1px solid $grey-color-1;
+            border-radius: 5px;
+            padding: 0.5rem;
+            height: 40px;
+            background-color: $white-color;
+            resize: none;
+            width: 100px;
+        }
+    }
+}

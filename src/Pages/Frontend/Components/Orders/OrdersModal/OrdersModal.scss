@@ -1,0 +1,30 @@
+@import '../../../../../Assets/Style/colors';
+
+.order_modal {
+    width: 400px;
+  
+    .order_modal-header {
+        span {
+            color: $primary-color;
+        }
+    }
+  
+    .rider_details {
+      .rider_avatar {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background-color: $grey-color-1;
+          color: $dark-color-1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 0.5rem;
+      }
+  
+      span {
+          margin-right: 0.5rem;
+      }
+    }
+  
+  }

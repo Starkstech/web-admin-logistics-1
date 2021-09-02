@@ -9,6 +9,7 @@ import { SERVER_URL } from '../../../../Constant/urlConstant';
 import axios from "axios"
 import './Login.scss'
 import { Redirect } from 'react-router-dom'
+import CryptoJS from 'crypto-js'
 
 const initialState = {
   phone: '',
@@ -41,7 +42,8 @@ const Login: FC = () => {
       try {
         setLoading(true)
         const { data } = await axios.post(`${SERVER_URL}/user/login`, fields)
-        dispatch(userAction.setCurrentUser(data))
+        const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), '12345').toString();
+        dispatch(userAction.setCurrentUser(ciphertext))
         updateFields(initialState)
         setLoading(false)
         history.push('/dashboard')

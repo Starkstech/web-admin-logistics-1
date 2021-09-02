@@ -1,0 +1,24 @@
+@import "../../Assets/Style/colors";
+
+.form__input {
+    background-color: $grey-color-2;
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    font-size: 12px;
+    color: $dark-color-1;
+    height: 32px;
+    border-radius: 5px;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    width: 100%;
+    max-width: 210px;
+
+    &:focus {
+        outline: none;
+    }
+
+    &::placeholder {
+        font-size: 12px;
+        color: $dark-color-1;
+    }
+}

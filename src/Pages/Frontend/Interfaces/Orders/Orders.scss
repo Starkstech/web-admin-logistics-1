@@ -1,27 +1,30 @@
-@import "../../../../Assets/Style/colors";
+@import '../../../../Assets/Style/colors';
 
 .orders_wrapper {
     .orders_table {
         //data table overflow
-.cvPDdw {
-    padding-bottom: 40px;
-  }
+        .cvPDdw {
+            padding-bottom: 50px;
+        }
+    }
+
+    .order_status {
+        background-color: #d7dcf5;
+        padding: 0.6em;
+        border-radius: 5px;
+
+        &.in-transit {
+            color: $primary-color;
+        }
+    }
+
+    .actions_container_board {
+        .btn {
+            padding: 0;
+            margin: 0.1rem 0;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
     }
 }
 
-.actions_container_board {
-  li {
-    margin: 0.4em 0;
-    cursor: pointer;
-  }
-}
-
-.order_status {
-  background-color: #d7dcf5;
-  padding: 0.6em;
-  border-radius: 5px;
-
-  &.in-transit {
-    color: $primary-color
-  }
-}

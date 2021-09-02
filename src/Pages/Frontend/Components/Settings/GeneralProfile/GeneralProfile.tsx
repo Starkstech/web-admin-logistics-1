@@ -10,7 +10,7 @@ const GeneralProfile:FC = () => {
   return (
         <div className="settings-profile">
             <div>
-                <label className="form-label heading_3x">Display Picture</label>
+                <label className="form-label heading_3x">App Logo</label>
                 <div className="d-flex flex-wrap justify-content-start align-items-center">
                     <div className="shadow-sm settings-profile_img"></div>
                    <div className="mt-3">

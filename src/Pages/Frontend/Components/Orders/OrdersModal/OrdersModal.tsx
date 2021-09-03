@@ -1,7 +1,8 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import CryptoJS from "crypto-js";
 import { Modal, Search } from '../../../../../Component'
 import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast';
 import OrdersRider from '../OrdersRider/OrdersRider'
 import { SERVER_URL } from '../../../../../Constant/urlConstant';
 import { useSelector } from "react-redux";
@@ -13,6 +14,9 @@ type OrderId = {
 }
 
 const OrdersModal:FC<OrderId> = ({ selectedOrder, toggleModal }) => {
+  const [riders, setRiders] = useState([])
+  const [ridersDefault, setRidersDefault] = useState([])
+  const [assignedRider, updateAssignedRider] = useState(null)
   const { currentUser } = useSelector((state:any) => state.user)
   const data = CryptoJS.AES.decrypt(currentUser, '12345');
   const decryptedData = JSON.parse(data.toString(CryptoJS.enc.Utf8));
@@ -22,23 +26,27 @@ const OrdersModal:FC<OrderId> = ({ selectedOrder, toggleModal }) => {
   };
 
   const assignOrder = async () => {
-    console.log('assigning...')
+    if (!assignedRider) {
+      toast.error('Please assign the order to a rider')
+      return
+    }
+
     const postData = {
       orderId: selectedOrder.id,
-      staffId: 3,
+      staffId: assignedRider,
       status: 'assigned'
     }
 
     try {
-      const busyStatus = await axios.post(`${SERVER_URL}/staff/busy-status`, {
-        staffId: 3,
+      await axios.post(`${SERVER_URL}/staff/busy-status`, {
+        staffId: assignedRider,
         isBusy: false
       }, config)
-      console.log(busyStatus, "THis is the busy Status")
-      const { data } = await axios.post(`${SERVER_URL}/order/assign-order`, postData, config)
-      console.log(data, "It has been assigned")
-    } catch (error) {
-      console.log(error.message, 'cannot assign')
+      await axios.post(`${SERVER_URL}/order/assign-order`, postData, config)
+      toast.success("Order sucessfully assigned")
+      setTimeout(() => toggleModal(null), 2000)
+    } catch (error:any) {
+      toast.error('Error in assigning order')
     }
     // toggleModal(null)
   }
@@ -46,10 +54,18 @@ const OrdersModal:FC<OrderId> = ({ selectedOrder, toggleModal }) => {
   const getRiders = async () => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/staff`, config)
-      console.log(data, "THis are all the staffs")
-    } catch (error) {
-      console.log(error.message)
+      setRidersDefault(data)
+      setRiders(data)
+    } catch (error:any) {
+      toast.error(error.message)
     }
+  }
+
+  const searchRiders = async (keyword:String) => {
+    const filtered = ridersDefault.filter((ridee:any) => {
+      return ridee.firstname.toLowerCase().includes(keyword.toLowerCase())
+    })
+    setRiders(filtered)
   }
 
   useEffect(() => {
@@ -65,12 +81,14 @@ const OrdersModal:FC<OrderId> = ({ selectedOrder, toggleModal }) => {
               <p><strong>Delivery address:</strong> {selectedOrder.delivery_location}</p>
 
               <label>Pick a rider:</label>
-              <Search />
+              <Search handleSearch={searchRiders} />
               <div>
               <span>Assigned to:</span>
               <div>
-                  <OrdersRider />
-                  <OrdersRider />
+                {
+                  riders.map((rider:any) => <OrdersRider key={rider.id} {...rider} updateAssigned={updateAssignedRider} />)
+                }
+
               </div>
               </div>
                 <div className="mt-3 d-flex justify-content-end">
@@ -78,6 +96,12 @@ const OrdersModal:FC<OrderId> = ({ selectedOrder, toggleModal }) => {
                 </div>
             </div>
           </div>
+          <Toaster toastOptions={{
+            style: {
+              height: '70px',
+              padding: '1em'
+            },
+          }} />
         </Modal>
   )
 }

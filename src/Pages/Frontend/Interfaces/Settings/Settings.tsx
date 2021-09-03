@@ -1,10 +1,12 @@
 import React, { FC } from "react";
-import { Link, Route, BrowserRouter as Router, Switch, useRouteMatch } from "react-router-dom";
+import { Link, Route, BrowserRouter as Router, Switch, useRouteMatch, useLocation } from "react-router-dom";
 import { Export, GeneralProfile, Pricing } from "../../Components";
 import "./Settings.scss"
 
 const Settings :FC = () => {
   const { path, url } = useRouteMatch();
+  const { pathname } = useLocation()
+
   return (
   <Router>
     <div className="settings">
@@ -12,14 +14,14 @@ const Settings :FC = () => {
         <h2 className="heading_2x">Settings</h2>
         <nav className="settings_nav d-flex justify-content-end align-items-center">
           <ul className="d-flex justify-content-end align-items-center">
-            <li className="right active">
+            <li className={`${pathname === '/settings' ? 'active' : null} right`}>
                 <Link to={url}>General Profile</Link>
             </li>
-            <li className="right">
+            <li className={`${pathname === '/settings/pricing' ? 'active' : null} right`}>
                 <Link to={`${url}/pricing`}>Pricing</Link>
             </li>
             <li>
-            <Link to={`${url}/export`}>Data Export</Link>
+            <Link className={`${pathname === '/settings/export' ? 'active' : null}`} to={`${url}/export`}>Data Export</Link>
             </li>
           </ul>
         </nav>

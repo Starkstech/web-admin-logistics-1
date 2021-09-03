@@ -68,7 +68,7 @@ const Customers:FC = () => {
       <div className="customers_wrapper p-4">
           <h2 className="heading_2x">Customers</h2>
           <div className="mt-4">
-              <Search />
+              <Search handleSearch={() => null} />
           </div>
           <div className="shadow-sm mt-4">
               <DataTable

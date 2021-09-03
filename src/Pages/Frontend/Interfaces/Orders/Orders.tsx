@@ -13,6 +13,7 @@ const Orders:FC = () => {
   const [showModal, setShowModal] = useState(false)
   const [selectedOrder, setSelectedOrder] = useState(null)
   const [orderData, setOrderData] = useState([])
+  const [orderDataDefault, setOrderDataDefault] = useState([])
 
   const getOrders = async () => {
     const data = CryptoJS.AES.decrypt(currentUser, '12345');
@@ -24,10 +25,18 @@ const Orders:FC = () => {
 
     try {
       const { data } = await axios.get(`${SERVER_URL}/order`, config)
+      setOrderDataDefault(data)
       setOrderData(data)
-    } catch (error) {
+    } catch (error:any) {
       console.log(error.message)
     }
+  }
+
+  const searchOrders = async (keyword:any) => {
+    const filtered = orderDataDefault.filter((ridee:any) => {
+      return ridee.tracking_id.toString().includes(keyword)
+    })
+    setOrderData(filtered)
   }
 
   useEffect(() => {
@@ -35,15 +44,15 @@ const Orders:FC = () => {
   }, [])
 
   const toggleModal = (data:any) => {
-    setSelectedOrder(data)
     setShowModal((status) => !status)
+    setSelectedOrder(data)
   }
 
   return (
     <div className="orders_wrapper p-4">
     <h2 className="heading_2x">Orders</h2>
     <div className="mt-4">
-        <Search />
+        <Search handleSearch={searchOrders} />
     </div>
     <div className="shadow-sm mt-4 orders_table">
         <OrdersTable toggleModal={toggleModal} data={orderData} />

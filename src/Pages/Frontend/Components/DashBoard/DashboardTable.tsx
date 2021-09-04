@@ -1,16 +1,7 @@
-/* eslint-disable no-undef */
-/* eslint-disable react/display-name */
-/* eslint-disable react/jsx-filename-extension */
 import React, { FC } from "react";
 import DataTable from "react-data-table-component"
 
 const DashboardTable: FC = () => {
-//   const FilterComponent = ({ filterText }) => (
-//         <>
-//           <TextField id="search" type="text" placeholder="Filter By Name" aria-label="Search Input" value={filterText} onChange={onFilter} />
-//         </>
-//   );
-
   const data = [
     {
       id: 1,
@@ -20,84 +11,56 @@ const DashboardTable: FC = () => {
       pickoff: '+1b Akinyemi Ave.',
       dropoff: '+1b Akinyemi Ave.',
       date: '11:08am 20 Oct 2021',
-      status: 'In transit',
-      action: '...',
+      status: 'In transit'
     }
   ]
   const columns = [
     {
       name: 'Order No.',
-      selector: 'orderNo',
+      selector: (row:any) => row.orderNo,
       sortable: true,
       center: true
 
     },
     {
       name: 'Phone number',
-      selector: 'phoneNo',
+      selector: (row:any) => row.phoneNo,
       sortable: true,
-
-    //   cell: (row: { title: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; summary: string | number | boolean | {} | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactNodeArray | React.ReactPortal | null | undefined; }) =>
-    //    <>
-    //   <div>
-    //       <div style={{ fontWeight: 700 }}>{row.title}</div>
-    //       {row.summary}
-    //       </div>
-    //   </>,
     },
 
     {
       name: 'Amount',
-      selector: 'amount',
+      selector: (row:any) => row.amount,
       sortable: true,
       center: true
     },
     {
       name: 'Pick off',
-      selector: 'pickoff',
+      selector: (row:any) => row.pickoff,
       sortable: true,
       center: true
     },
     {
       name: 'Drop off',
-      selector: 'dropoff',
+      selector: (row:any) => row.dropoff,
       sortable: true,
       center: true
     },
     {
       name: 'Date',
-      selector: 'date',
+      selector: (row:any) => row.date,
       sortable: true,
       center: true
     },
     {
       name: 'Status',
-      selector: 'status',
+      selector: (row:any) => row.status,
       sortable: true,
       center: true
-    },
-    {
-      name: 'Actions',
-      selector: 'action',
-      sortable: true,
-      center: true
-    },
+    }
   ];
 
   const customStyles = {
-    // rows: {
-    //   style: {
-    //     fontSize: '13px',
-    //     color: "red",
-    //     backgroundColor: "#333",
-    //     minHeight: '48px',
-    //     //   '&:not(:last-of-type)': {
-    //     //     borderBottomStyle: 'solid',
-    //     //     borderBottomWidth: '1px',
-    //     // borderBottomColor: theme.divider.default,
-    //   },
-    // },
-
     headCells: {
       style: {
         backgroundColor: '#f5f6fa',
@@ -126,12 +89,6 @@ const DashboardTable: FC = () => {
      customStyles={customStyles}
      subHeader
      persistTableHead
-    // selectableRowsComponent={ Checkbox }
-    selectableRowsComponentProps={{ inkDisabled: true }}
-    // onSelectedRowsChange={handleChange}
-    // expandableRows
-    // expandableRowsComponent={<ExpandableComponent />}
-    // pagination noHeader={true}
   />
   </>
   )

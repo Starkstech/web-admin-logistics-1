@@ -11,10 +11,21 @@
 
         .table {
             max-width: 800px;
+            color: $dark-color;
 
-            tr {
-                height: 80px;
-            }     
+            thead {
+
+                th {
+                    font-weight: 500;
+                    padding: 1.5rem 0;
+                }
+            }
+
+            tbody {
+                tr {
+                    height: 80px;
+                } 
+            }   
         }
 
         .pricing_input {

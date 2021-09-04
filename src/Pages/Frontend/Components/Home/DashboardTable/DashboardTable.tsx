@@ -37,43 +37,43 @@ const DashboardTable: FC = () => {
   const columns = [
     {
       name: 'Order No.',
-      selector: 'orderNo',
+      selector: (row:any) => row.orderNo,
       sortable: true,
       center: true
 
     },
     {
       name: 'Phone number',
-      selector: 'phoneNo',
+      selector: (row:any) => row.phoneNo,
       sortable: true,
     },
     {
       name: 'Amount',
-      selector: 'amount',
+      selector: (row:any) => row.amount,
       sortable: true,
       center: true
     },
     {
       name: 'Pick off',
-      selector: 'pickoff',
+      selector: (row:any) => row.pickoff,
       sortable: true,
       center: true,
     },
     {
       name: 'Drop off',
-      selector: 'dropoff',
+      selector: (row:any) => row.dropoff,
       sortable: true,
       center: true
     },
     {
       name: 'Date',
-      selector: 'date',
+      selector: (row:any) => row.date,
       sortable: true,
       center: true,
     },
     {
       name: 'Status',
-      selector: 'status',
+      selector: (row:any) => row.status,
       sortable: true,
       center: true
     },
@@ -90,8 +90,8 @@ const DashboardTable: FC = () => {
   const ActionsBoard = () => (
     <ul className="actions_container_board p-3 shadow-sm bg-white">
       <li>View</li>
-      <li>Edit</li>
-      <li>Delete</li>
+      <li>Accept</li>
+      <li>Reject</li>
     </ul>
   )
 

@@ -50,13 +50,8 @@ const Staffs: FC = () => {
         <div className="staffs_wrapper p-4">
             <h2 className="heading_2x">Staff</h2>
             <div className="d-flex justify-content-between align-items-center">
-                <Search />
-                <button
-                    onClick={() => history.push('/Add-rider')}
-                    className="btn_main"
-                >
-                    Add Rider
-                </button>
+                <Search handleSearch={() => null} />
+                <button onClick={() => history.push('/Add-rider')} className="btn_main">Add Rider</button>
             </div>
 
             <div className="shadow-sm mt-4">

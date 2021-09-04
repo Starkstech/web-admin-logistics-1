@@ -19,7 +19,6 @@ const SideBar: FC = () => {
 
   return (
       <>
-      {console.log(pathname, 'this is location')}
       <input type="checkbox" id="toggle-sidebar" />
         <div className="sidebar">
             <div className="sidebar_brand">

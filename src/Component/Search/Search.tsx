@@ -1,11 +1,15 @@
 import React, { FC } from 'react'
 import './Search.scss'
 
-const Search:FC = () => {
+interface SearchTypes {
+  handleSearch: Function
+}
+
+const Search:FC<SearchTypes> = ({ handleSearch }) => {
   return (
         <div className="search d-flex justify-content-between align-items-center">
-            <input className="search_input" type="text" name="search" id="search" placeholder="Search" aria-label="Search Here" />
-            <button className="btn_main p-1">Search</button>
+          <span><i className="fas fa-spinner"></i></span>
+            <input onChange={(e:any) => handleSearch(e.target.value)} className="search_input" type="text" name="search" id="search" placeholder="Search with keywords..." aria-label="Search Here" />
         </div>
   )
 }

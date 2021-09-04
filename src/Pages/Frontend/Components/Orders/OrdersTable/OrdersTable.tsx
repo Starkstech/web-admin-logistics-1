@@ -26,7 +26,11 @@ const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
   const columns = [
     {
       name: 'Order No.',
+<<<<<<< HEAD
       selector: (row: any) => row.tracking_id,
+=======
+      selector: (row:any) => row.tracking_id,
+>>>>>>> 3ad030ebae0be8fc133fdbb161e45ddcb6395a50
       sortable: true,
       center: true,
     },
@@ -38,13 +42,21 @@ const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
 
     {
       name: 'Amount',
+<<<<<<< HEAD
       selector: (row: any) => row.amount,
+=======
+      selector: (row:any) => row.order_cost,
+>>>>>>> 3ad030ebae0be8fc133fdbb161e45ddcb6395a50
       sortable: true,
       center: true,
     },
     {
       name: 'Pick off',
+<<<<<<< HEAD
       selector: (row: any) => row.pickoff,
+=======
+      selector: (row:any) => row.pick_up_location,
+>>>>>>> 3ad030ebae0be8fc133fdbb161e45ddcb6395a50
       sortable: true,
       center: true,
       style: {
@@ -54,12 +66,17 @@ const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
     },
     {
       name: 'Drop off',
+<<<<<<< HEAD
       selector: (row: any) => row.dropoff,
+=======
+      selector: (row:any) => row.delivery_location,
+>>>>>>> 3ad030ebae0be8fc133fdbb161e45ddcb6395a50
       sortable: true,
       center: true,
     },
     {
       name: 'Date',
+<<<<<<< HEAD
       selector: (row: any) => row.date,
       sortable: true,
       center: true,
@@ -67,6 +84,11 @@ const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
         overflow: 'visible !important',
         textOverflow: 'visible',
       },
+=======
+      selector: (row:any) => row.createdAt,
+      sortable: true,
+      center: true
+>>>>>>> 3ad030ebae0be8fc133fdbb161e45ddcb6395a50
     },
     {
       name: 'Status',
@@ -85,15 +107,20 @@ const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
       allowOverflow: true,
       sortable: true,
       center: true,
+<<<<<<< HEAD
       cell: (row: any) => (
                 <div className="actions_container">
                     <button className="actions_container_btn btn">...</button>
                     <ActionsBoard orderId={row.id} />
                 </div>
       ),
+=======
+      cell: (row:any) => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard orderData={row} /></div>)
+>>>>>>> 3ad030ebae0be8fc133fdbb161e45ddcb6395a50
     },
   ]
 
+<<<<<<< HEAD
     type BoardType = {
         orderId: any
     }
@@ -107,6 +134,19 @@ const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
             <button className="btn">Reject</button>
         </ul>
     )
+=======
+  type BoardType = {
+      orderData: any
+  }
+
+  const ActionsBoard:FC<BoardType> = ({ orderData }) => (
+    <ul className="actions_container_board p-2 shadow-sm bg-white">
+      <button className="btn">View</button>
+      <button className="btn" onClick={() => toggleModal(orderData)}>Accept</button>
+      <button className="btn">Reject</button>
+    </ul>
+  )
+>>>>>>> 3ad030ebae0be8fc133fdbb161e45ddcb6395a50
 
     const sortStatus = (status: any) => {
       switch (status) {

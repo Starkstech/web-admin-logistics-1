@@ -1,115 +1,54 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import DataTable from 'react-data-table-component'
+import { useSelector } from 'react-redux'
+import CryptoJS from 'crypto-js'
 import toast, { Toaster } from 'react-hot-toast'
 
 import axios from '../../../../Services/axios'
 import { Search } from '../../../../Component'
+import StaffsTable from './StaffsTable'
 import './Staffs.scss'
-
-const columns = [
-  {
-    name: 'Name',
-    selector: (row: any) => row.name,
-  },
-  {
-    name: 'Contact no.',
-    selector: (row: any) => row.contactNo,
-  },
-  {
-    name: 'No. of trips',
-    selector: (row: any) => row.tripsNo,
-  },
-  {
-    name: 'Date created',
-    selector: (row: any) => row.dateCreated,
-  },
-  {
-    name: 'Address',
-    selector: (row: any) => row.address,
-  },
-  {
-    name: 'Actions',
-    selector: 'action',
-    allowOverflow: true,
-    sortable: true,
-    center: true,
-    // eslint-disable-next-line react/display-name
-    cell: () => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard /></div>)
-  }
-]
-
-const customStyles = {
-  headRow: {
-    style: {
-      height: '40px',
-      minHeight: '40px',
-    },
-  },
-  headCells: {
-    style: {
-      backgroundColor: '#F4F6F5',
-    },
-  },
-}
-
-const ActionsBoard = () => (
-  <ul className="actions_container_board p-2 shadow-sm bg-white">
-    <li>View</li>
-    <li>Edit</li>
-    <li>Delete</li>
-  </ul>
-)
+import { SERVER_URL } from '../../../../Constant/urlConstant'
 
 const Staffs: FC = () => {
   const history = useHistory()
-  const [staffs, setStaffs] = useState<{firstname: string, lastname: string, phone: string, address: {address: string}}[]>([])
-  const [data, setData] = useState<{}[]>([])
+  const [staffs, setStaffs] = useState<any>([])
 
   useEffect(() => {
     fetchStaffs()
-  }, [])
+  }, [staffs])
+
+  const user = useSelector((state: any) => state.user)
+  const dUser = CryptoJS.AES.decrypt(user.currentUser, '12345')
+  const decryptedData = JSON.parse(dUser.toString(CryptoJS.enc.Utf8))
 
   const fetchStaffs = async () => {
+    // eslint-disable-next-line quote-props
+    const config = { headers: { "Authorization": `Bearer ${decryptedData.acccess_token}` } }
     try {
-      const { data } = await axios.get("/staff")
+      const { data } = await axios.get(`${SERVER_URL}/staff`, config)
       setStaffs(data)
     } catch (error) {
       toast.error(error.message)
     }
   }
 
-  useEffect(() => {
-    if (staffs.length) {
-      staffs.map((staff: {firstname: string, lastname: string, phone: string, address: {address: string}}) => {
-        console.log(staffs)
-        const name = staff.firstname
-        const phone = staff.phone
-        // const createdAt = staff.
-        // const address = staff.address.address
-        return (
-          setData([{ name, phone }])
-        )
-      })
+  const deleteStaff = async (id: string) => {
+    const staff = staffs.find((staff: any) => staff.id === id)
+    // eslint-disable-next-line quote-props
+    const config = { headers: { "Authorization": `Bearer ${decryptedData.acccess_token}` } }
+    try {
+      const { data } = await axios.delete(`${SERVER_URL}/staff/${staff.sid}`, config)
+      fetchStaffs()
+      toast.success(data)
+    } catch (error) {
+      toast.error(error.message)
     }
-  }, [staffs])
-
-  //   const deleteRiderHandler = async (id) => {
-  //     setLoading(true)
-  //     try {
-  //       setLoading(false)
-  //       toast.success("Successfull deleted")
-  //       history.push('/staffs')
-  //     } catch (error) {
-  //       setLoading(false)
-  //       toast.error(error.message)
-  //     }
-  //   }
+  }
 
   return (
         <div className="staffs_wrapper p-4">
             <h2 className="heading_2x">Staff</h2>
-            {JSON.stringify(data)}
             <div className="d-flex justify-content-between align-items-center">
                 <Search />
                 <button
@@ -119,14 +58,9 @@ const Staffs: FC = () => {
                     Add Rider
                 </button>
             </div>
+
             <div className="shadow-sm mt-4">
-                <DataTable
-                    columns={columns}
-                    data={data}
-                    customStyles={customStyles}
-                    noHeader
-                    responsive
-                />
+              <StaffsTable deleteStaff={deleteStaff} data={staffs} />
             </div>
 
             <Toaster

@@ -17,14 +17,24 @@ const Orders:FC = () => {
     fetchOrdersDetails()
   }, [])
 
+  type OrderDetail = {
+    tracking_id: string,
+    contact_details: {phone_number: string},
+    order_cost: number,
+    pick_up_location: string,
+    delivery_location: string,
+    pick_up_date: string
+  }
+
   // Updating the data state needed for the react-data-table-component
   useEffect(() => {
-    if (orderDetails.length) {
-      orderDetails.map((orderDetail: {tracking_id: string}) => {
+    if (orderDetails.length >= 0) {
+      orderDetails.map((orderDetail: OrderDetail) => {
         console.log(orderDetails)
-        const { tracking_id } = orderDetail
+        const { tracking_id, order_cost, pick_up_location, delivery_location, pick_up_date } = orderDetail
+        const phoneNo = orderDetail.contact_details.phone_number
         return (
-          setData([{ tracking_id }])
+          setData([{ tracking_id, phoneNo, order_cost, pickoff: pick_up_location, dropoff: delivery_location, date: pick_up_date }])
         )
       })
     }

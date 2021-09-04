@@ -3,7 +3,7 @@ import {
   GET_USER_SUCCESS,
   LOG_USER_OUT
 } from "../Constant/userConstant"
-import axios from '../Services/axios'
+// import axios from '../Services/axios'
 
 const userAction = {
   setCurrentUser: (user:Object) => {
@@ -22,7 +22,7 @@ const userAction = {
   },
 
   clearCurrentUser: () => async (dispatch: Function) => {
-    await axios.post('/user/logout')
+    // await axios.post('/user/logout')
 
     dispatch({
       type: LOG_USER_OUT

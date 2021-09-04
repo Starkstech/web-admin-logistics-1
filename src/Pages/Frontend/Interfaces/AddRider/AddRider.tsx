@@ -1,9 +1,12 @@
 import React, { FC, useRef, FormEvent, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import CryptoJS from 'crypto-js'
 
-import axios from '../../../../Services/axios'
+import axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast'
 import './AddRider.scss'
+import { SERVER_URL } from '../../../../Constant/urlConstant'
 
 const AddRider: FC = () => {
   const history = useHistory()
@@ -27,6 +30,12 @@ const AddRider: FC = () => {
   const g2NameInputRef = useRef<HTMLInputElement>(null)
   const g2PhoneInputRef = useRef<HTMLInputElement>(null)
   const g2AddressInputRef = useRef<HTMLInputElement>(null)
+  const riderPasswordInputRef = useRef<HTMLInputElement>(null)
+
+  const user = useSelector((state: any) => state.user)
+  const dUser = CryptoJS.AES.decrypt(user.currentUser, '12345')
+  const decryptedData = JSON.parse(dUser.toString(CryptoJS.enc.Utf8))
+  console.log(decryptedData)
 
   const selectStatusHandler = (e: FormEvent<HTMLSelectElement>) => {
     setMStatus(e.currentTarget.value)
@@ -44,6 +53,7 @@ const AddRider: FC = () => {
       phone: phoneInputRef.current!.value,
       marital_status: mStatus,
       email: emailInputRef.current!.value,
+      password: riderPasswordInputRef.current!.value,
       address: {
         address: addressInputRef.current!.value,
         city: cityInputRef.current!.value,
@@ -65,7 +75,9 @@ const AddRider: FC = () => {
     }
     try {
       e.preventDefault()
-      const response = await axios.post('/staff', formData)
+      // eslint-disable-next-line quote-props
+      const config = { headers: { "Authorization": `Bearer ${decryptedData.acccess_token}` } }
+      const response = await axios.post(`${SERVER_URL}/staff`, formData, config)
       toast.success(`${response.status === 201 && 'Success'}`)
       setLoading(false)
       history.push('/staffs')
@@ -183,6 +195,16 @@ const AddRider: FC = () => {
                                     ref={stateInputRef}
                                     placeholder="State"
                                 />
+                                </div>
+                            </div>
+                            <div className="form-group row mb-3">
+                            <div className="col-md-6 col-xs-7 input-container">
+                                <input
+                                        type="password"
+                                        className="input form-control mt-2 mt-sm-0"
+                                        ref={riderPasswordInputRef}
+                                        placeholder="Password"
+                                    />
                                 </div>
                             </div>
 

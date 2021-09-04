@@ -89,14 +89,14 @@ const AddRider: FC = () => {
 
   return (
         <div className="p-4">
-            <h5>Add new staff</h5>
+            <h5 className="my-5">Add new staff</h5>
             <div>
                 <button className="btn_main">Upload</button>
                 <button className="btn_outline mx-3">Remove</button>
             </div>
 
-            <div className="my-4">
-                <p className="heading_2x">Rider&apos;s Bio</p>
+            <div className="my-5">
+                <h2 className="heading_2x">Rider&apos;s Bio</h2>
 
                 <form className="my-4" onSubmit={riderSubmitHandler}>
                     <div className="row">
@@ -140,7 +140,7 @@ const AddRider: FC = () => {
                             <div className="form-group row mb-3">
                                 <div className="col-md-6 col-xs-7 input-container">
                                     <select
-                                        className="form-group form-select-sm mt-2 mt-sm-0"
+                                        className="form-group form-select-sm mt-2 mt-sm-0 select"
                                         onChange={(e) => selectStatusHandler(e)}
                                     >
                                         <option value="">Marital Status</option>
@@ -150,7 +150,7 @@ const AddRider: FC = () => {
                                 </div>
                                 <div className="col-md-6 col-xs-7 input-container">
                                     <select
-                                        className="form-group form-select-sm mt-2 mt-sm-0"
+                                        className="form-group form-select-sm mt-2 mt-sm-0 select"
                                         onChange={(e) => selectGenderHandler(e)}
                                     >
                                         <option value="">Gender</option>
@@ -209,9 +209,9 @@ const AddRider: FC = () => {
                             </div>
 
                             <div className="my-5">
-                                <p className="heading_2x">
+                                <h2 className="heading_2x">
                                     Rider&apos;s Confidential info
-                                </p>
+                                </h2>
                                 <div className="form-group row mb-3">
                                 <div className="col-md-6 col-xs-7 input-container">
                                 <input
@@ -232,9 +232,9 @@ const AddRider: FC = () => {
                                 </div>
                             </div>
                             <div className="my-5">
-                                <p className="heading_2x">
+                                <h2 className="heading_2x">
                                     Guarantor&apos;s #1 info
-                                </p>
+                                </h2>
                                 <div className="form-group row mb-3">
                                 <div className="col-md-6 col-xs-7 input-container">
                                 <input
@@ -266,9 +266,9 @@ const AddRider: FC = () => {
                                 </div>
                             </div>
                             <div className="my-5">
-                                <p className="heading_2x">
+                                <h2 className="heading_2x">
                                     Guarantor&apos;s #2 info
-                                </p>
+                                </h2>
                                 <div className="form-group row mb-3">
                                     <div className="col-md-6 col-xs-7 input-container">
                                     <input
@@ -301,19 +301,20 @@ const AddRider: FC = () => {
                         </div>
                     </div>
 
-                    <button className="btn_main" type="submit">
-                        {loading
-                          ? (
+                    <div className="mt-4 d-flex justify-content-end align-items-center fixed-bottom px-5 pb-5">
+                      <div onClick={() => history.push("/staffs")} role="button" className="btn_outline mx-2">Cancel</div>
+                      <button type="submit" className="btn_main">{loading
+                        ? (
                             <span
                                 className="spinner-border spinner-border-sm"
                                 role="status"
                                 aria-hidden="true"
                             ></span>
-                            )
-                          : (
-                              'Save'
-                            )}
-                    </button>
+                          )
+                        : (
+                            'Save'
+                          )}</button>
+                  </div>
                 </form>
             </div>
 

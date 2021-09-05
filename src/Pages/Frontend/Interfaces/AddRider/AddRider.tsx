@@ -1,4 +1,4 @@
-import React, { FC, useRef, FormEvent, useState } from 'react'
+import React, { FC, FormEvent, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import CryptoJS from 'crypto-js'
@@ -7,6 +7,8 @@ import axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast'
 import './AddRider.scss'
 import { SERVER_URL } from '../../../../Constant/urlConstant'
+import Input from '../../../../Component/Input/Input'
+import { Validators } from '../../../../Helpers/validator'
 
 const AddRider: FC = () => {
   const history = useHistory()
@@ -14,28 +16,34 @@ const AddRider: FC = () => {
   const [gender, setGender] = useState('')
   const [mStatus, setMStatus] = useState('')
 
-  const firstnameInputRef = useRef<HTMLInputElement>(null)
-  const lastnameInputRef = useRef<HTMLInputElement>(null)
-  const emailInputRef = useRef<HTMLInputElement>(null)
-  const phoneInputRef = useRef<HTMLInputElement>(null)
-  const addressInputRef = useRef<HTMLInputElement>(null)
-  const cityInputRef = useRef<HTMLInputElement>(null)
-  const countryInputRef = useRef<HTMLInputElement>(null)
-  const stateInputRef = useRef<HTMLInputElement>(null)
-  const riderCompanyInputRef = useRef<HTMLInputElement>(null)
-  const riderLicenceInputRef = useRef<HTMLInputElement>(null)
-  const g1NameInputRef = useRef<HTMLInputElement>(null)
-  const g1PhoneInputRef = useRef<HTMLInputElement>(null)
-  const g1AddressInputRef = useRef<HTMLInputElement>(null)
-  const g2NameInputRef = useRef<HTMLInputElement>(null)
-  const g2PhoneInputRef = useRef<HTMLInputElement>(null)
-  const g2AddressInputRef = useRef<HTMLInputElement>(null)
-  const riderPasswordInputRef = useRef<HTMLInputElement>(null)
+  const initialState = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    telephone: '',
+    address: '',
+    city: '',
+    country: '',
+    state: '',
+    password: '',
+    company: '',
+    licence: '',
+    g1Fullname: '',
+    g1PhoneNumber: '',
+    g1Address: '',
+    g2Fullname: '',
+    g2PhoneNumber: '',
+    g2Address: '',
+  }
+  const [values, setValues] = useState(initialState)
+
+  const handleChange = (id: any, val: any) => {
+    setValues({ ...values, [id]: val })
+  }
 
   const user = useSelector((state: any) => state.user)
   const dUser = CryptoJS.AES.decrypt(user.currentUser, '12345')
   const decryptedData = JSON.parse(dUser.toString(CryptoJS.enc.Utf8))
-  console.log(decryptedData)
 
   const selectStatusHandler = (e: FormEvent<HTMLSelectElement>) => {
     setMStatus(e.currentTarget.value)
@@ -47,37 +55,46 @@ const AddRider: FC = () => {
   const riderSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(true)
     const formData = {
-      firstname: firstnameInputRef.current!.value,
-      lastname: lastnameInputRef.current!.value,
+      firstname: values.firstname,
+      lastname: values.lastname,
       gender,
-      phone: phoneInputRef.current!.value,
+      phone: values.telephone,
       marital_status: mStatus,
-      email: emailInputRef.current!.value,
-      password: riderPasswordInputRef.current!.value,
+      email: values.email,
+      password: values.password,
       address: {
-        address: addressInputRef.current!.value,
-        city: cityInputRef.current!.value,
-        country: countryInputRef.current!.value,
-        state: stateInputRef.current!.value,
+        address: values.address,
+        city: values.city,
+        country: values.country,
+        state: values.state,
       },
-      company: riderCompanyInputRef.current!.value,
-      licence: riderLicenceInputRef.current!.value,
+      company: values.company,
+      licence: values.licence,
       guarantor_details: {
-        fullname: g1NameInputRef.current!.value,
-        phone_number: g1PhoneInputRef.current!.value,
-        address: g1AddressInputRef.current!.value,
+        fullname: values.g1Fullname,
+        phone_number: values.g1PhoneNumber,
+        address: values.g1Address,
       },
       next_of_kin: {
-        fullname: g2NameInputRef.current!.value,
-        phone_number: g2PhoneInputRef.current!.value,
-        address: g2AddressInputRef.current!.value,
+        fullname: values.g1Fullname,
+        phone_number: values.g1PhoneNumber,
+        address: values.g1Address,
       },
     }
     try {
       e.preventDefault()
+      console.log(formData)
       // eslint-disable-next-line quote-props
-      const config = { headers: { "Authorization": `Bearer ${decryptedData.acccess_token}` } }
-      const response = await axios.post(`${SERVER_URL}/staff`, formData, config)
+      const config = {
+        headers: {
+          Authorization: `Bearer ${decryptedData.acccess_token}`,
+        },
+      }
+      const response = await axios.post(
+                `${SERVER_URL}/staff`,
+                formData,
+                config
+      )
       toast.success(`${response.status === 201 && 'Success'}`)
       setLoading(false)
       history.push('/staffs')
@@ -103,38 +120,73 @@ const AddRider: FC = () => {
                         <div className="col-md-6">
                             <div className="form-group row mb-3">
                                 <div className="col-md-6 col-xs-7 input-container">
-                                    <input
-                                        ref={firstnameInputRef}
+                                    <Input
                                         type="text"
-                                        className="input form-control mt-2 mt-sm-0"
                                         placeholder="firstname"
+                                        classes="input form-control mt-2 mt-sm-0"
+                                        value={values.firstname}
+                                        id="firstname"
+                                        onChange={handleChange}
+                                        validators={[
+                                          {
+                                            check: Validators.required,
+                                            message:
+                                                    'Firstname is required',
+                                          },
+                                        ]}
                                     />
                                 </div>
                                 <div className="col-md-6 col-xs-7 input-container">
-                                    <input
-                                        ref={lastnameInputRef}
+                                    <Input
                                         type="text"
-                                        className="input form-control mt-2 mt-sm-0"
                                         placeholder="lastname"
+                                        classes="input form-control mt-2 mt-sm-0"
+                                        value={values.lastname}
+                                        id="lastname"
+                                        onChange={handleChange}
+                                        validators={[
+                                          {
+                                            check: Validators.required,
+                                            message: 'Lastname is required',
+                                          },
+                                        ]}
                                     />
                                 </div>
                             </div>
                             <div className="form-group row mb-3">
                                 <div className="col-md-6 col-xs-7 input-container">
-                                    <input
-                                        ref={emailInputRef}
+                                    <Input
                                         type="email"
-                                        className="input form-control mt-2 mt-sm-0"
-                                        placeholder="Email (optional)"
+                                        placeholder="Email"
+                                        classes="input form-control mt-2 mt-sm-0"
+                                        value={values.email}
+                                        id="email"
+                                        onChange={handleChange}
+                                        validators={[
+                                          {
+                                            check: Validators.required,
+                                            message:
+                                                    'Not a valid email and email is required',
+                                          },
+                                        ]}
                                     />
                                 </div>
                                 <div className="col-md-6 col-xs-7 input-container">
-                                    <input
-                                        ref={phoneInputRef}
-                                        type="text"
-                                        className="input form-control mt-2 mt-sm-0"
-                                        placeholder="Telephone"
-                                    />
+                                <Input
+                                                type="text"
+                                                placeholder="Telephone"
+                                                classes="input form-control mt-2 mt-sm-0"
+                                                value={values.telephone}
+                                                id="telephone"
+                                                onChange={handleChange}
+                                                validators={[
+                                                  {
+                                                    check: Validators.required,
+                                                    message:
+                                                            'Telephone is required',
+                                                  },
+                                                ]}
+                                        />
                                 </div>
                             </div>
                             <div className="form-group row mb-3">
@@ -160,50 +212,88 @@ const AddRider: FC = () => {
                                 </div>
                             </div>
                             <div className="form-group row mb-3">
-                            <div className="col-md-6 col-xs-7 input-container">
-                                <input
-                                    type="text"
-                                    className="input form-control mt-2 mt-sm-0"
-                                    ref={addressInputRef}
-                                    placeholder="Address"
-                                />
-                            </div>
-                            <div className="col-md-6 col-xs-7 input-container">
-                                <input
-                                    type="text"
-                                    className="input form-control mt-2 mt-sm-0"
-                                    ref={cityInputRef}
-                                    placeholder="City"
-                                />
-                            </div>
-                            </div>
-                            <div className="form-group row mb-3">
                                 <div className="col-md-6 col-xs-7 input-container">
-
-                                <input
-                                    type="text"
-                                    className="input form-control mt-2 mt-sm-0"
-                                    ref={countryInputRef}
-                                    placeholder="Country"
-                                />
+                                    <Input
+                                        type="text"
+                                        placeholder="Address"
+                                        classes="input form-control mt-2 mt-sm-0"
+                                        value={values.address}
+                                        id="address"
+                                        onChange={handleChange}
+                                        validators={[
+                                          {
+                                            check: Validators.required,
+                                            message: 'Address is required',
+                                          },
+                                        ]}
+                                    />
                                 </div>
                                 <div className="col-md-6 col-xs-7 input-container">
-
-                                <input
-                                    type="text"
-                                    className="input form-control mt-2 mt-sm-0"
-                                    ref={stateInputRef}
-                                    placeholder="State"
-                                />
+                                    <Input
+                                        type="text"
+                                        placeholder="City"
+                                        classes="input form-control mt-2 mt-sm-0"
+                                        value={values.city}
+                                        id="city"
+                                        onChange={handleChange}
+                                        validators={[
+                                          {
+                                            check: Validators.required,
+                                            message: 'City is required',
+                                          },
+                                        ]}
+                                    />
                                 </div>
                             </div>
                             <div className="form-group row mb-3">
-                            <div className="col-md-6 col-xs-7 input-container">
-                                <input
-                                        type="password"
-                                        className="input form-control mt-2 mt-sm-0"
-                                        ref={riderPasswordInputRef}
+                                <div className="col-md-6 col-xs-7 input-container">
+                                    <Input
+                                        type="text"
+                                        placeholder="Country"
+                                        classes="input form-control mt-2 mt-sm-0"
+                                        value={values.country}
+                                        id="country"
+                                        onChange={handleChange}
+                                        validators={[
+                                          {
+                                            check: Validators.required,
+                                            message: 'Country is required',
+                                          },
+                                        ]}
+                                    />
+                                </div>
+                                <div className="col-md-6 col-xs-7 input-container">
+                                    <Input
+                                        type="text"
+                                        placeholder="State"
+                                        classes="input form-control mt-2 mt-sm-0"
+                                        value={values.state}
+                                        id="state"
+                                        onChange={handleChange}
+                                        validators={[
+                                          {
+                                            check: Validators.required,
+                                            message: 'State is required',
+                                          },
+                                        ]}
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-group row mb-3">
+                                <div className="col-md-6 col-xs-7 input-container">
+                                    <Input
+                                        type="text"
                                         placeholder="Password"
+                                        classes="input form-control mt-2 mt-sm-0"
+                                        value={values.password}
+                                        id="password"
+                                        onChange={handleChange}
+                                        validators={[
+                                          {
+                                            check: Validators.required,
+                                            message: 'Password is required',
+                                          },
+                                        ]}
                                     />
                                 </div>
                             </div>
@@ -213,22 +303,40 @@ const AddRider: FC = () => {
                                     Rider&apos;s Confidential info
                                 </h2>
                                 <div className="form-group row mb-3">
-                                <div className="col-md-6 col-xs-7 input-container">
-                                <input
-                                        type="text"
-                                        className="input form-control mt-2 mt-sm-0"
-                                        ref={riderCompanyInputRef}
-                                        placeholder="Company"
-                                    />
-                                </div>
-                                <div className="col-md-6 col-xs-7 input-container">
-                                <input
-                                        type="text"
-                                        className="input form-control mt-2 mt-sm-0"
-                                        ref={riderLicenceInputRef}
-                                        placeholder="Rider's Licence"
-                                    />
-                                </div>
+                                    <div className="col-md-6 col-xs-7 input-container">
+                                        <Input
+                                            type="text"
+                                            placeholder="Company"
+                                            classes="input form-control mt-2 mt-sm-0"
+                                            value={values.company}
+                                            id="company"
+                                            onChange={handleChange}
+                                            validators={[
+                                              {
+                                                check: Validators.required,
+                                                message:
+                                                        'Company is required',
+                                              },
+                                            ]}
+                                        />
+                                    </div>
+                                    <div className="col-md-6 col-xs-7 input-container">
+                                        <Input
+                                            type="text"
+                                            placeholder="Licence"
+                                            classes="input form-control mt-2 mt-sm-0"
+                                            value={values.licence}
+                                            id="licence"
+                                            onChange={handleChange}
+                                            validators={[
+                                              {
+                                                check: Validators.required,
+                                                message:
+                                                        'Licence is required',
+                                              },
+                                            ]}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             <div className="my-5">
@@ -236,33 +344,59 @@ const AddRider: FC = () => {
                                     Guarantor&apos;s #1 info
                                 </h2>
                                 <div className="form-group row mb-3">
-                                <div className="col-md-6 col-xs-7 input-container">
-                                <input
-                                        type="text"
-                                        className="input form-control mt-2 mt-sm-0"
-                                        ref={g1NameInputRef}
-                                        placeholder="Fullname"
-                                    />
-                                </div>
-                                <div className="col-md-6 col-xs-7 input-container">
-                                    <input
-                                        type="text"
-                                        className="input form-control mt-2 mt-sm-0"
-                                        id="phone-number"
-                                        placeholder="Phone Number"
-                                        ref={g1PhoneInputRef}
-                                    />
-                                </div>
+                                    <div className="col-md-6 col-xs-7 input-container">
+                                        <Input
+                                            type="text"
+                                            placeholder="Fullname"
+                                            classes="input form-control mt-2 mt-sm-0"
+                                            value={values.g1Fullname}
+                                            id="g1Fullname"
+                                            onChange={handleChange}
+                                            validators={[
+                                              {
+                                                check: Validators.required,
+                                                message:
+                                                        'Guatantor fullname is required',
+                                              },
+                                            ]}
+                                        />
+                                    </div>
+                                    <div className="col-md-6 col-xs-7 input-container">
+                                        <Input
+                                            type="text"
+                                            placeholder="Phone Number"
+                                            classes="input form-control mt-2 mt-sm-0"
+                                            value={values.g1PhoneNumber}
+                                            id="g1PhoneNumber"
+                                            onChange={handleChange}
+                                            validators={[
+                                              {
+                                                check: Validators.required,
+                                                message:
+                                                        'Guatantor phone number is required',
+                                              },
+                                            ]}
+                                        />
+                                    </div>
                                 </div>
                                 <div className="form-group row mb-3">
-                                <div className="col-md-6 col-xs-7 input-container">
-                                    <input
-                                        type="text"
-                                        className="input form-control mt-2 mt-sm-0"
-                                        ref={g1AddressInputRef}
-                                        placeholder="Address"
-                                    />
-                                </div>
+                                    <div className="col-md-6 col-xs-7 input-container">
+                                        <Input
+                                            type="text"
+                                            placeholder="Address"
+                                            classes="input form-control mt-2 mt-sm-0"
+                                            value={values.g1Address}
+                                            id="g1Address"
+                                            onChange={handleChange}
+                                            validators={[
+                                              {
+                                                check: Validators.required,
+                                                message:
+                                                        'Guatantor address is required',
+                                              },
+                                            ]}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             <div className="my-5">
@@ -271,50 +405,85 @@ const AddRider: FC = () => {
                                 </h2>
                                 <div className="form-group row mb-3">
                                     <div className="col-md-6 col-xs-7 input-container">
-                                    <input
-                                        type="text"
-                                        className="input form-control mt-2 mt-sm-0"
-                                        ref={g2NameInputRef}
-                                        placeholder="Fullname"
-                                    />
+                                        <Input
+                                            type="text"
+                                            placeholder="Fullname"
+                                            classes="input form-control mt-2 mt-sm-0"
+                                            value={values.g2Fullname}
+                                            id="g2Fullname"
+                                            onChange={handleChange}
+                                            validators={[
+                                              {
+                                                check: Validators.required,
+                                                message:
+                                                        'Guatantor fullname is required',
+                                              },
+                                            ]}
+                                        />
                                     </div>
                                     <div className="col-md-6 col-xs-7 input-container">
-                                    <input
-                                        type="text"
-                                        className="input form-control mt-2 mt-sm-0"
-                                        ref={g2PhoneInputRef}
-                                        placeholder="Phone Number"
-                                    />
+                                            <Input
+                                                type="text"
+                                                placeholder="Phone Number"
+                                                classes="input form-control mt-2 mt-sm-0"
+                                                value={values.g2PhoneNumber}
+                                                id="g2PhoneNumber"
+                                                onChange={handleChange}
+                                                validators={[
+                                                  {
+                                                    check: Validators.required,
+                                                    message:
+                                                            'Guatantor phonenumber is required',
+                                                  },
+                                                ]}
+                                        />
                                     </div>
                                 </div>
                                 <div className="form-group row mb-3">
-                                <div className="col-md-6 col-xs-7 input-container">
-                                    <input
-                                        type="text"
-                                        className="input form-control mt-2 mt-sm-0"
-                                        ref={g2AddressInputRef}
-                                        placeholder="Address"
-                                    />
-                                </div>
+                                    <div className="col-md-6 col-xs-7 input-container">
+                                        <Input
+                                            type="text"
+                                            placeholder="Address"
+                                            classes="input form-control mt-2 mt-sm-0"
+                                            value={values.g2Address}
+                                            id="g2Address"
+                                            onChange={handleChange}
+                                            validators={[
+                                              {
+                                                check: Validators.required,
+                                                message:
+                                                        'Guatantor address is required',
+                                              },
+                                            ]}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div className="mt-4 d-flex justify-content-end align-items-center fixed-bottom px-5 pb-5">
-                      <div onClick={() => history.push("/staffs")} role="button" className="btn_outline mx-2">Cancel</div>
-                      <button type="submit" className="btn_main">{loading
-                        ? (
-                            <span
-                                className="spinner-border spinner-border-sm"
-                                role="status"
-                                aria-hidden="true"
-                            ></span>
-                          )
-                        : (
-                            'Save'
-                          )}</button>
-                  </div>
+                        <div
+                            onClick={() => history.push('/staffs')}
+                            role="button"
+                            className="btn_outline mx-2"
+                        >
+                            Cancel
+                        </div>
+                        <button type="submit" className="btn_main">
+                            {loading
+                              ? (
+                                <span
+                                    className="spinner-border spinner-border-sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                ></span>
+                                )
+                              : (
+                                  'Save'
+                                )}
+                        </button>
+                    </div>
                 </form>
             </div>
 

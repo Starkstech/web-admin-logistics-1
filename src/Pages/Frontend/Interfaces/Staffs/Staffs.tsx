@@ -28,7 +28,7 @@ const Staffs: FC = () => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/staff`, config)
       setStaffs(data)
-    } catch (error) {
+    } catch (error:any) {
       toast.error(error.message)
     }
   }
@@ -41,7 +41,7 @@ const Staffs: FC = () => {
       const { data } = await axios.delete(`${SERVER_URL}/staff/${staff.sid}`, config)
       fetchStaffs()
       toast.success(data)
-    } catch (error) {
+    } catch (error:any) {
       toast.error(error.message)
     }
   }

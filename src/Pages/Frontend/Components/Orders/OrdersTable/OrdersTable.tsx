@@ -91,9 +91,15 @@ const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
 
   const ActionsBoard:FC<BoardType> = ({ orderData }) => (
     <ul className="actions_container_board p-2 shadow-sm bg-white">
+      <li>
       <button className="btn">View</button>
+      </li>
+      <li>
       <button className="btn" onClick={() => toggleModal(orderData)}>Accept</button>
+      </li>
+      <li>
       <button className="btn">Reject</button>
+      </li>
     </ul>
   )
 

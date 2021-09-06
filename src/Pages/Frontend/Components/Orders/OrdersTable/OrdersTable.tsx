@@ -60,7 +60,7 @@ const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
     },
     {
       name: 'Date',
-      selector: (row:any) => row.createdAt,
+      selector: (row:any) => row.date_assigned,
       sortable: true,
       center: true
     },

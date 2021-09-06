@@ -29,7 +29,11 @@ const initialFields = {
   sunPm: ""
 }
 
-const GeneralProfile:FC = () => {
+type Props = {
+  setActive: Function
+}
+
+const GeneralProfile:FC<Props> = ({ setActive }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isFilePicked, setIsFilePicked] = useState(false);
   const [displayFile, setDisplayFile] = useState('')
@@ -146,6 +150,7 @@ const GeneralProfile:FC = () => {
   }
 
   useEffect(() => {
+    setActive(0)
     getCompanyInfo()
   }, [])
 

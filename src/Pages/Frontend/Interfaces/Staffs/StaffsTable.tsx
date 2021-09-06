@@ -68,11 +68,14 @@ const StaffsTable:FC<propTypes> = props => {
 
   const ActionsBoard: FC<ABoardType> = ({ staffId }) => (
     <ul className="actions_container_board p-2 shadow-sm bg-white">
-        <button className="btn" onClick={() => deleteStaff(staffId)}>View</button>
-        <button className="btn">
+      <li>
+        <button className="btn">View</button></li>
+        <li><button className="btn">
             Edit
-        </button>
-        <button className="btn">Delete</button>
+        </button></li>
+        <li>
+        <button onClick={() => deleteStaff(staffId)} className="btn">Delete</button>
+        </li>
     </ul>
   )
 

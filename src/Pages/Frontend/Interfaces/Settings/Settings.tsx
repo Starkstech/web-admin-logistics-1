@@ -1,11 +1,11 @@
-import React, { FC } from "react";
-import { Link, Route, BrowserRouter as Router, Switch, useRouteMatch, useLocation } from "react-router-dom";
+import React, { FC, useState } from "react";
+import { Link, Route, BrowserRouter as Router, Switch, useRouteMatch } from "react-router-dom";
 import { Export, GeneralProfile, Pricing } from "../../Components";
 import "./Settings.scss"
 
 const Settings :FC = () => {
+  const [active, setActive] = useState(0)
   const { path, url } = useRouteMatch();
-  const { pathname } = useLocation()
 
   return (
   <Router>
@@ -14,23 +14,23 @@ const Settings :FC = () => {
         <h2 className="heading_2x">Settings</h2>
         <nav className="settings_nav d-flex justify-content-end align-items-center">
           <ul className="d-flex justify-content-end align-items-center">
-            <li className={`${pathname === '/settings' ? 'active' : null} right`}>
+            <li className={`${active === 0 ? 'active' : null} right`}>
                 <Link to={url}>General Profile</Link>
             </li>
-            <li className={`${pathname === '/settings/pricing' ? 'active' : null} right`}>
+            <li className={`${active === 1 ? 'active' : null} right`}>
                 <Link to={`${url}/pricing`}>Pricing</Link>
             </li>
-            <li>
-            <Link className={`${pathname === '/settings/export' ? 'active' : null}`} to={`${url}/export`}>Data Export</Link>
+            <li className={`${active === 2 ? 'active' : null}`} >
+            <Link to={`${url}/export`}>Data Export</Link>
             </li>
           </ul>
         </nav>
       </div>
       <div className="shadow-sm mt-5">
       <Switch>
-        <Route exact path={path} component={GeneralProfile} />
-        <Route path={`${path}/pricing`} component={Pricing} />
-        <Route path={`${path}/export`} component={Export} />
+        <Route exact path={path} render={() => <GeneralProfile setActive={setActive} />} />
+        <Route path={`${path}/pricing`} render={() => <Pricing setActive={setActive} />} />
+        <Route path={`${path}/export`} render={() => <Export setActive={setActive} />} />
       </Switch>
       </div>
     </div>

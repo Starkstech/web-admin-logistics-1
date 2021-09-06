@@ -14,6 +14,7 @@ import {
   Track,
   DashBoardContent,
   NotificationContent,
+  AddRider,
   Settings,
 } from './Pages/Frontend/Interfaces'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
@@ -97,6 +98,13 @@ ReactDOM.render(
                                 </Wrapper>
                           )
                         }}
+                    />
+                    <AuthRoute
+                      path="/Add-rider"
+                      exact
+                      render={() => <Wrapper>
+                        <AddRider />
+                      </Wrapper>}
                     />
                 </Switch>
             </Router>

@@ -62,4 +62,4 @@ const Orders:FC = () => {
   )
 }
 
-export default Orders;
+export default Orders

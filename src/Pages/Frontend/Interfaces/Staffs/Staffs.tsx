@@ -1,77 +1,71 @@
-import React, { FC } from 'react'
-import DataTable from 'react-data-table-component'
+import React, { FC, useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import CryptoJS from 'crypto-js'
+import toast, { Toaster } from 'react-hot-toast'
+
+import axios from '../../../../Services/axios'
 import { Search } from '../../../../Component'
+import StaffsTable from './StaffsTable'
 import './Staffs.scss'
-
-const columns = [
-  {
-    name: 'Name',
-    selector: (row:any) => row.name,
-  },
-  {
-    name: 'Contact no.',
-    selector: (row:any) => row.contactNo,
-  },
-  {
-    name: 'Total earnings',
-    selector: (row:any) => row.totalEarnings,
-  },
-  {
-    name: 'No. of trips',
-    selector: (row:any) => row.tripsNo,
-  },
-  {
-    name: 'Date created',
-    selector: (row:any) => row.dateCreated,
-  },
-  {
-    name: 'Address',
-    selector: (row:any) => row.address,
-  },
-]
-
-const data = [
-  {
-    name: 'Isaac Orija',
-    contactNo: '0234',
-    totalEarnings: '2000',
-    tripsNo: '23',
-    dateCreated: 'Aug 20, 2021. 10:00am',
-    address: '',
-  }
-]
-
-const customStyles = {
-  headRow: {
-    style: {
-      height: '40px',
-      minHeight: '40px',
-    },
-  },
-  headCells: {
-    style: {
-      backgroundColor: '#F4F6F5',
-    },
-  },
-}
+import { SERVER_URL } from '../../../../Constant/urlConstant'
 
 const Staffs: FC = () => {
+  const history = useHistory()
+  const [staffs, setStaffs] = useState<any>([])
+
+  useEffect(() => {
+    fetchStaffs()
+  }, [staffs])
+
+  const user = useSelector((state: any) => state.user)
+  const dUser = CryptoJS.AES.decrypt(user.currentUser, '12345')
+  const decryptedData = JSON.parse(dUser.toString(CryptoJS.enc.Utf8))
+
+  const fetchStaffs = async () => {
+    // eslint-disable-next-line quote-props
+    const config = { headers: { "Authorization": `Bearer ${decryptedData.acccess_token}` } }
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/staff`, config)
+      setStaffs(data)
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  const deleteStaff = async (id: string) => {
+    const staff = staffs.find((staff: any) => staff.id === id)
+    // eslint-disable-next-line quote-props
+    const config = { headers: { "Authorization": `Bearer ${decryptedData.acccess_token}` } }
+    try {
+      const { data } = await axios.delete(`${SERVER_URL}/staff/${staff.sid}`, config)
+      fetchStaffs()
+      toast.success(data)
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   return (
         <div className="staffs_wrapper p-4">
-            <h2 className="heading_2x">Staffs</h2>
+            <h2 className="heading_2x">Staff</h2>
             <div className="d-flex justify-content-between align-items-center">
                 <Search handleSearch={() => null} />
-                <button className="btn_main">Add Rider</button>
+                <button onClick={() => history.push('/Add-rider')} className="btn_main">Add Rider</button>
             </div>
+
             <div className="shadow-sm mt-4">
-                <DataTable
-                    columns={columns}
-                    data={data}
-                    customStyles={customStyles}
-                    noHeader
-                    responsive
-                />
+              <StaffsTable deleteStaff={deleteStaff} data={staffs} />
             </div>
+
+            <Toaster
+                toastOptions={{
+                  style: {
+                    height: '70px',
+                    padding: '1em',
+                  },
+                }}
+            />
         </div>
   )
 }

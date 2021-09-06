@@ -1,10 +1,10 @@
 /* eslint-disable react/display-name */
-import React, { FC } from "react";
-import DataTable from "react-data-table-component";
+import React, { FC } from 'react'
+import DataTable from 'react-data-table-component'
 import './OrdersTable.scss'
 
 interface TableTypes {
-    toggleModal: Function,
+    toggleModal: Function
     data: any
 }
 
@@ -22,18 +22,17 @@ const customStyles = {
   },
 }
 
-const OrdersTable:FC<TableTypes> = ({ toggleModal, data }) => {
+const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
   const columns = [
     {
       name: 'Order No.',
       selector: (row:any) => row.tracking_id,
       sortable: true,
-      center: true
-
+      center: true,
     },
     {
       name: 'Phone number',
-      selector: (row:any) => row.phoneNo,
+      selector: (row: any) => row.phoneNo,
       sortable: true,
     },
 
@@ -41,7 +40,7 @@ const OrdersTable:FC<TableTypes> = ({ toggleModal, data }) => {
       name: 'Amount',
       selector: (row:any) => row.order_cost,
       sortable: true,
-      center: true
+      center: true,
     },
     {
       name: 'Pick off',
@@ -50,14 +49,14 @@ const OrdersTable:FC<TableTypes> = ({ toggleModal, data }) => {
       center: true,
       style: {
         overflow: 'visible !important',
-        textOverflow: 'none'
-      }
+        textOverflow: 'none',
+      },
     },
     {
       name: 'Drop off',
       selector: (row:any) => row.delivery_location,
       sortable: true,
-      center: true
+      center: true,
     },
     {
       name: 'Date',
@@ -67,20 +66,24 @@ const OrdersTable:FC<TableTypes> = ({ toggleModal, data }) => {
     },
     {
       name: 'Status',
-      selector: (row:any) => row.status,
+      selector: (row: any) => row.status,
       sortable: true,
       center: true,
-      cell: (row:any) => (<div className={`order_status ${sortStatus(row.status)}`}>{row.status}</div>)
+      cell: (row: any) => (
+                <div className={`order_status ${sortStatus(row.status)}`}>
+                    {row.status}
+                </div>
+      ),
     },
     {
       name: 'Actions',
-      selector: (row:any) => row.action,
+      selector: (row: any) => row.action,
       allowOverflow: true,
       sortable: true,
       center: true,
       cell: (row:any) => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard orderData={row} /></div>)
     },
-  ];
+  ]
 
   type BoardType = {
       orderData: any
@@ -94,23 +97,23 @@ const OrdersTable:FC<TableTypes> = ({ toggleModal, data }) => {
     </ul>
   )
 
-  const sortStatus = (status:any) => {
+  const sortStatus = (status: any) => {
     switch (status) {
-      case 'In transit' :
+      case 'In transit':
         return 'in-transit'
-      default :
+      default:
         return ''
     }
   }
 
   return (
         <DataTable
-        columns={columns}
-        data={data}
-        customStyles={customStyles}
-        noHeader
-        responsive
-    />
+            columns={columns}
+            data={data}
+            customStyles={customStyles}
+            noHeader
+            responsive
+        />
   )
 }
 

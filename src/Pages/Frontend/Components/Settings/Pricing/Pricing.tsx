@@ -1,15 +1,23 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import axios from "axios";
 import { useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
 import { SERVER_URL } from "../../../../../Constant/urlConstant";
 import './Pricing.scss'
 
-const Pricing:FC = () => {
+type Props = {
+  setActive: Function
+}
+
+const Pricing:FC<Props> = ({ setActive }) => {
   const { currentUser } = useSelector((state:any) => state.user)
   const data = CryptoJS.AES.decrypt(currentUser, '12345');
   const decryptedData = JSON.parse(data.toString(CryptoJS.enc.Utf8));
   const [fields, updateFields] = useState<any>([])
+
+  useEffect(() => {
+    setActive(1)
+  }, [])
 
   const config = {
     headers: { Authorization: `Bearer ${decryptedData.acccess_token}` }

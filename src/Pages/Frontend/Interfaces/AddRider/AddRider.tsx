@@ -53,7 +53,7 @@ const AddRider: FC = () => {
   }
 
   const riderSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
-    setLoading(true)
+    e.preventDefault()
     const formData = {
       firstname: values.firstname,
       lastname: values.lastname,
@@ -81,9 +81,32 @@ const AddRider: FC = () => {
         address: values.g1Address,
       },
     }
+    if (
+      !formData.firstname ||
+            !formData.lastname ||
+            !formData.gender ||
+            !formData.phone ||
+            !formData.marital_status ||
+            !formData.email ||
+            !formData.password ||
+            !formData.address.address ||
+            !formData.address.city ||
+            !formData.address.country ||
+            !formData.address.state ||
+            !formData.company ||
+            !formData.licence ||
+            !formData.guarantor_details.fullname ||
+            !formData.guarantor_details.phone_number ||
+            !formData.guarantor_details.address ||
+            !formData.next_of_kin.fullname ||
+            !formData.next_of_kin.phone_number ||
+            !formData.next_of_kin.address
+    ) {
+      return toast.error('All fields are required')
+    }
+    setLoading(true)
     try {
       e.preventDefault()
-      console.log(formData)
       // eslint-disable-next-line quote-props
       const config = {
         headers: {
@@ -122,7 +145,7 @@ const AddRider: FC = () => {
                                 <div className="col-md-6 col-xs-7 input-container">
                                     <Input
                                         type="text"
-                                        placeholder="firstname"
+                                        placeholder="first name"
                                         classes="input form-control mt-2 mt-sm-0"
                                         value={values.firstname}
                                         id="firstname"
@@ -131,7 +154,7 @@ const AddRider: FC = () => {
                                           {
                                             check: Validators.required,
                                             message:
-                                                    'Firstname is required',
+                                                    'First name is required',
                                           },
                                         ]}
                                     />
@@ -139,7 +162,7 @@ const AddRider: FC = () => {
                                 <div className="col-md-6 col-xs-7 input-container">
                                     <Input
                                         type="text"
-                                        placeholder="lastname"
+                                        placeholder="last name"
                                         classes="input form-control mt-2 mt-sm-0"
                                         value={values.lastname}
                                         id="lastname"
@@ -147,7 +170,7 @@ const AddRider: FC = () => {
                                         validators={[
                                           {
                                             check: Validators.required,
-                                            message: 'Lastname is required',
+                                            message: 'Last name is required',
                                           },
                                         ]}
                                     />
@@ -172,21 +195,21 @@ const AddRider: FC = () => {
                                     />
                                 </div>
                                 <div className="col-md-6 col-xs-7 input-container">
-                                <Input
-                                                type="text"
-                                                placeholder="Telephone"
-                                                classes="input form-control mt-2 mt-sm-0"
-                                                value={values.telephone}
-                                                id="telephone"
-                                                onChange={handleChange}
-                                                validators={[
-                                                  {
-                                                    check: Validators.required,
-                                                    message:
-                                                            'Telephone is required',
-                                                  },
-                                                ]}
-                                        />
+                                    <Input
+                                        type="text"
+                                        placeholder="Telephone"
+                                        classes="input form-control mt-2 mt-sm-0"
+                                        value={values.telephone}
+                                        id="telephone"
+                                        onChange={handleChange}
+                                        validators={[
+                                          {
+                                            check: Validators.required,
+                                            message:
+                                                    'Telephone is required',
+                                          },
+                                        ]}
+                                    />
                                 </div>
                             </div>
                             <div className="form-group row mb-3">
@@ -282,7 +305,7 @@ const AddRider: FC = () => {
                             <div className="form-group row mb-3">
                                 <div className="col-md-6 col-xs-7 input-container">
                                     <Input
-                                        type="text"
+                                        type="password"
                                         placeholder="Password"
                                         classes="input form-control mt-2 mt-sm-0"
                                         value={values.password}
@@ -422,20 +445,20 @@ const AddRider: FC = () => {
                                         />
                                     </div>
                                     <div className="col-md-6 col-xs-7 input-container">
-                                            <Input
-                                                type="text"
-                                                placeholder="Phone Number"
-                                                classes="input form-control mt-2 mt-sm-0"
-                                                value={values.g2PhoneNumber}
-                                                id="g2PhoneNumber"
-                                                onChange={handleChange}
-                                                validators={[
-                                                  {
-                                                    check: Validators.required,
-                                                    message:
-                                                            'Guatantor phonenumber is required',
-                                                  },
-                                                ]}
+                                        <Input
+                                            type="text"
+                                            placeholder="Phone Number"
+                                            classes="input form-control mt-2 mt-sm-0"
+                                            value={values.g2PhoneNumber}
+                                            id="g2PhoneNumber"
+                                            onChange={handleChange}
+                                            validators={[
+                                              {
+                                                check: Validators.required,
+                                                message:
+                                                        'Guatantor phonenumber is required',
+                                              },
+                                            ]}
                                         />
                                     </div>
                                 </div>

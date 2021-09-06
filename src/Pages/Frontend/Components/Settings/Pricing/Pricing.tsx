@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from 'react'
+import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
 import { useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
@@ -9,11 +10,20 @@ type Props = {
   setActive: Function
 }
 
+const initialFields = {
+  regPrice: '',
+  expPrice: '',
+  regMinPrice: '',
+  expMinPrice: '',
+  regNotes: '',
+  expNotes: ''
+}
+
 const Pricing:FC<Props> = ({ setActive }) => {
   const { currentUser } = useSelector((state:any) => state.user)
   const data = CryptoJS.AES.decrypt(currentUser, '12345');
   const decryptedData = JSON.parse(data.toString(CryptoJS.enc.Utf8));
-  const [fields, updateFields] = useState<any>([])
+  const [fields, updateFields] = useState<any>(initialFields)
 
   useEffect(() => {
     setActive(1)
@@ -31,6 +41,10 @@ const Pricing:FC<Props> = ({ setActive }) => {
     })
   }
 
+  const resetForm = () => {
+    updateFields(initialFields)
+  }
+
   const handleSubmit = async (e:any) => {
     e.preventDefault()
     // if (!fields.length) {
@@ -38,7 +52,6 @@ const Pricing:FC<Props> = ({ setActive }) => {
     //   return
     // }
     try {
-      console.log('trying...')
       const dataFields = {
         minimum_price: fields.regMinPrice,
         discount: 0,
@@ -52,10 +65,11 @@ const Pricing:FC<Props> = ({ setActive }) => {
         },
         extras: {}
       }
-      const { data } = await axios.post(`${SERVER_URL}/company/pricing`, dataFields, config)
-      console.log(data, 'Triedd')
+      await axios.post(`${SERVER_URL}/company/pricing`, dataFields, config)
+      toast.success("Pricing set sucessfully")
+      resetForm()
     } catch (error:any) {
-      console.log(error.message, 'cannot submit')
+      toast.error("Error in setting pricing, please try again")
     }
   }
 
@@ -76,22 +90,22 @@ const Pricing:FC<Props> = ({ setActive }) => {
               <tbody>
                 <tr>
                   <td>
-                    <div className="pricing_input"><span>#</span><input name="regPrice" type="text" onChange={handleChange} required /></div>
+                    <div className="pricing_input"><span>#</span><input name="regPrice" type="text" value={fields.regPrice} onChange={handleChange} required /></div>
                   </td>
                   <td>Regular</td>
-                  <td><textarea name="regNotes" className="pricing_textarea" onChange={handleChange} required /></td>
+                  <td><textarea name="regNotes" value={fields.regNotes} className="pricing_textarea" onChange={handleChange} required /></td>
                   <td>
-                   <div className="pricing_input"><span>#</span><input name="regMinPrice" type="text" onChange={handleChange} required /></div>
+                   <div className="pricing_input"><span>#</span><input name="regMinPrice" type="text" value={fields.regMinPrice} onChange={handleChange} required /></div>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                   <div className="pricing_input"><span>#</span><input name="expPrice" type="text" onChange={handleChange}/></div>
+                   <div className="pricing_input"><span>#</span><input name="expPrice" type="text" value={fields.expPrice} onChange={handleChange}/></div>
                   </td>
                   <td>Express</td>
-                  <td><textarea name="expNotes" className="pricing_textarea" onChange={handleChange}/></td>
+                  <td><textarea name="expNotes" className="pricing_textarea" value={fields.expNotes} onChange={handleChange}/></td>
                   <td>
-                   <div className="pricing_input"><span>#</span><input name="expMinPrice" type="text" onChange={handleChange}/></div>
+                   <div className="pricing_input"><span>#</span><input name="expMinPrice" type="text" value={fields.expMinPrice} onChange={handleChange}/></div>
                   </td>
                 </tr>
               </tbody>
@@ -103,10 +117,16 @@ const Pricing:FC<Props> = ({ setActive }) => {
 
             </div>
             <div className="mt-4 d-flex justify-content-end align-items-center">
-                      <div role="button" className="btn_outline mx-2">Cancel</div>
+                      <div onClick={resetForm} role="button" className="btn_outline mx-2">Cancel</div>
                       <button className="btn_main">Save</button>
             </div>
             </form>
+            <Toaster toastOptions={{
+              style: {
+                height: '70px',
+                padding: '1em'
+              },
+            }} />
         </div>
   )
 }

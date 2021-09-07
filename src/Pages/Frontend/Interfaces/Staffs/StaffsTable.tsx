@@ -50,8 +50,6 @@ const StaffsTable:FC<propTypes> = props => {
     },
     {
       name: 'Actions',
-      selector: 'action',
-      allowOverflow: true,
       sortable: true,
       center: true,
       // eslint-disable-next-line react/display-name

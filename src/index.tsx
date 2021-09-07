@@ -16,6 +16,7 @@ import {
   NotificationContent,
   AddRider,
   Settings,
+  Tickets,
 } from './Pages/Frontend/Interfaces'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Route } from 'react-router'
@@ -104,6 +105,13 @@ ReactDOM.render(
                       exact
                       render={() => <Wrapper>
                         <AddRider />
+                      </Wrapper>}
+                    />
+                    <AuthRoute
+                      path="/tickets"
+                      exact
+                      render={() => <Wrapper>
+                        <Tickets />
                       </Wrapper>}
                     />
                 </Switch>

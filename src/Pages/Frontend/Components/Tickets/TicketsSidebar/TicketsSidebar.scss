@@ -1,0 +1,18 @@
+@import "../../../../../Assets/Style/colors";
+
+.tickets_sidebar {
+    background-color: $white-color;
+    width: 250px;
+    height: 100%;
+    padding: 1rem 0;
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    ul {
+        padding: 0;
+        margin: 2.5rem 0;
+    }
+
+}

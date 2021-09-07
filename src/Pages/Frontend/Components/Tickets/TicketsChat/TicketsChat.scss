@@ -1,0 +1,21 @@
+@import "../../../../../Assets/Style/colors";
+
+.tickets_chat {
+    max-width: 300px;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+
+    &.reciever {
+        align-self: flex-start;
+        background-color: $white-color;
+        color: $dark-color;
+    }
+
+    &.sender {
+        align-self: flex-end;
+        background-color: $primary-color;
+        color: $white-color;
+    }
+}

@@ -50,6 +50,10 @@ const SideBar: FC = () => {
                             <Link className={pathname === '/notifications' ? 'active' : ''} to="/notifications"><span><i className="fas fa-bell"></i></span><span>Notifications</span></Link>
                         </li>
                         <li className="sidebar_link">
+                            <Link className={pathname === '/tickets' ? 'active' : ''} to="/tickets"><span>
+                            <i className="fas fa-comment-dots"></i></span><span>Tickets</span></Link>
+                        </li>
+                        <li className="sidebar_link">
                             <Link className={pathname === '/settings' ? 'active' : ''} to="/settings"><span><i className="fas fa-cog"></i></span><span>Settings</span></Link>
                         </li>
                         <li className="sidebar_link">

@@ -25,6 +25,7 @@ const Orders:FC = () => {
 
     try {
       const { data } = await axios.get(`${SERVER_URL}/order`, config)
+      console.log(data, "hhh")
       setOrderDataDefault(data)
       setOrderData(data)
     } catch (error:any) {

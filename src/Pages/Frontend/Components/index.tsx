@@ -16,3 +16,11 @@ export { default as OrdersRider } from "./Orders/OrdersRider/OrdersRider"
 
 // Track Component
 export { default as TrackOrder } from "./Track/TrackOrder/TrackOrder"
+
+// Tickets Component
+export { default as TicketsSidebar } from "./Tickets/TicketsSidebar/TicketsSidebar"
+export { default as TicketsView } from "./Tickets/TicketsView/TicketsView"
+export { default as TicketsMain } from "./Tickets/TicketsMain/TicketsMain"
+export { default as TicketsInfo } from "./Tickets/TicketsInfo/TicketsInfo"
+export { default as TicketsChat } from "./Tickets/TicketsChat/TicketsChat"
+export { default as TicketsInput } from "./Tickets/TicketsInput/TicketsInput"

@@ -2,7 +2,9 @@ import {
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
   GET_USER_FAILURE,
-  LOG_USER_OUT
+  LOG_USER_OUT,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS
 } from "../Constant/userConstant"
 
 const localUser:any = sessionStorage.getItem("localUser")
@@ -41,6 +43,20 @@ export default function user (state = initialState, action:Action) {
         error: null,
         currentUser: {},
         loading: action.payload
+      }
+    case UPDATE_USER_REQUEST :
+      return {
+        ...state,
+        error: null,
+        currentUser: state.currentUser,
+        loading: action.payload
+      }
+    case UPDATE_USER_SUCCESS :
+      return {
+        ...state,
+        error: null,
+        currentUser: action.payload,
+        loading: false
       }
     case LOG_USER_OUT :
       sessionStorage.removeItem("localUser")

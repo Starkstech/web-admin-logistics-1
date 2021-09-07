@@ -45,7 +45,7 @@ const Login: FC = () => {
         updateFields(initialState)
         setLoading(false)
         history.push('/dashboard')
-      } catch (error) {
+      } catch (error:any) {
         console.log(error.message)
         setLoading(false)
         toast.error(error.message)

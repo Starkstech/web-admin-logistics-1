@@ -1,11 +1,13 @@
 import React, { FC, useEffect, useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
 import { SERVER_URL } from "../../../../../Constant/urlConstant";
 import FormInput from "../../../../../Component/FormInput/FormInput";
 import './GeneralProfile.scss'
+import { userAction } from "../../../../../Actions";
+import { useDialog } from "../../../../../Hoc/Dialog";
 
 const initialFields = {
   company_name: "",
@@ -38,6 +40,8 @@ const GeneralProfile:FC<Props> = ({ setActive }) => {
   const [isFilePicked, setIsFilePicked] = useState(false);
   const [displayFile, setDisplayFile] = useState('')
   const [fields, updateFields] = useState(initialFields)
+  const dispatch = useDispatch()
+  const { showDialog } = useDialog()
 
   const { currentUser } = useSelector((state:any) => state.user)
   const data = CryptoJS.AES.decrypt(currentUser, '12345');
@@ -62,11 +66,13 @@ const GeneralProfile:FC<Props> = ({ setActive }) => {
     setDisplayFile(rawImg)
   }
 
-  const cancelSelected = () => {
-    console.log(123)
-    setSelectedFile(null)
-    setIsFilePicked(false)
-    setDisplayFile('')
+  const cancelSelected = async () => {
+    const res = await showDialog('Are you sure you want to cancel your selection')
+    if (res) {
+      setSelectedFile(null)
+      setIsFilePicked(false)
+      setDisplayFile('')
+    }
   }
 
   const handleSubmit = async (e:any) => {
@@ -110,8 +116,18 @@ const GeneralProfile:FC<Props> = ({ setActive }) => {
       active: true
     }
     try {
-      await axios.patch(`${SERVER_URL}/company/1420cb64-bbf0-4586-919d-40487c2a9605`, dataFields, config)
-      toast.success('Successful!!!')
+      if (decryptedData.companyId === '' || decryptedData.companyId === 'String' || decryptedData.companyId === null) {
+        const { data } = await axios.post(`${SERVER_URL}/company`, dataFields, config)
+        console.log(data.id, 'this is the company id')
+        const response = await axios.patch(`${SERVER_URL}/user/${decryptedData.id}`, { companyId: data.id }, config)
+        console.log(response.data, 'this is the user data')
+        const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(response.data), '12345').toString();
+        dispatch(userAction.updateCurrentUser(ciphertext))
+        toast.success('Settings successfully set')
+      } else {
+        await axios.patch(`${SERVER_URL}/company/${decryptedData.companyId}`, dataFields, config)
+        toast.success('Update Successful')
+      }
     } catch (error:any) {
       toast.error(error.message)
     }

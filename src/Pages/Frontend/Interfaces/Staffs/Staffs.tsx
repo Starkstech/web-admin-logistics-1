@@ -38,9 +38,14 @@ const Staffs: FC = () => {
     // eslint-disable-next-line quote-props
     const config = { headers: { "Authorization": `Bearer ${decryptedData.acccess_token}` } }
     try {
-      const { data } = await axios.delete(`${SERVER_URL}/staff/${staff.sid}`, config)
-      fetchStaffs()
-      toast.success(data)
+      const result = window.confirm("Confirm delete?")
+      if (result) {
+        const { data } = await axios.delete(`${SERVER_URL}/staff/${staff.sid}`, config)
+        fetchStaffs()
+        toast.success(data)
+      } else {
+        return
+      }
     } catch (error:any) {
       toast.error(error.message)
     }

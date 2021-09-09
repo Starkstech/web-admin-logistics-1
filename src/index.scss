@@ -64,6 +64,11 @@ textarea:focus {
     padding: 0.5rem 1.2rem;
     border-radius: 5px;
     font-size: 0.8rem;
+
+    &:disabled {
+      background-color: $grey-color-2;
+      color: $dark-color;
+    }
 }
 
 .btn_outline {

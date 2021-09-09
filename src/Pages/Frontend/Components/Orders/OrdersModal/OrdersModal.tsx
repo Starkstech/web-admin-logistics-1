@@ -75,6 +75,9 @@ const OrdersModal:FC<OrderId> = ({ selectedOrder, toggleModal }) => {
   return (
         <Modal>
           <div className="order_modal bg-white shadow-sm">
+            <button onClick={() => toggleModal(null)} className="order_modal-close">
+            <i className="far fa-window-close"></i>
+            </button>
             <h3 className="heading_3x order_modal-header py-2 px-5 shadow-sm">Assign Order <span>#{selectedOrder.id}</span> to rider</h3>
             <div className="order_modal-body p-5">
               <p><strong>Pickoff address:</strong> {selectedOrder.pick_up_location}</p>
@@ -86,7 +89,7 @@ const OrdersModal:FC<OrderId> = ({ selectedOrder, toggleModal }) => {
               <span>Assigned to:</span>
               <div>
                 {
-                  riders.map((rider:any) => <OrdersRider key={rider.id} {...rider} updateAssigned={updateAssignedRider} />)
+                  riders.map((rider:any) => <OrdersRider key={rider.id} {...rider} assignedRider={assignedRider} updateAssigned={updateAssignedRider} />)
                 }
 
               </div>

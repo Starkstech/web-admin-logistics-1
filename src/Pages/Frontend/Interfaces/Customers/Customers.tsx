@@ -2,8 +2,8 @@ import React, { FC, useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
 import axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast'
-// import { useSelector } from 'react-redux'
-// import CryptoJS from 'crypto-js'
+import { useSelector } from 'react-redux'
+import CryptoJS from 'crypto-js'
 
 import { Search } from '../../../../Component'
 import './Customers.scss'
@@ -20,11 +20,11 @@ const columns = [
   },
   {
     name: 'Total Spendings',
-    selector: (row:any) => row.totalSpendings,
+    selector: (row:any) => row.total_spending,
   },
   {
     name: 'No. of trips',
-    selector: (row:any) => row.tripsNo,
+    selector: (row:any) => row.number_of_orders,
   },
   {
     name: 'Date Joined',
@@ -50,25 +50,6 @@ const customStyles = {
   },
 }
 
-const initialCustomers = [
-  {
-    firstname: 'Isaac Orija',
-    phone: '0234',
-    totalSpendings: '2000',
-    tripsNo: '23',
-    dateJoined: 'Aug 20, 2021. 10:00am',
-    address: '',
-  },
-  {
-    firstname: 'Ajenefuja Micheal',
-    phnoe: '0234',
-    totalSpendings: '2000',
-    tripsNo: '23',
-    dateJoined: 'Aug 20, 2021. 10:00am',
-    address: '',
-  },
-]
-
 const Customers:FC = () => {
   // eslint-disable-next-line no-unused-vars
   const [customers, setCustomers] = useState<{}[]>([])
@@ -77,18 +58,17 @@ const Customers:FC = () => {
     fetchCustomers()
   }, [])
 
-  // const user = useSelector((state: any) => state.user)
-  // const dUser = CryptoJS.AES.decrypt(user.currentUser, '12345')
-  // const decryptedData = JSON.parse(dUser.toString(CryptoJS.enc.Utf8))
+  const user = useSelector((state: any) => state.user)
+  const dUser = CryptoJS.AES.decrypt(user.currentUser, '12345')
+  const decryptedData = JSON.parse(dUser.toString(CryptoJS.enc.Utf8))
 
   const fetchCustomers = async () => {
-    // eslint-disable-next-line quote-props
-    // const config = { headers: { "Authorization": `Bearer ${decryptedData.acccess_token}` } }
+    const config = { headers: { Authorization: `Bearer ${decryptedData.acccess_token}` } }
     try {
-      const { data } = await axios.get(`${SERVER_URL}/user/customers`)
-      // setCustomers(data)
+      const { data } = await axios.get(`${SERVER_URL}/user/customers`, config)
       console.log(data)
-    } catch (error) {
+      setCustomers(data)
+    } catch (error:any) {
       toast.error(error.message)
     }
   }
@@ -102,7 +82,7 @@ const Customers:FC = () => {
           <div className="shadow-sm mt-4">
               <DataTable
                   columns={columns}
-                  data={initialCustomers}
+                  data={customers}
                   customStyles={customStyles}
                   noHeader
                   responsive

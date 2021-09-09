@@ -65,7 +65,7 @@ const Login: FC = () => {
                             htmlFor="exampleInputEmail1"
                             className="form-label login-label pb-2"
                         >
-                            Email address
+                            Phone Number
                         </label>
                         <input
                             type="text"

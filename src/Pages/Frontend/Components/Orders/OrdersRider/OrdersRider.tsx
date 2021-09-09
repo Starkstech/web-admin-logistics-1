@@ -4,10 +4,11 @@ interface Rider {
   firstname: string,
   lastname: string,
   id: string,
-  updateAssigned: Function
+  updateAssigned: Function,
+  assignedRider: any
 }
 
-const OrdersRider:FC<Rider> = ({ firstname, lastname, id, updateAssigned }) => {
+const OrdersRider:FC<Rider> = ({ firstname, lastname, id, updateAssigned, assignedRider }) => {
   const [status, setStatus] = useState(false)
 
   const updateStatus = () => {
@@ -25,7 +26,7 @@ const OrdersRider:FC<Rider> = ({ firstname, lastname, id, updateAssigned }) => {
                     <i className="fas fa-user"></i>
                 </div>
                 <span>{`${firstname} ${lastname}`}</span>
-                <button onClick={updateStatus} className="btn_sm">{!status ? 'Assign' : 'Unassign'}</button>
+                <button disabled={assignedRider && assignedRider !== id} onClick={updateStatus} className="btn_sm">{!status ? 'Assign' : 'Unassign'}</button>
             </div>
         </div>
   )

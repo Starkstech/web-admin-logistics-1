@@ -2,6 +2,17 @@
 
 .order_modal {
     width: 400px;
+    position: relative;
+
+    .order_modal-close {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        font-size: 1.3rem;
+        cursor: pointer;
+        border: none;
+        background: none;
+    }
   
     .order_modal-header {
         span {

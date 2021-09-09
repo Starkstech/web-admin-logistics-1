@@ -1,4 +1,8 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
+import CryptoJS from "crypto-js";
+import { SERVER_URL } from "../../../../../Constant/urlConstant";
+import { useSelector } from "react-redux";
+import axios from "axios";
 import './TicketsSidebar.scss'
 import { TicketsView } from '../../';
 
@@ -28,6 +32,28 @@ const tickets = [
 ]
 
 const TicketsSidebar:FC<iTicketsSidebar> = () => {
+  const { currentUser } = useSelector((state:any) => state.user)
+
+  const getTickets = async () => {
+    const data = CryptoJS.AES.decrypt(currentUser, '12345');
+    const decryptedData = JSON.parse(data.toString(CryptoJS.enc.Utf8));
+
+    const config = {
+      headers: { Authorization: `Bearer ${decryptedData.acccess_token}` }
+    };
+
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/user/message`, config)
+      console.log(data)
+    } catch (error:any) {
+      console.log(error.message)
+    }
+  }
+
+  useEffect(() => {
+    getTickets()
+  }, [])
+
   return (
         <div className="tickets_sidebar">
             <div className="px-3">

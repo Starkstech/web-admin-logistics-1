@@ -32,7 +32,7 @@ const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
     },
     {
       name: 'Phone number',
-      selector: (row: any) => row.phoneNo,
+      selector: (row: any) => row.pickup_contact.pickup_contact_phone,
       sortable: true,
     },
 

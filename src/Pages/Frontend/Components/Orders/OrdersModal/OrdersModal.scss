@@ -39,3 +39,9 @@
     }
   
   }
+
+  @media screen and (max-width: 500px) {
+      .order_modal {
+          width: 300px;
+      }
+  }

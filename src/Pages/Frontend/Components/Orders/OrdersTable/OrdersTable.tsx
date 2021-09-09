@@ -81,27 +81,27 @@ const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
       allowOverflow: true,
       sortable: true,
       center: true,
-      cell: (row:any) => (<div className="actions_container"><button className="actions_container_btn btn">...</button><ActionsBoard orderData={row} /></div>)
+      cell: (row:any) => (<div className="actions_container"><button onClick={toggleModal(row)} className="btn_sm">View</button></div>)
     },
   ]
 
-  type BoardType = {
-      orderData: any
-  }
+  // type BoardType = {
+  //     orderData: any
+  // }
 
-  const ActionsBoard:FC<BoardType> = ({ orderData }) => (
-    <ul className="actions_container_board p-2 shadow-sm bg-white">
-      <li>
-      <button className="btn">View</button>
-      </li>
-      <li>
-      <button className="btn" onClick={() => toggleModal(orderData)}>Accept</button>
-      </li>
-      <li>
-      <button className="btn">Reject</button>
-      </li>
-    </ul>
-  )
+  // const ActionsBoard:FC<BoardType> = ({ orderData }) => (
+  //   <ul className="actions_container_board p-2 shadow-sm bg-white">
+  //     <li>
+  //     <button className="btn">View</button>
+  //     </li>
+  //     <li>
+  //     <button className="btn" onClick={() => toggleModal(orderData)}>Accept</button>
+  //     </li>
+  //     <li>
+  //     <button className="btn">Reject</button>
+  //     </li>
+  //   </ul>
+  // )
 
   const sortStatus = (status: any) => {
     switch (status) {

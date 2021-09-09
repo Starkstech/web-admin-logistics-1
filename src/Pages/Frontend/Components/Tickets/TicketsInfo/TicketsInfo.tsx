@@ -1,9 +1,15 @@
 import React, { FC } from 'react'
 import './TicketsInfo.scss'
 
-const TicketsInfo:FC = () => {
+type iTicketsInfo = {
+  setShowInfo: Function,
+}
+const TicketsInfo:FC<iTicketsInfo> = ({ setShowInfo }) => {
   return (
         <div className="tickets_info">
+          <button onClick={() => setShowInfo(false)} className="close_info btn">
+            <i className="far fa-window-close"></i>
+          </button>
             <div className="d-flex flex-column justify-content-center align-items-center">
               <div className="tickets_info-avatar"></div>
               <h4>Jason Langloff</h4>
@@ -44,6 +50,7 @@ const TicketsInfo:FC = () => {
                 </li>
               </ul>
             </details>
+            <button className="btn_main mt-5">Close Ticket</button>
         </div>
   )
 }

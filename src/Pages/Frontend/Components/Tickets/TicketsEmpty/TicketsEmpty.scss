@@ -1,0 +1,17 @@
+@import "../../../../../Assets/Style/colors";
+
+.tickets_empty {
+    width: 100%;
+    height: 100%;
+    background-color: $grey-color-2;
+    color: $dark-color;
+
+    .tickets_empty-icon {
+        font-size: 3rem;
+    }
+
+    p {
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
+}

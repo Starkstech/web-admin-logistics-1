@@ -1,7 +1,7 @@
 @import "../../../../../Assets/Style/colors";
 
 .tickets_sidebar {
-    background-color: $white-color;
+    background-color: #ffffff;
     width: 250px;
     height: 100%;
     padding: 1rem 0;
@@ -15,4 +15,11 @@
         margin: 2.5rem 0;
     }
 
+}
+
+@media screen and (max-width: 500px) {
+    .tickets_sidebar {
+        width: 100%;
+        height: 100%;
+    }
 }

@@ -136,8 +136,11 @@ const GeneralProfile:FC<Props> = ({ setActive }) => {
   // "1420cb64-bbf0-4586-919d-40487c2a9605"
 
   const getCompanyInfo = async () => {
+    if (decryptedData.companyId === '' || decryptedData.companyId === 'String' || decryptedData.companyId === null) {
+      return
+    }
     try {
-      const { data } = await axios.get(`${SERVER_URL}/company/1420cb64-bbf0-4586-919d-40487c2a9605`, config)
+      const { data } = await axios.get(`${SERVER_URL}/company/${decryptedData.companyId}`, config)
       const defaultData = {
         company_name: data.company_name,
         email: data.customer_support.email,

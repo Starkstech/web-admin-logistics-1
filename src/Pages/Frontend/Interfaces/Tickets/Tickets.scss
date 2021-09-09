@@ -1,6 +1,34 @@
 .tickets {
+    position: relative;
     width: 100%;
     height: calc(100vh - 90px);
     display: grid;
-    grid-template-columns: 250px 2fr 1fr;
+    grid-template-columns: 250px 1fr;
+
+    &.show_info {
+    grid-template-columns: 250px 1fr 300px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .tickets {
+        width: 100%;
+        grid-template-columns: 250px 1fr;
+        overflow: scroll;
+
+        &.show_info {
+            grid-template-columns: 250px 1fr;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .tickets {
+        width: 100%;
+        grid-template-columns: 250px 300px;
+
+    &.show_info {
+        grid-template-columns: 250px 300px;
+    }
+    }
 }

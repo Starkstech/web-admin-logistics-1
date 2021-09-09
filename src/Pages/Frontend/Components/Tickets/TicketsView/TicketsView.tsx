@@ -1,20 +1,34 @@
 import React, { FC } from 'react'
+import { useTicketContext } from '../../../Interfaces/Tickets/Tickets'
 import './TicketsView.scss'
 
 type iTicketsView = {
-    active?: boolean
+    id: String,
+    username: String,
+    title: String,
+    active?: boolean,
+    updatedAt: String
 }
 
-const TicketsView:FC<iTicketsView> = ({ active }) => {
+const TicketsView: FC<iTicketsView> = ({ id, title, username, updatedAt }) => {
+  const { setActiveTicket, activeTicket } = useTicketContext()
+  const updateTicket = () => {
+    setActiveTicket({
+      id, title, username, updatedAt
+    })
+  }
+
   return (
-        <div className={`tickets_view d-flex justify-content-start align-items-center shadow-sm ${active && 'active'}`}>
+        <div onClick={updateTicket}
+            className={`tickets_view d-flex justify-content-start align-items-center shadow-sm ${activeTicket.id === id ? 'active' : null}`}
+        >
             <div className="tickets_view-avatar"></div>
-            <div className="d-flex flex-column justify-content-start align-items-center">
-                <div className="tickets_view-name d-flex justify-content-end align-items-center">
-                <span>John Lennon</span>
-                    <small>2mins ago</small>
+            <div className="w-100">
+                <div className="tickets_view-name d-flex justify-content-between align-items-center">
+                    <span>{username}</span>
+                    <small>{updatedAt}</small>
                 </div>
-                <div className="tickets_view-msg">Error message on login</div>
+                <div className="tickets_view-msg">{title}</div>
             </div>
         </div>
   )

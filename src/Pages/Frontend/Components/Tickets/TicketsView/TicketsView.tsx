@@ -4,17 +4,17 @@ import './TicketsView.scss'
 
 type iTicketsView = {
     id: String,
-    username: String,
-    title: String,
-    active?: boolean,
-    updatedAt: String
+    name: String,
+    subject: String,
+    updated_at: String,
+    message: String
 }
 
-const TicketsView: FC<iTicketsView> = ({ id, title, username, updatedAt }) => {
+const TicketsView: FC<iTicketsView> = ({ id, name, subject, updated_at, message }) => {
   const { setActiveTicket, activeTicket } = useTicketContext()
   const updateTicket = () => {
     setActiveTicket({
-      id, title, username, updatedAt
+      id, name, subject, updated_at, message
     })
   }
 
@@ -25,10 +25,10 @@ const TicketsView: FC<iTicketsView> = ({ id, title, username, updatedAt }) => {
             <div className="tickets_view-avatar"></div>
             <div className="w-100">
                 <div className="tickets_view-name d-flex justify-content-between align-items-center">
-                    <span>{username}</span>
-                    <small>{updatedAt}</small>
+                    <span>{name}</span>
+                    <small>{updated_at}</small>
                 </div>
-                <div className="tickets_view-msg">{title}</div>
+                <div className="tickets_view-msg">{subject}</div>
             </div>
         </div>
   )

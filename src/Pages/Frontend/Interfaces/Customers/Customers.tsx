@@ -13,26 +13,32 @@ const columns = [
   {
     name: 'Name',
     selector: (row:any) => row.firstname,
+    sortable: true,
   },
   {
     name: 'Contact no.',
     selector: (row:any) => row.phone,
+    sortable: true,
   },
   {
     name: 'Total Spendings',
     selector: (row:any) => row.total_spending,
+    sortable: true,
   },
   {
     name: 'No. of trips',
     selector: (row:any) => row.number_of_orders,
+    sortable: true,
   },
   {
     name: 'Date Joined',
     selector: (row:any) => row.dateJoined,
+    sortable: true,
   },
   {
     name: 'Address',
     selector: (row:any) => row.address,
+    sortable: true,
   },
 ]
 

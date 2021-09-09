@@ -79,7 +79,6 @@ const OrdersTable: FC<TableTypes> = ({ toggleModal, data }) => {
       name: 'Actions',
       selector: (row: any) => row.action,
       allowOverflow: true,
-      sortable: true,
       center: true,
       cell: (row:any) => (<div className="actions_container"><button onClick={() => toggleModal(row)} className="btn_sm">View</button></div>)
     },

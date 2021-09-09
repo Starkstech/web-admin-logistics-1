@@ -13,21 +13,24 @@ type iTicketsSidebar = {
 const tickets = [
   {
     id: '1',
-    title: 'Difficulty in logging in',
-    username: 'Alex Coleman',
-    updatedAt: '2mins ago'
+    subject: 'Difficulty in logging in',
+    message: 'I have difficulty loggin into my account',
+    name: 'Alex Coleman',
+    updated_at: '2mins ago'
   },
   {
     id: '2',
-    title: 'Unable to make payment',
-    username: 'Jaye Thomas',
-    updatedAt: '2mins ago'
+    subject: 'Difficulty in logging in',
+    message: 'I have difficulty loggin into my account',
+    name: 'Jaye Jeje',
+    updated_at: '2mins ago'
   },
   {
     id: '3',
-    title: 'Unassigned order',
-    username: 'Jaden Kayle',
-    updatedAt: '2mins ago'
+    subject: 'Unassigned Order',
+    message: 'Posted my order about 3hrs ago and it has not being assigned',
+    name: 'Jaden Kyle',
+    updated_at: '2mins ago'
   }
 ]
 
@@ -61,7 +64,7 @@ const TicketsSidebar:FC<iTicketsSidebar> = () => {
             </div>
             <ul className="tickets_sidebar_list">
                 {
-                    tickets.map((x:{id: string, title: string, username: string, updatedAt: string}) => (
+                    tickets.map((x:{id: string, subject: string, name: string, updated_at: string, message: string}) => (
                         <li key={x.id}>
                             <TicketsView {...x} />
                         </li>

@@ -6,17 +6,19 @@ type ContextType = {
   setActiveTicket: Function
   activeTicket: {
     id: string,
-    title: string,
-    username: string,
-    updatedAt: string
+    message: string,
+    name: string,
+    updated_at: string,
+    subject: string
   }
 }
 
 const defaultTicketData = {
   id: '',
-  title: '',
-  username: '',
-  updatedAt: ''
+  message: '',
+  name: '',
+  updated_at: '',
+  subject: ''
 }
 
 const TicketsContext = React.createContext<ContextType>({

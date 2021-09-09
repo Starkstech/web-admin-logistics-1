@@ -7,11 +7,13 @@
     color: $dark-color;
 
     .tickets_empty-icon {
-        font-size: 3rem;
+        font-size: 4rem;
+        color: $grey-color-1;
     }
 
     p {
         font-size: 1.3rem;
-        font-weight: 500;
+        font-weight: 400;
+        color: $grey-color-1;
     }
 }

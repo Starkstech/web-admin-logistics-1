@@ -37,7 +37,7 @@ const TicketsMain:FC<iTicketsMain> = ({ setShowInfo }) => {
   return (
         <div className="tickets_main">
           <div className="tickets_main-title">
-            <h3>{activeTicket.title}</h3>
+            <h3>{activeTicket.subject}: <span>{activeTicket.message}</span></h3>
             <button onClick={() => setShowInfo(true)} className="btn_sm">Ticket Info</button>
           </div>
             <div className="tickets_main-wrapper">

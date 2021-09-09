@@ -27,26 +27,32 @@ const StaffsTable:FC<propTypes> = props => {
     {
       name: 'Name',
       selector: (row: any) => row.firstname,
+      sortable: true,
     },
     {
       name: 'Contact no.',
       selector: (row: any) => row.phone,
+      sortable: true,
     },
     {
       name: 'Total earnings.',
       selector: (row: any) => row.totalEarnings,
+      sortable: true,
     },
     {
       name: 'No. of trips',
       selector: (row: any) => row.tripsNo,
+      sortable: true,
     },
     {
       name: 'Date created',
       selector: (row: any) => row.created_at,
+      sortable: true,
     },
     {
       name: 'Address',
       selector: (row: any) => row.address.address,
+      sortable: true,
     },
     {
       name: 'Actions',
